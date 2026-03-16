@@ -1,4 +1,5 @@
 /* cards.css - Grid e Componentes de Item */
+
 .box-projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -6,6 +7,7 @@
   margin: 2rem 0;
 }
 
+/* --- COMPONENTE CARD --- */
 .card {
   background: var(--bg-surface);
   border: 1px solid var(--border);
@@ -13,18 +15,35 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
+  transition:
+    transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    border-color 0.3s;
+
+  /* Animação de entrada para os novos cards carregados */
+  animation: cardEntrance 0.5s ease-out forwards;
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card:hover {
   transform: translateY(-10px);
   border-color: var(--brand-primary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .image-container {
   width: 100%;
   height: 180px;
-  background: #000;
+  background: #0b111a; /* Fundo levemente mais escuro para destaque */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,6 +54,11 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .image-container img {
+  transform: scale(1.05);
 }
 
 .card-content {
@@ -75,6 +99,7 @@
   border: 1px solid rgba(249, 115, 22, 0.2);
 }
 
+/* --- BOTÕES E PAGINAÇÃO --- */
 .visit-btn {
   width: 100%;
   padding: 0.75rem;
@@ -95,4 +120,44 @@
   background: var(--brand-primary);
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.pagination-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 4rem 0;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+#load-more {
+  width: auto;
+  min-width: 240px;
+  padding: 1rem 2rem;
+}
+
+/* Estado desativado quando não há mais itens */
+#load-more:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  opacity: 0.8;
+  box-shadow: none;
+}
+
+#load-more:disabled i {
+  display: none; /* Esconde o ícone de '+' no fim */
+}
+
+.items-counter-text {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--brand-primary); /* Destaque para o número */
+  background: rgba(249, 115, 22, 0.05);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(249, 115, 22, 0.1);
 }

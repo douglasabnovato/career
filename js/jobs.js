@@ -1,0 +1,133 @@
+/**
+ * jobs.js
+ * Plataformas de busca ativa de vagas e projetos.
+ */
+
+export const jobs = [
+  {
+    title: "Coodesh",
+    duration: "Atualizado",
+    thumb: "./assets/thumb_jobs/coodesh.jpg",
+    site_url: "https://coodesh.com/",
+    category: "Developer",
+  },
+  {
+    title: "Geekhunter",
+    duration: "Atualizado",
+    thumb: "./assets/thumb_jobs/geekhunter.jpg",
+    site_url: "https://www.geekhunter.com.br/vagas",
+    category: "Developer",
+  },
+  {
+    title: "Linkedin",
+    duration: "Global",
+    thumb: "./assets/thumb_jobs/linkedin.jpg",
+    site_url: "https://www.linkedin.com/jobs/",
+    category: "Developer",
+  },
+  {
+    title: "Polywork",
+    duration: "Professional",
+    thumb: "./assets/thumb_jobs/polywork.jpg",
+    site_url: "https://www.polywork.com/",
+    category: "Developer",
+  },
+  {
+    title: "Programadores JF",
+    duration: "Local",
+    thumb: "./assets/thumb_jobs/programadoresjuizdefora.jpg",
+    site_url: "https://programador.emjuizdefora.com/oportunidades",
+    category: "Developer",
+  },
+  {
+    title: "Programathor",
+    duration: "Específico",
+    thumb: "./assets/thumb_jobs/programathor.jpg",
+    site_url: "https://programathor.com.br/",
+    category: "Developer",
+  },
+  {
+    title: "Bossabox",
+    duration: "Freelance/Projetos",
+    thumb: "./assets/thumb_jobs/bossabox.jpg",
+    site_url: "https://app.bossabox.com/profile/jobs/active-products",
+    category: "Developer",
+  },
+  {
+    title: "Impulso",
+    duration: "Comunidade",
+    thumb: "./assets/thumb_jobs/impulso.jpg",
+    site_url: "https://app.impulso.team/painel",
+    category: "Developer",
+  },
+  {
+    title: "trampos",
+    duration: "Geral",
+    thumb: "./assets/thumb_jobs/trampos.jpg",
+    site_url: "https://trampos.co/oportunidades/?tr=desenvolvedor",
+    category: "Developer",
+  },
+  {
+    title: "Revelo",
+    duration: "International",
+    thumb: "./assets/thumb_jobs/revelo.jpg",
+    site_url: "https://app.careers.revelo.com/#/international/positions/list",
+    category: "Developer",
+  },
+  {
+    title: "Movile",
+    duration: "Ecossistema",
+    thumb: "./assets/thumb_jobs/movile.jpg",
+    site_url: "https://www.movile.com.br/carreiras-movile",
+    category: "Developer",
+  },
+  {
+    title: "Glassdoor",
+    duration: "Reviews/Jobs",
+    thumb: "./assets/thumb_jobs/glassdoor.jpg",
+    site_url: "https://www.glassdoor.com.br/",
+    category: "Developer",
+  },
+  {
+    title: "Abler",
+    duration: "Plataforma",
+    thumb: "./assets/thumb_jobs/abler.jpg",
+    site_url: "https://candidatos.abler.com.br/app/vagas",
+    category: "Developer",
+  },
+  {
+    title: "vagas",
+    duration: "Geral",
+    thumb: "./assets/thumb_jobs/vagas.jpg",
+    site_url: "https://www.vagas.com.br/",
+    category: "Developer",
+  },
+  {
+    title: "99freelas",
+    duration: "Freelance",
+    thumb: "./assets/thumb_jobs/99freelas.jpg",
+    site_url: "https://www.99freelas.com.br/projects",
+    category: "Freelas",
+  },
+  {
+    title: "Superprof",
+    duration: "Aulas",
+    thumb: "./assets/thumb_jobs/superprof.jpg",
+    site_url: "https://www.superprof.com.br/",
+    category: "Freelas",
+  },
+  {
+    title: "Workana",
+    duration: "Freelance",
+    thumb: "./assets/thumb_jobs/workana.jpg",
+    site_url: "https://www.workana.com/jobs",
+    category: "Freelas",
+  },
+  {
+    title: "jfempregos",
+    duration: "Juiz de Fora",
+    thumb: "./assets/thumb_jobs/jfempregos.jpg",
+    site_url: "https://www.jfempregos.com.br/",
+    category: "Freelas",
+  },
+];

@@ -1,11 +1,192 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4f46e5" />
+
     <title>Career | LearnTECH</title>
-</head>
-<body>
-    
-</body>
+
+    <meta
+      name="description"
+      content="Portal Career LearnTECH: Conectando desenvolvedores a empresas e mentores."
+    />
+    <meta property="og:title" content="Career | LearnTECH" />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/cards.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+    <header class="site-header">
+      <div class="header-container">
+        <div class="header-top">
+          <div class="logo">
+            <img
+              src="./assets/logos/logo-career.png"
+              alt="Logo Career LearnTECH"
+              width="40"
+              height="40"
+            />
+            <span class="brand-text"
+              >Learn<span class="highlight">TECH</span>
+              <small>Career</small></span
+            >
+          </div>
+
+          <div class="header-controls">
+            <button
+              id="menu-toggle"
+              class="menu-toggle"
+              aria-label="Abrir menu"
+              aria-expanded="false"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M3 12h18M3 6h18M3 18h18" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div class="search-wrapper">
+            <i class="bx bx-search search-icon"></i>
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Buscar vagas, empresas ou mentores..."
+            />
+          </div>
+        </div>
+
+        <nav class="header-menu" aria-label="Navegação Principal">
+          <a href="#" id="nav-jobs" class="nav-link">Oportunidades</a>
+          <a href="#" id="nav-companies" class="nav-link active"
+            >Empresas</a
+          >
+          <a href="#" id="nav-profiles" class="nav-link">Devs</a>
+          <button id="theme-toggle" class="icon-btn" aria-label="Alternar tema">
+            <i class="bx bx-sun" id="theme-icon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="home-section">
+      <section class="container">
+        <header class="section-header">
+          <div class="header-content-wrapper">
+            <h1 id="section-title">
+              Good <span class="highlight">Companies</span>
+            </h1>
+            <p id="section-subtitle">
+              Empresas com cultura sólida e oportunidades desafiadoras.
+            </p>
+          </div>
+          <div class="stats-bar">
+            <span id="items-counter" class="items-counter-text"
+              >0 itens encontrados</span
+            >
+          </div>
+        </header>
+
+        <template id="card-template">
+          <article class="card">
+            <div class="image-container">
+              <img src="" alt="" loading="lazy" />
+            </div>
+            <div class="card-content">
+              <h3 class="title">Carregando...</h3>
+              <div class="info">
+                <p class="text--medium">Localização</p>
+                <p class="badge">Sênior</p>
+              </div>
+              <button class="visit-btn">
+                <span>Ver Mais</span>
+                <i class="bx bx-right-top-arrow-circle"></i>
+              </button>
+            </div>
+          </article>
+        </template>
+
+        <div class="box-projects" id="box-projects" aria-live="polite"></div>
+
+        <div class="pagination-footer" id="pagination-area">
+          <button id="load-more" class="visit-btn load-more-style">
+            Carregar Mais
+          </button>
+          <p id="all-loaded-message" class="end-message" hidden>
+            🚀 Fim da curadoria!
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="logo">
+              <span class="brand-text"
+                >Learn<span class="highlight">TECH</span></span
+              >
+            </div>
+            <p>Conectando talentos às melhores oportunidades do mercado.</p>
+          </div>
+          <div class="footer-socials">
+            <a
+              href="https://github.com/douglasabnovato"
+              target="_blank"
+              rel="noopener"
+              ><i class="bx bxl-github"></i
+            ></a>
+            <a
+              href="https://linkedin.com/in/douglasabnovato"
+              target="_blank"
+              rel="noopener"
+              ><i class="bx bxl-linkedin-square"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; <span id="year"></span> LearnTECH Career.</p>
+          <div class="tech-stack">
+            BU: <span class="stack-highlight">ECOSSISTEMA</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="./main.js"></script>
+  </body>
 </html>

@@ -1,0 +1,70 @@
+/* --- style.css --- */
+
+/**
+ * Portal Career - LearnTECH
+ * Entry Point CSS
+ * Este arquivo centraliza todos os módulos de estilo do ecossistema.
+ */
+
+/* 1. Reset e Variáveis Globais (Core) */
+@import url("./layout.css");
+
+/* 2. Componentes de Interface */
+@import url("./header.css");
+@import url("./cards.css");
+@import url("./footer.css"); 
+ 
+/* --- Ação de Refactoring: --- */
+
+/* No Career, o CSS Variables será: */
+[data-theme="dark"] {
+    --brand-primary: #f97316; /* Laranja learnTECH (Vibrante) */
+    --brand-hover: #ea580c;   /* Laranja learnTECH (Padrão para Hovers) */
+    --brand-accent: #fdba74;  /* Laranja learnTECH (Suave, para bordas ou Badges) */
+    
+    /* Mantemos os fundos e textos do padrão do Ecossistema */
+    --bg-body: #0a0a0c;
+    --bg-surface: #121216;
+    --text-primary: #ffffff;
+    --text-muted: #a1a1aa;
+}
+
+[data-theme="light"] {
+    --brand-primary: #ea580c; /* Laranja learnTECH (Mais escuro para contraste no claro) */
+    --brand-hover: #c2410c;
+    --brand-accent: #f97316;
+    
+    --bg-body: #fafafa;
+    --bg-surface: #ffffff;
+    --text-primary: #18181b;
+    --text-muted: #71717a;
+}
+
+
+/* 3. Estilos Adicionais de Feedback e Estado */
+/* (Opcional: Você pode adicionar estilos rápidos de transição aqui) */
+
+:focus-visible {
+  outline: 3px solid var(--brand-primary);
+  outline-offset: 4px;
+}
+::selection {
+  background-color: var(--brand-primary);
+  color: #ffffff;
+}
+
+/* Suporte a animação de entrada dos cards */
+#box-projects > article {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

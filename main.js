@@ -6,6 +6,7 @@
 import { companies } from "./js/good-companies.js";
 import { jobs } from "./js/jobs.js";
 import { profiles } from "./js/perfis-dev.js";
+import { launchBanner } from "./js/banner-data.js";
 
 const App = {
   // 1. ESTADO CENTRALIZADO
@@ -31,8 +32,9 @@ const App = {
     themeIcon: document.querySelector("#theme-icon"),
     menuToggle: document.querySelector("#menu-toggle"),
     headerMenu: document.querySelector("#header-menu"),
-    // Botão Carregar Mais
     loadMoreBtn: document.querySelector("#load-more"),
+    bannerTrack: document.querySelector("#banner-track"),
+    bannerDots: document.querySelector("#banner-dots"),
   },
 
   // 3. INICIALIZAÇÃO
@@ -41,6 +43,7 @@ const App = {
     this.syncThemeIcon();
     this.setupEventListeners();
     this.switchBU(this.state.currentBU);
+    this.initBanner();
   },
 
   setYear() {
@@ -105,6 +108,100 @@ const App = {
 
     // Gerencia o botão Carregar Mais
     this.toggleLoadMore(this.state.visibleCount < data.length);
+  },
+
+
+  /*
+    4. Adicione este bloco completo dentro do objeto App, como um método novo
+       (pode ir logo após o método render(), por exemplo):
+  */
+
+  initBanner() {
+    if (!this.el.bannerTrack || launchBanner.length === 0) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    let currentSlide = 0;
+    let autoplayTimer = null;
+
+    // Renderiza os slides e as bolinhas, uma vez
+    this.el.bannerTrack.innerHTML = launchBanner
+      .map(
+        (item, index) => `
+      <article class="banner-slide ${index === 0 ? "active" : ""}" data-index="${index}">
+        <div class="banner-slide-image">
+          <img src="${this.resolveImagePath(item.thumb)}" alt="" loading="lazy" />
+        </div>
+        <div class="banner-slide-content">
+          <span class="banner-slide-badge">${item.badgeLabel}</span>
+          <h3 class="banner-slide-title">${item.title}</h3>
+          <p class="banner-slide-category">${item.category || ""}</p>
+          <button class="visit-btn banner-slide-btn" data-url="${item.site_url || "#"}">
+            <span>Conferir</span>
+            <i class="bx bx-right-top-arrow-circle"></i>
+          </button>
+        </div>
+      </article>`,
+      )
+      .join("");
+
+    this.el.bannerDots.innerHTML = launchBanner
+      .map(
+        (_, index) => `
+      <button
+        class="banner-dot ${index === 0 ? "active" : ""}"
+        data-index="${index}"
+        aria-label="Ir para destaque ${index + 1}"
+      ></button>`,
+      )
+      .join("");
+
+    const slides = this.el.bannerTrack.querySelectorAll(".banner-slide");
+    const dots = this.el.bannerDots.querySelectorAll(".banner-dot");
+
+    const goToSlide = (index) => {
+      slides[currentSlide]?.classList.remove("active");
+      dots[currentSlide]?.classList.remove("active");
+      currentSlide = index;
+      slides[currentSlide]?.classList.add("active");
+      dots[currentSlide]?.classList.add("active");
+    };
+
+    const nextSlide = () => goToSlide((currentSlide + 1) % launchBanner.length);
+
+    const startAutoplay = () => {
+      if (prefersReducedMotion) return; // respeita a preferência do usuário
+      stopAutoplay();
+      autoplayTimer = setInterval(nextSlide, 6000);
+    };
+
+    const stopAutoplay = () => {
+      if (autoplayTimer) clearInterval(autoplayTimer);
+    };
+
+    // Clique nas bolinhas
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        goToSlide(Number(dot.dataset.index));
+        startAutoplay(); // reinicia a contagem após clique manual
+      });
+    });
+
+    // Clique no botão "Conferir" de cada slide
+    this.el.bannerTrack.querySelectorAll(".banner-slide-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const url = btn.dataset.url;
+        if (url && url !== "#") window.open(url, "_blank");
+      });
+    });
+
+    // Pausa ao passar o mouse, retoma ao sair
+    this.el.bannerTrack.addEventListener("mouseenter", stopAutoplay);
+    this.el.bannerTrack.addEventListener("mouseleave", startAutoplay);
+
+    startAutoplay();
   },
 
   toggleLoadMore(show) {

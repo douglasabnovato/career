@@ -1,247 +1,180 @@
 <!doctype html>
 <html lang="pt-br" dir="ltr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f97316" />
 
-    <meta property="og:image" content="./public/og-image-career.png" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f97316" />
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="./public/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./public/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="./public/favicon-16x16.png"
-    />
-    <link rel="manifest" href="./public/site.webmanifest" />
+  <meta property="og:image" content="./public/og-image-career.png" />
 
-    <title>Career | LearnTECH</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="./public/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./public/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./public/favicon-16x16.png" />
+  <link rel="manifest" href="./public/site.webmanifest" />
 
-    <meta
-      name="description"
-      content="Portal Career LearnTECH: Conectando desenvolvedores a empresas e mentores."
-    />
-    <meta property="og:title" content="Career | LearnTECH" />
-    <meta property="og:type" content="website" />
+  <title>Career | LearnTECH</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Poppins:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+  <meta name="description" content="Portal Career LearnTECH: Conectando desenvolvedores a empresas e mentores." />
+  <meta property="og:title" content="Career | LearnTECH" />
+  <meta property="og:type" content="website" />
 
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/layout.css" />
-    <link rel="stylesheet" href="./css/header.css" />
-    <link rel="stylesheet" href="./css/cards.css" />
-    <link rel="stylesheet" href="./css/footer.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
-    <script>
-      (function () {
-        const savedTheme = localStorage.getItem("theme") || "dark";
-        document.documentElement.setAttribute("data-theme", savedTheme);
-      })();
-    </script>
-  </head>
-  <body>
-    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/header.css" />
+  <link rel="stylesheet" href="./css/cards.css" />
+  <link rel="stylesheet" href="./css/footer.css" />
+  <link rel="stylesheet" href="./css/banner.css" />
 
-    <header class="site-header">
-      <div class="header-container">
-        <div class="header-top">
-          <div class="logo">
-            <img
-              src="./assets/logo/logo-career.png"
-              alt="Logo Career LearnTECH"
-              width="40"
-              height="40"
-            />
-            <span class="brand-text">
-              Learn<span class="highlight">TECH</span>
-              <small>Career</small>
-            </span>
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    })();
+  </script>
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="header-container">
+      <div class="header-top">
+        <div class="logo">
+          <img src="./assets/logo/logo-career.png" alt="Logo Career LearnTECH" width="40" height="40" />
+          <span class="brand-text">
+            Learn<span class="highlight">TECH</span>
+            <small>Career</small>
+          </span>
+        </div>
+
+        <div class="header-controls">
+          <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12h18M3 6h18M3 18h18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="search-wrapper">
+          <i class="bx bx-search search-icon"></i>
+          <input type="search" id="search-input" placeholder="Buscar vagas, empresas ou mentores..." />
+        </div>
+      </div>
+
+      <nav class="header-menu" id="header-menu" aria-label="Navegação Principal">
+        <a href="#" id="nav-jobs" class="nav-link">Oportunidades</a>
+        <a href="#" id="nav-companies" class="nav-link">Empresas</a>
+        <a href="#" id="nav-profiles" class="nav-link">Devs</a>
+        <button id="theme-toggle" class="icon-btn" aria-label="Alternar tema">
+          <i class="bx bx-sun" id="theme-icon"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+  <section class="launch-banner" id="launch-banner" aria-label="Destaques de lançamento">
+    <div class="container">
+      <div class="banner-track" id="banner-track"></div>
+      <div class="banner-dots" id="banner-dots"></div>
+    </div>
+  </section>
+  <main id="main-content" class="home-section">
+    <section class="container">
+      <header class="section-header">
+        <div class="header-content-wrapper">
+          <h1 id="section-title">Carregando...</h1>
+          <p id="section-subtitle">
+            Aguarde um momento enquanto preparamos os dados.
+          </p>
+        </div>
+        <div class="stats-bar">
+          <span id="items-counter" class="items-counter-text">0 itens encontrados</span>
+        </div>
+      </header>
+
+      <template id="card-template">
+        <article class="card">
+          <div class="image-container">
+            <img src="" alt="" loading="lazy" />
           </div>
-
-          <div class="header-controls">
-            <button
-              id="menu-toggle"
-              class="menu-toggle"
-              aria-label="Abrir menu"
-              aria-expanded="false"
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M3 12h18M3 6h18M3 18h18" />
-              </svg>
+          <div class="card-content">
+            <h3 class="title">Título do Item</h3>
+            <div class="info">
+              <p class="text--medium">Localização/Detalhe</p>
+              <p class="badge">Categoria</p>
+            </div>
+            <button class="visit-btn">
+              <span>Ver Mais</span>
+              <i class="bx bx-right-top-arrow-circle"></i>
             </button>
           </div>
-        </div>
+        </article>
+      </template>
 
-        <div class="header-actions">
-          <div class="search-wrapper">
-            <i class="bx bx-search search-icon"></i>
-            <input
-              type="search"
-              id="search-input"
-              placeholder="Buscar vagas, empresas ou mentores..."
-            />
-          </div>
-        </div>
+      <div class="box-projects" id="box-projects" aria-live="polite"></div>
 
-        <nav
-          class="header-menu"
-          id="header-menu"
-          aria-label="Navegação Principal"
-        >
-          <a href="#" id="nav-jobs" class="nav-link">Oportunidades</a>
-          <a href="#" id="nav-companies" class="nav-link">Empresas</a>
-          <a href="#" id="nav-profiles" class="nav-link">Devs</a>
-          <button id="theme-toggle" class="icon-btn" aria-label="Alternar tema">
-            <i class="bx bx-sun" id="theme-icon"></i>
-          </button>
-        </nav>
+      <div class="pagination-footer">
+        <button id="load-more" class="visit-btn load-more-style" style="display: none">
+          <span>Carregar Mais</span>
+          <i class="bx bx-plus-circle"></i>
+        </button>
       </div>
-    </header>
+    </section>
+  </main>
 
-    <main id="main-content" class="home-section">
-      <section class="container">
-        <header class="section-header">
-          <div class="header-content-wrapper">
-            <h1 id="section-title">Carregando...</h1>
-            <p id="section-subtitle">
-              Aguarde um momento enquanto preparamos os dados.
-            </p>
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">
+            <img src="./assets/logo/logo-career.png" alt="Logo Career" loading="lazy" width="40" height="40" />
+            <span class="brand-text">Learn<span class="highlight">TECH</span></span>
           </div>
-          <div class="stats-bar">
-            <span id="items-counter" class="items-counter-text"
-              >0 itens encontrados</span
-            >
-          </div>
-        </header>
-
-        <template id="card-template">
-          <article class="card">
-            <div class="image-container">
-              <img src="" alt="" loading="lazy" />
-            </div>
-            <div class="card-content">
-              <h3 class="title">Título do Item</h3>
-              <div class="info">
-                <p class="text--medium">Localização/Detalhe</p>
-                <p class="badge">Categoria</p>
-              </div>
-              <button class="visit-btn">
-                <span>Ver Mais</span>
-                <i class="bx bx-right-top-arrow-circle"></i>
-              </button>
-            </div>
-          </article>
-        </template>
-
-        <div class="box-projects" id="box-projects" aria-live="polite"></div>
-
-        <div class="pagination-footer">
-          <button
-            id="load-more"
-            class="visit-btn load-more-style"
-            style="display: none"
-          >
-            <span>Carregar Mais</span>
-            <i class="bx bx-plus-circle"></i>
-          </button>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="footer-container">
-        <div class="footer-top">
-          <div class="footer-brand">
-            <div class="logo">
-              <img
-                src="./assets/logo/logo-career.png"
-                alt="Logo Career"
-                loading="lazy"
-                width="40"
-                height="40"
-              />
-              <span class="brand-text"
-                >Learn<span class="highlight">TECH</span></span
-              >
-            </div>
-            <p>
-              Curadoria estratégica de carreira e oportunidades para o
-              ecossistema dev.
-            </p>
-          </div>
-
-          <div class="footer-social-section">
-            <span class="social-label">CONNECT WITH US</span>
-            <div class="footer-socials">
-              <a
-                href="https://github.com/douglasabnovato"
-                target="_blank"
-                rel="noopener"
-                aria-label="GitHub"
-              >
-                <i class="bx bxl-github"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/douglasabnovato/"
-                target="_blank"
-                rel="noopener"
-                aria-label="LinkedIn"
-              >
-                <i class="bx bxl-linkedin-square"></i>
-              </a>
-              <a
-                href="https://instagram.com/douglasabnovato"
-                target="_blank"
-                rel="noopener"
-                aria-label="Instagram"
-              >
-                <i class="bx bxl-instagram"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p class="copyright">
-            &copy; <span id="year"></span> LearnTECH. All rights
-            reserved.
+          <p>
+            Curadoria estratégica de carreira e oportunidades para o
+            ecossistema dev.
           </p>
-          <div class="tech-stack">
-            <span>Desenvolvido Career com </span>
-            <span class="stack-highlight">HTML + CSS + JavaScript</span>
+        </div>
+
+        <div class="footer-social-section">
+          <span class="social-label">CONNECT WITH US</span>
+          <div class="footer-socials">
+            <a href="https://github.com/douglasabnovato" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="bx bxl-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/douglasabnovato/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <i class="bx bxl-linkedin-square"></i>
+            </a>
+            <a href="https://instagram.com/douglasabnovato" target="_blank" rel="noopener" aria-label="Instagram">
+              <i class="bx bxl-instagram"></i>
+            </a>
           </div>
         </div>
       </div>
-    </footer>
 
-    <script type="module" src="./main.js"></script>
-  </body>
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; <span id="year"></span> LearnTECH. All rights
+          reserved.
+        </p>
+        <div class="tech-stack">
+          <span>Desenvolvido Career com </span>
+          <span class="stack-highlight">HTML + CSS + JavaScript</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./main.js"></script>
+</body>
+
 </html>

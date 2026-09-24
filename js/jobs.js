@@ -12,14 +12,14 @@ export const jobs = [
     category: "Tech Jobs",
   },
   {
-    title: "Geekhunter",
+    title: "GeekHunter",
     duration: "Atualizado",
     thumb: "./assets/thumb_jobs/geekhunter.jpg",
     site_url: "https://www.geekhunter.com.br/vagas",
     category: "Tech Jobs",
   },
   {
-    title: "Linkedin",
+    title: "LinkedIn",
     duration: "Global",
     thumb: "./assets/thumb_jobs/linkedin.jpg",
     site_url: "https://www.linkedin.com/jobs/",
@@ -61,7 +61,7 @@ export const jobs = [
     category: "Squads",
   },
   {
-    title: "trampos",
+    title: "Trampos",
     duration: "Geral",
     thumb: "./assets/thumb_jobs/trampos.jpg",
     site_url: "https://trampos.co/oportunidades/?tr=desenvolvedor",

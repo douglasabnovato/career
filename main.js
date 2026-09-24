@@ -1,348 +1,348 @@
-/**
- * main.js - Engine do Portal Career
- * Orquestra: State Management, Renderização, Busca e Paginação.
- */
+/* main.js — motor do portal Career.
+   Orquestra estado, renderização, busca, paginação, tema e o carrossel de destaques. */
 
 import { companies } from "./js/good-companies.js";
 import { jobs } from "./js/jobs.js";
 import { profiles } from "./js/perfis-dev.js";
 import { launchBanner } from "./js/banner-data.js";
 
+const CHAVE_TEMA = "career:theme";
+const CHAVE_SECAO = "career:secao";
+
+/* Deixa o texto em caixa baixa e sem acento, para a busca casar "codigo" com "código". */
+function normalizar(texto) {
+  return String(texto ?? "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "");
+}
+
+/* Neutraliza caracteres de marcação antes de interpolar dado em HTML. */
+function escapar(texto) {
+  return String(texto ?? "").replace(
+    /[&<>"']/g,
+    (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]
+  );
+}
+
 const App = {
-  // 1. ESTADO CENTRALIZADO
   state: {
-    currentBU: localStorage.getItem("activeBU") || "companies",
-    allData: { companies, jobs, profiles },
-    filteredData: [],
-    // Controle de Paginação
-    visibleCount: 8,
-    batchSize: 6,
+    secaoAtual: "companies",
+    dados: { companies, jobs, profiles },
+    filtrados: [],
+    visiveis: 8,
+    lote: 6,
   },
 
-  // 2. MAPEAMENTO DE ELEMENTOS DO DOM
   el: {
     container: document.querySelector("#box-projects"),
     template: document.querySelector("#card-template"),
-    searchInput: document.querySelector("#search-input"),
+    busca: document.querySelector("#search-input"),
     navLinks: document.querySelectorAll(".nav-link"),
-    sectionTitle: document.querySelector("#section-title"),
-    sectionSubtitle: document.querySelector("#section-subtitle"),
-    itemsCounter: document.querySelector("#items-counter"),
-    yearSpan: document.querySelector("#year"),
-    themeIcon: document.querySelector("#theme-icon"),
+    titulo: document.querySelector("#section-title"),
+    subtitulo: document.querySelector("#section-subtitle"),
+    contador: document.querySelector("#items-counter"),
+    ano: document.querySelector("#year"),
+    iconeTema: document.querySelector("#theme-icon"),
+    botaoTema: document.querySelector("#theme-toggle"),
     menuToggle: document.querySelector("#menu-toggle"),
-    headerMenu: document.querySelector("#header-menu"),
-    loadMoreBtn: document.querySelector("#load-more"),
+    menu: document.querySelector("#header-menu"),
+    verMais: document.querySelector("#load-more"),
+    fim: document.querySelector("#end-message"),
     bannerTrack: document.querySelector("#banner-track"),
     bannerDots: document.querySelector("#banner-dots"),
   },
 
-  // 3. INICIALIZAÇÃO
+  secoes: {
+    companies: {
+      titulo: 'Good <span class="highlight">Companies</span>',
+      subtitulo: "Empresas com cultura sólida e oportunidades desafiadoras.",
+      rotulo: "empresas",
+      singular: "empresa",
+      acao: "Ver Empresa",
+    },
+    jobs: {
+      titulo: 'Plataformas <span class="highlight">Jobs</span>',
+      subtitulo: "Os melhores lugares para buscar sua próxima vaga tech.",
+      rotulo: "plataformas",
+      singular: "plataforma",
+      acao: "Ver Oportunidade",
+    },
+    profiles: {
+      titulo: 'Dev <span class="highlight">Profiles</span>',
+      subtitulo: "Referências e mentores que inspiram a comunidade.",
+      rotulo: "devs",
+      singular: "dev",
+      acao: "Ver Perfil",
+    },
+  },
+
+  /* Ponto de partida: lê a preferência salva, monta a tela e liga os eventos. */
   init() {
-    this.setYear();
-    this.syncThemeIcon();
-    this.setupEventListeners();
-    this.switchBU(this.state.currentBU);
-    this.initBanner();
+    this.state.secaoAtual = this.lerSecaoSalva();
+    this.definirAno();
+    this.sincronizarIconeTema();
+    this.ligarEventos();
+    this.trocarSecao(this.state.secaoAtual, true);
+    this.iniciarBanner();
   },
 
-  setYear() {
-    if (this.el.yearSpan)
-      this.el.yearSpan.textContent = new Date().getFullYear();
-  },
-
-  resolveImagePath(path) {
-    if (!path) return "./assets/logo/logo-career.png";
-    const folderMap = {
-      companies: "thumb_good-companies",
-      jobs: "thumb_jobs",
-      profiles: "thumb_perfis-dev",
-    };
-    if (path.includes("../files/")) {
-      const fileName = path.split("/").pop();
-      return `./assets/${folderMap[this.state.currentBU]}/${fileName}`;
+  /* Recupera a última seção visitada, ignorando valor inválido no armazenamento. */
+  lerSecaoSalva() {
+    try {
+      const salva = localStorage.getItem(CHAVE_SECAO);
+      return this.state.dados[salva] ? salva : "companies";
+    } catch (e) {
+      void e;
+      return "companies";
     }
-    return path;
   },
 
-  // 4. RENDERIZAÇÃO COM LÓGICA DE PAGINAÇÃO
-  render() {
-    const fragment = document.createDocumentFragment();
-    const data = this.state.filteredData;
+  definirAno() {
+    if (this.el.ano) this.el.ano.textContent = new Date().getFullYear();
+  },
 
-    // Fatiamos os dados conforme o limite de visibilidade atual
-    const itemsToRender = data.slice(0, this.state.visibleCount);
+  /* O texto auxiliar do card: localização nas empresas, foco nas outras seções. */
+  detalheDe(item) {
+    return item.location || item.duration || "—";
+  },
+
+  /* Desenha a grade a partir do estado corrente, respeitando a paginação. */
+  render() {
+    const dados = this.state.filtrados;
+    const secao = this.secoes[this.state.secaoAtual];
 
     this.el.container.innerHTML = "";
 
-    if (data.length === 0) {
-      this.el.container.innerHTML =
-        '<p class="end-message">Nenhum resultado encontrado para sua busca.</p>';
-      this.toggleLoadMore(false);
+    if (dados.length === 0) {
+      this.el.container.innerHTML = `<p class="end-message">Nenhuma ${secao.singular} encontrada para sua busca.</p>`;
+      this.atualizarContador(0, 0);
+      this.el.verMais.hidden = true;
+      this.el.fim.hidden = true;
       return;
     }
 
-    itemsToRender.forEach((item) => {
+    const fragmento = document.createDocumentFragment();
+
+    dados.slice(0, this.state.visiveis).forEach((item) => {
       const clone = this.el.template.content.cloneNode(true);
+      const link = clone.querySelector(".card");
       const img = clone.querySelector("img");
-      img.src = this.resolveImagePath(item.thumb);
-      img.onerror = () => (img.src = "./assets/logo/logo-career.png");
+
+      link.href = item.site_url || "#";
+      link.setAttribute("aria-label", `${secao.acao}: ${item.title} — abre em nova aba`);
+
+      img.src = item.thumb || "./assets/logo/logo-career.png";
+      img.alt = `Logo de ${item.title}`;
+      img.addEventListener(
+        "error",
+        () => {
+          img.src = "./assets/logo/logo-career.png";
+        },
+        { once: true }
+      );
 
       clone.querySelector(".title").textContent = item.title || "Sem título";
-      clone.querySelector(".text--medium").textContent =
-        item.location || item.duration || item.company || "Remoto";
+      clone.querySelector(".text--medium").textContent = this.detalheDe(item);
       clone.querySelector(".badge").textContent = item.category || "Geral";
+      clone.querySelector(".visit-label").textContent = secao.acao;
 
-      const btn = clone.querySelector(".visit-btn");
-      btn.querySelector("span").textContent =
-        this.state.currentBU === "profiles" ? "Ver Perfil" : "Ver Oportunidade";
-
-      const targetUrl = item.site_url || item.url || "#";
-      btn.onclick = () => window.open(targetUrl, "_blank");
-
-      fragment.appendChild(clone);
+      fragmento.appendChild(clone);
     });
 
-    this.el.container.appendChild(fragment);
-    this.updateCounter(this.state.visibleCount, data.length);
+    this.el.container.appendChild(fragmento);
 
-    // Gerencia o botão Carregar Mais
-    this.toggleLoadMore(this.state.visibleCount < data.length);
+    const exibidos = Math.min(this.state.visiveis, dados.length);
+    this.atualizarContador(exibidos, dados.length);
+
+    const acabou = exibidos >= dados.length;
+    this.el.verMais.hidden = acabou;
+    this.el.fim.hidden = !acabou;
   },
 
+  atualizarContador(exibidos, total) {
+    const secao = this.secoes[this.state.secaoAtual];
+    const rotulo = total === 1 ? secao.singular : secao.rotulo;
+    this.el.contador.textContent = total === 0 ? `0 ${secao.rotulo}` : `${exibidos} ${rotulo} de ${total}`;
+  },
 
-  /*
-    4. Adicione este bloco completo dentro do objeto App, como um método novo
-       (pode ir logo após o método render(), por exemplo):
-  */
+  /* Troca a seção zerando busca e paginação, e guarda a escolha. */
+  trocarSecao(nome, inicial = false) {
+    if (!this.state.dados[nome]) return;
+    if (!inicial && this.state.secaoAtual === nome) return;
 
-  initBanner() {
-    if (!this.el.bannerTrack || launchBanner.length === 0) return;
+    this.state.secaoAtual = nome;
+    this.state.visiveis = 8;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    try {
+      localStorage.setItem(CHAVE_SECAO, nome);
+    } catch (e) {
+      void e;
+    }
 
-    let currentSlide = 0;
-    let autoplayTimer = null;
+    this.el.navLinks.forEach((link) => {
+      const ativo = link.id === `nav-${nome}`;
+      link.classList.toggle("active", ativo);
+      if (link.hasAttribute("aria-pressed")) link.setAttribute("aria-pressed", String(ativo));
+    });
 
-    // Renderiza os slides e as bolinhas, uma vez
-    this.el.bannerTrack.innerHTML = launchBanner
+    const secao = this.secoes[nome];
+    this.el.titulo.innerHTML = secao.titulo;
+    this.el.subtitulo.textContent = secao.subtitulo;
+    document.title = `Career | learnTECH`;
+
+    this.el.busca.value = "";
+    this.state.filtrados = this.state.dados[nome];
+    this.render();
+  },
+
+  /* Filtra a seção corrente por título, categoria, detalhe e localização. */
+  buscar(termo) {
+    const alvo = normalizar(termo).trim();
+    const origem = this.state.dados[this.state.secaoAtual];
+    this.state.visiveis = 8;
+
+    this.state.filtrados = alvo
+      ? origem.filter((item) =>
+          normalizar(
+            `${item.title} ${item.category} ${item.location || ""} ${item.duration || ""}`
+          ).includes(alvo)
+        )
+      : origem;
+
+    this.render();
+  },
+
+  sincronizarIconeTema() {
+    const tema = document.documentElement.getAttribute("data-theme");
+    if (this.el.iconeTema) {
+      this.el.iconeTema.className = tema === "dark" ? "bx bx-sun" : "bx bx-moon";
+    }
+  },
+
+  /* Monta o carrossel de destaques e cuida da rotação automática. */
+  iniciarBanner() {
+    const destaques = launchBanner.filter((item) => item && item.title);
+    if (!this.el.bannerTrack || destaques.length === 0) {
+      document.querySelector("#launch-banner")?.setAttribute("hidden", "");
+      return;
+    }
+
+    const semMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let atual = 0;
+    let temporizador = null;
+
+    this.el.bannerTrack.innerHTML = destaques
       .map(
-        (item, index) => `
-      <article class="banner-slide ${index === 0 ? "active" : ""}" data-index="${index}">
+        (item, i) => `
+      <article class="banner-slide ${i === 0 ? "active" : ""}" data-index="${i}">
         <div class="banner-slide-image">
-          <img src="${this.resolveImagePath(item.thumb)}" alt="" loading="lazy" />
+          <img src="${escapar(item.thumb || "./assets/logo/logo-career.png")}" alt="" loading="lazy" />
         </div>
         <div class="banner-slide-content">
-          <span class="banner-slide-badge">${item.badgeLabel}</span>
-          <h3 class="banner-slide-title">${item.title}</h3>
-          <p class="banner-slide-category">${item.category || ""}</p>
-          <button class="visit-btn banner-slide-btn" data-url="${item.site_url || "#"}">
+          <span class="banner-slide-badge">${escapar(item.badgeLabel)}</span>
+          <h2 class="banner-slide-title">${escapar(item.title)}</h2>
+          <p class="banner-slide-category">${escapar(item.category || "")}</p>
+          <a class="visit-btn banner-slide-btn" href="${escapar(item.site_url || "#")}"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Conferir ${escapar(item.title)} — abre em nova aba">
             <span>Conferir</span>
-            <i class="bx bx-right-top-arrow-circle"></i>
-          </button>
+            <i class="bx bx-right-top-arrow-circle" aria-hidden="true"></i>
+          </a>
         </div>
-      </article>`,
+      </article>`
       )
       .join("");
 
-    this.el.bannerDots.innerHTML = launchBanner
+    this.el.bannerDots.innerHTML = destaques
       .map(
-        (_, index) => `
-      <button
-        class="banner-dot ${index === 0 ? "active" : ""}"
-        data-index="${index}"
-        aria-label="Ir para destaque ${index + 1}"
-      ></button>`,
+        (item, i) => `
+      <button type="button" class="banner-dot ${i === 0 ? "active" : ""}" data-index="${i}"
+        aria-label="Ir para o destaque ${i + 1}: ${escapar(item.title)}"></button>`
       )
       .join("");
 
     const slides = this.el.bannerTrack.querySelectorAll(".banner-slide");
     const dots = this.el.bannerDots.querySelectorAll(".banner-dot");
 
-    const goToSlide = (index) => {
-      slides[currentSlide]?.classList.remove("active");
-      dots[currentSlide]?.classList.remove("active");
-      currentSlide = index;
-      slides[currentSlide]?.classList.add("active");
-      dots[currentSlide]?.classList.add("active");
+    const irPara = (i) => {
+      slides[atual]?.classList.remove("active");
+      dots[atual]?.classList.remove("active");
+      atual = i;
+      slides[atual]?.classList.add("active");
+      dots[atual]?.classList.add("active");
     };
 
-    const nextSlide = () => goToSlide((currentSlide + 1) % launchBanner.length);
-
-    const startAutoplay = () => {
-      if (prefersReducedMotion) return; // respeita a preferência do usuário
-      stopAutoplay();
-      autoplayTimer = setInterval(nextSlide, 6000);
+    const parar = () => {
+      if (temporizador) clearInterval(temporizador);
+      temporizador = null;
     };
 
-    const stopAutoplay = () => {
-      if (autoplayTimer) clearInterval(autoplayTimer);
+    const rodar = () => {
+      if (semMovimento || destaques.length < 2) return;
+      parar();
+      temporizador = setInterval(() => irPara((atual + 1) % destaques.length), 6000);
     };
 
-    // Clique nas bolinhas
     dots.forEach((dot) => {
       dot.addEventListener("click", () => {
-        goToSlide(Number(dot.dataset.index));
-        startAutoplay(); // reinicia a contagem após clique manual
+        irPara(Number(dot.dataset.index));
+        rodar();
       });
     });
 
-    // Clique no botão "Conferir" de cada slide
-    this.el.bannerTrack.querySelectorAll(".banner-slide-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const url = btn.dataset.url;
-        if (url && url !== "#") window.open(url, "_blank");
-      });
+    this.el.bannerTrack.addEventListener("mouseenter", parar);
+    this.el.bannerTrack.addEventListener("mouseleave", rodar);
+    this.el.bannerTrack.addEventListener("focusin", parar);
+    this.el.bannerTrack.addEventListener("focusout", rodar);
+    document.addEventListener("visibilitychange", () => (document.hidden ? parar() : rodar()));
+
+    rodar();
+  },
+
+  /* Liga todos os ouvintes de evento da página. */
+  ligarEventos() {
+    let atraso;
+    this.el.busca.addEventListener("input", (evento) => {
+      clearTimeout(atraso);
+      const valor = evento.target.value;
+      atraso = setTimeout(() => this.buscar(valor), 300);
     });
 
-    // Pausa ao passar o mouse, retoma ao sair
-    this.el.bannerTrack.addEventListener("mouseenter", stopAutoplay);
-    this.el.bannerTrack.addEventListener("mouseleave", startAutoplay);
-
-    startAutoplay();
-  },
-
-  toggleLoadMore(show) {
-    if (!this.el.loadMoreBtn) return;
-
-    if (show) {
-      this.el.loadMoreBtn.style.display = "inline-flex";
-      this.el.loadMoreBtn.disabled = false;
-      this.el.loadMoreBtn.querySelector("span").textContent = "Carregar Mais";
-    } else {
-      // Se há dados mas chegamos ao fim, mostra mensagem final
-      if (this.state.filteredData.length > 0) {
-        this.el.loadMoreBtn.style.display = "inline-flex";
-        this.el.loadMoreBtn.disabled = true;
-        this.el.loadMoreBtn.querySelector("span").textContent =
-          "Não há mais o que carregar";
-      } else {
-        this.el.loadMoreBtn.style.display = "none";
-      }
-    }
-  },
-
-  updateCounter(visibleCount, totalCount) {
-    const labels = {
-      companies: "empresas",
-      jobs: "plataformas",
-      profiles: "devs",
-    };
-
-    const label = labels[this.state.currentBU];
-
-    // Se não houver resultados (na busca por exemplo)
-    if (totalCount === 0) {
-      this.el.itemsCounter.textContent = `0 ${label}`;
-      return;
-    }
-
-    // Se o visível for maior que o total (proteção lógica), igualamos
-    const currentVisible =
-      visibleCount > totalCount ? totalCount : visibleCount;
-
-    this.el.itemsCounter.textContent = `${currentVisible} ${label} de ${totalCount}`;
-  },
-
-  switchBU(buName) {
-    if (!this.state.allData[buName]) return;
-
-    // Reset de paginação ao trocar categoria
-    this.state.visibleCount = 8;
-    this.state.currentBU = buName;
-    localStorage.setItem("activeBU", buName);
-
-    this.el.navLinks.forEach((link) => {
-      link.classList.toggle("active", link.id === `nav-${buName}`);
-    });
-
-    const contentMap = {
-      companies: {
-        title: 'Good <span class="highlight">Companies</span>',
-        subtitle: "Empresas com cultura sólida e oportunidades desafiadoras.",
-      },
-      jobs: {
-        title: 'Plataformas <span class="highlight">Jobs</span>',
-        subtitle: "Os melhores lugares para buscar sua próxima vaga tech.",
-      },
-      profiles: {
-        title: 'Dev <span class="highlight">Profiles</span>',
-        subtitle: "Referências e mentores que inspiram a comunidade.",
-      },
-    };
-
-    this.el.sectionTitle.innerHTML = contentMap[buName].title;
-    this.el.sectionSubtitle.textContent = contentMap[buName].subtitle;
-
-    this.el.searchInput.value = "";
-    this.state.filteredData = this.state.allData[buName];
-    this.render();
-  },
-
-  syncThemeIcon() {
-    const currentTheme = document.documentElement.getAttribute("data-theme");
-    if (this.el.themeIcon) {
-      this.el.themeIcon.className =
-        currentTheme === "dark" ? "bx bx-sun" : "bx bx-moon";
-    }
-  },
-
-  setupEventListeners() {
-    let timer;
-    this.el.searchInput.addEventListener("input", (e) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        const term = e.target.value.toLowerCase();
-        const currentSource = this.state.allData[this.state.currentBU];
-
-        // Reset da contagem na busca
-        this.state.visibleCount = 8;
-
-        this.state.filteredData = currentSource.filter(
-          (item) =>
-            item.title?.toLowerCase().includes(term) ||
-            item.category?.toLowerCase().includes(term) ||
-            item.location?.toLowerCase().includes(term),
-        );
-        this.render();
-      }, 300);
-    });
-
-    // Clique no botão Carregar Mais
-    this.el.loadMoreBtn?.addEventListener("click", () => {
-      this.state.visibleCount += this.state.batchSize;
+    this.el.verMais?.addEventListener("click", () => {
+      this.state.visiveis += this.state.lote;
       this.render();
     });
 
     this.el.navLinks.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const bu = link.id.replace("nav-", "");
-        this.switchBU(bu);
+      link.addEventListener("click", () => {
+        this.trocarSecao(link.id.replace("nav-", ""));
         if (window.innerWidth <= 768) {
-          this.el.headerMenu?.classList.remove("open");
+          this.el.menu?.classList.remove("open");
           this.el.menuToggle?.setAttribute("aria-expanded", "false");
         }
       });
     });
 
-    const themeBtn = document.querySelector("#theme-toggle");
-    themeBtn?.addEventListener("click", () => {
-      const html = document.documentElement;
-      const isDark = html.getAttribute("data-theme") === "dark";
-      const newTheme = isDark ? "light" : "dark";
-      html.setAttribute("data-theme", newTheme);
-      localStorage.setItem("theme", newTheme);
-      this.syncThemeIcon();
+    this.el.botaoTema?.addEventListener("click", () => {
+      const raiz = document.documentElement;
+      const novo = raiz.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      raiz.setAttribute("data-theme", novo);
+      try {
+        localStorage.setItem(CHAVE_TEMA, novo);
+      } catch (e) {
+        void e;
+      }
+      this.sincronizarIconeTema();
     });
 
     this.el.menuToggle?.addEventListener("click", () => {
-      const isOpen = this.el.headerMenu.classList.toggle("open");
-      this.el.menuToggle.setAttribute("aria-expanded", isOpen);
+      const aberto = this.el.menu.classList.toggle("open");
+      this.el.menuToggle.setAttribute("aria-expanded", String(aberto));
     });
   },
 };
 
-document.addEventListener("DOMContentLoaded", () => App.init());
+App.init();
+
+/* Fim de main.js */

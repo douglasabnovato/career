@@ -47,7 +47,7 @@ export const profiles = [
     category: "Fullstack",
   },
   {
-    title: "Codigo Fonte TV",
+    title: "Código Fonte TV",
     duration: "Curiosidades",
     thumb: "./assets/thumb_perfis-dev/codigofonte-tv.jpg",
     site_url: "https://codigofonte.tv/",

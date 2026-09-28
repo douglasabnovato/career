@@ -25,6 +25,15 @@ function porTitulo(lista, nome, rotulo) {
   return { ...achado, badgeLabel: rotulo };
 }
 
+/* Monta os destaques a partir de um catálogo (local ou da API) e da seleção de títulos. */
+export function montarDestaques(catalogo, selecao) {
+  return [
+    porTitulo(catalogo.jobs, selecao.vaga, "Oportunidade"),
+    porTitulo(catalogo.companies, selecao.empresa, "Empresa"),
+    porTitulo(catalogo.profiles, selecao.perfil, "Dev"),
+  ].filter(Boolean);
+}
+
 export const launchBanner = [
   porTitulo(jobs, "GeekHunter", "Oportunidade"),
   porTitulo(companies, "Rocketseat", "Empresa"),

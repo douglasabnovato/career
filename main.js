@@ -4,10 +4,12 @@
 import { companies } from "./js/good-companies.js";
 import { jobs } from "./js/jobs.js";
 import { profiles } from "./js/perfis-dev.js";
-import { launchBanner } from "./js/banner-data.js";
+import { launchBanner, montarDestaques } from "./js/banner-data.js";
+import { buscarRecurso, resolverMidia, esperarAte, carregarIdentificacao } from "./js/api.js";
 
 const CHAVE_TEMA = "career:theme";
 const CHAVE_SECAO = "career:secao";
+const ESPERA_API_MS = 1500;
 
 /* Deixa o texto em caixa baixa e sem acento, para a busca casar "codigo" com "código". */
 function normalizar(texto) {
@@ -222,7 +224,7 @@ const App = {
 
   /* Monta o carrossel de destaques e cuida da rotação automática. */
   iniciarBanner() {
-    const destaques = launchBanner.filter((item) => item && item.title);
+    const destaques = (this.destaques || launchBanner).filter((item) => item && item.title);
     if (!this.el.bannerTrack || destaques.length === 0) {
       document.querySelector("#launch-banner")?.setAttribute("hidden", "");
       return;
@@ -343,6 +345,36 @@ const App = {
   },
 };
 
+/* Busca o catálogo na API; devolve null quando ela falha, e o site segue com os dados locais. */
+async function carregarCatalogo() {
+  try {
+    const [c, j, p, d] = await Promise.all(
+      ["empresas", "vagas", "perfis", "destaques"].map((nome) => buscarRecurso(`career/${nome}.json`))
+    );
+    return { companies: resolverMidia(c), jobs: resolverMidia(j), profiles: resolverMidia(p), destaques: d };
+  } catch (e) {
+    console.warn("[learntech-content] usando dados locais:", e.message);
+    return null;
+  }
+}
+
+/* Troca o catálogo do estado pelo da API e recalcula os destaques. */
+App.usarCatalogo = function (cat) {
+  this.state.dados = { companies: cat.companies, jobs: cat.jobs, profiles: cat.profiles };
+  this.destaques = montarDestaques(this.state.dados, cat.destaques);
+};
+
+carregarIdentificacao("career");
+const remoto = carregarCatalogo();
+const primeiro = await esperarAte(remoto, ESPERA_API_MS);
+if (primeiro) App.usarCatalogo(primeiro);
 App.init();
+if (primeiro === undefined) {
+  remoto.then((cat) => {
+    if (!cat) return;
+    App.usarCatalogo(cat);
+    App.buscar(App.el.busca.value);
+  });
+}
 
 /* Fim de main.js */

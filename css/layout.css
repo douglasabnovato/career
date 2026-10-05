@@ -1,7 +1,7 @@
 /* layout.css — camada única de tokens do Career, base e estrutura.
    Todo token de cor existe nos dois temas: o que está aqui é o que a
    interface inteira usa, e nada de cor literal vive nos outros arquivos. */
-
+@import url("./company-modal.css");
 :root,
 [data-theme="dark"] {
   --brand-primary: #f97316;

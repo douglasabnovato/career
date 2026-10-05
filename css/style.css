@@ -1,7 +1,7 @@
 /* style.css — estado, foco e animação de entrada.
    Os tokens de tema vivem em layout.css; os arquivos de componente são
    carregados pelo index.html, não por @import, para não baixarem duas vezes. */
-
+@import url("./company-modal.css");
 :focus-visible {
   outline: 3px solid var(--brand-primary);
   outline-offset: 4px;

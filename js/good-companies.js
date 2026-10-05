@@ -5,6 +5,59 @@
 
 export const companies = [
   {
+    id: "brq",
+    title: "BRQ Digital Solutions",
+    location: "São Paulo / Anywhere Office",
+    thumb: "./assets/thumb_good-companies/brq.jpg",
+    modal_thumb: "./assets/thumb_good-companies/brq-logo.jpg",
+    site_url: "https://www.brq.com/",
+    career_url: "https://www.brq.com/carreiras/",
+    category: "Digital Transformation",
+
+    description:
+      "Empresa brasileira de tecnologia e transformação digital que combina especialistas, engenharia, dados e inteligência artificial para transformar problemas complexos em progresso.",
+
+    about:
+      "Fundada em 1993, a BRQ Digital Solutions atua em projetos de tecnologia e transformação digital, apoiando empresas na modernização de sistemas, evolução para a nuvem, estruturação de plataformas de dados, adoção de inteligência artificial generativa e criação de produtos e experiências digitais.",
+
+    areas: [
+      "Modernization",
+      "Data & Analytics",
+      "Generative AI",
+      "Product & Experience",
+      "Salesforce",
+    ],
+
+    work_model:
+      "Anywhere Office, com possibilidades de atuação remota, híbrida ou presencial de acordo com o contexto do projeto.",
+
+    culture: [
+      "Carreira e desenvolvimento",
+      "Saúde e bem-estar",
+      "Comunicação e conexão",
+      "Diversidade e inclusão",
+      "Aprendizado contínuo",
+      "Excelência técnica",
+    ],
+
+    development: [
+      "BRQ Academy",
+      "Programas de mentoria",
+      "Incentivo a certificações",
+      "Programas de idiomas",
+      "Trilhas de desenvolvimento profissional",
+    ],
+
+    highlights: [
+      "Mais de 30 anos de atuação",
+      "Mais de 2.500 profissionais",
+      "Atuação internacional",
+      "Projetos de alta complexidade",
+      "Atuação em inteligência artificial generativa",
+      "Anywhere Office",
+    ],
+  },
+  {
     title: "Guiando",
     location: "Juiz de Fora",
     thumb: "./assets/thumb_good-companies/guiando.jpg",

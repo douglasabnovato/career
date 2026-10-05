@@ -192,6 +192,151 @@
       </div>
     </footer>
 
+    <div
+  id="company-modal"
+  class="company-modal"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+>
+
+  <div
+    class="company-modal__overlay"
+    data-modal-close
+  ></div>
+
+
+  <div class="company-modal__content">
+
+    <button
+      class="company-modal__close"
+      type="button"
+      aria-label="Fechar detalhes da empresa"
+      data-modal-close
+    >
+      &times;
+    </button>
+
+
+    <header class="company-modal__header">
+
+      <img
+        id="company-modal-thumb"
+        class="company-modal__thumb"
+        src=""
+        alt=""
+      >
+
+      <div>
+
+        <span
+          id="company-modal-category"
+          class="company-modal__category"
+        ></span>
+
+        <h2 id="company-modal-title"></h2>
+
+        <p id="company-modal-location"></p>
+
+      </div>
+
+    </header>
+
+
+    <div class="company-modal__body">
+
+      <section class="company-modal__section">
+
+        <h3>Sobre a empresa</h3>
+
+        <p id="company-modal-about"></p>
+
+      </section>
+
+
+      <section class="company-modal__section">
+
+        <h3>Atuação</h3>
+
+        <p id="company-modal-description"></p>
+
+        <div
+          id="company-modal-areas"
+          class="company-modal__tags"
+        ></div>
+
+      </section>
+
+
+      <section class="company-modal__section">
+
+        <h3>Modelo de trabalho</h3>
+
+        <p id="company-modal-work-model"></p>
+
+      </section>
+
+
+      <section class="company-modal__section">
+
+        <h3>Cultura</h3>
+
+        <ul id="company-modal-culture"></ul>
+
+      </section>
+
+
+      <section class="company-modal__section">
+
+        <h3>Desenvolvimento</h3>
+
+        <ul id="company-modal-development"></ul>
+
+      </section>
+
+
+      <section class="company-modal__section">
+
+        <h3>Oportunidades</h3>
+
+        <div
+          id="company-modal-opportunities"
+          class="company-opportunities"
+        ></div>
+
+      </section>
+
+    </div>
+
+
+    <footer class="company-modal__footer">
+
+      <a
+        id="company-modal-career"
+        class="company-modal__button company-modal__button--secondary"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ver carreiras
+      </a>
+
+      <a
+        id="company-modal-site"
+        class="company-modal__button"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Visitar empresa
+      </a>
+
+    </footer>
+
+  </div>
+
+</div>
+
     <script type="module" src="./main.js"></script>
   </body>
 </html>

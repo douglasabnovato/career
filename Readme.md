@@ -1,8 +1,8 @@
 # Career
 
-Hub estratégico para conexões profissionais de alta performance, reunindo empresas de destaque, oportunidades profissionais e perfis que contribuem para a formação e evolução de pessoas desenvolvedoras.
+Hub estratégico para conexões profissionais reunindo empresas de destaque, oportunidades profissionais e perfis que contribuem para a formação e evolução de pessoas desenvolvedoras.
 
-O **Career** faz parte do ecossistema **learnTECH** e foi desenvolvido como uma experiência independente para exploração de carreira no mercado de tecnologia.
+O **Career** faz parte do ecossistema **LearnTECH** e foi desenvolvido como uma experiência independente para exploração de carreira no mercado de tecnologia.
 
 ## Visão geral
 
@@ -20,7 +20,7 @@ A aplicação possui uma versão publicada no GitHub Pages:
 
 **douglasabnovato.github.io/career**
 
-O projeto também está integrado ao ecossistema **learnTECH**, onde a área de carreira funciona como ponto de entrada para conteúdos relacionados ao desenvolvimento profissional.
+O projeto também está integrado ao ecossistema **LearnTECH**, onde a área de carreira funciona como ponto de entrada para conteúdos relacionados ao desenvolvimento profissional.
 
 ## Funcionalidades
 

@@ -44,6 +44,7 @@
     <link rel="stylesheet" href="./css/cards.css" />
     <link rel="stylesheet" href="./css/footer.css" />
     <link rel="stylesheet" href="./css/banner.css" />
+    <link rel="stylesheet" href="./css/curriculos.css" />
 
     <script>
       (function () {
@@ -94,11 +95,36 @@
           </div>
         </div>
 
+        
         <nav class="header-menu" id="header-menu" aria-label="Seções do catálogo">
-          <button type="button" id="nav-jobs" class="nav-link" aria-pressed="false">Oportunidades</button>
-          <button type="button" id="nav-companies" class="nav-link" aria-pressed="false">Empresas</button>
-          <button type="button" id="nav-profiles" class="nav-link" aria-pressed="false">Devs</button>
-          <button type="button" id="theme-toggle" class="icon-btn" aria-label="Alternar tema claro e escuro">
+          <button type="button" id="nav-jobs" class="nav-link" aria-pressed="false">
+            Oportunidades
+          </button>
+
+          <button type="button" id="nav-companies" class="nav-link" aria-pressed="false">
+            Empresas
+          </button>
+
+          <button type="button" id="nav-profiles" class="nav-link" aria-pressed="false">
+            Devs
+          </button>
+
+          <button
+  type="button"
+  id="nav-curriculos"
+  class="nav-link"
+  aria-pressed="false"
+>
+  Currículos
+</button>
+
+
+          <button
+            type="button"
+            id="theme-toggle"
+            class="icon-btn"
+            aria-label="Alternar tema claro e escuro"
+          >
             <i class="bx bx-sun" id="theme-icon" aria-hidden="true"></i>
           </button>
         </nav>
@@ -145,6 +171,40 @@
 
         <div class="box-projects" id="box-projects" aria-live="polite"></div>
 
+        <template id="curriculo-template">
+  <article class="resume-item">
+
+    <button
+      class="resume-item__trigger"
+      type="button"
+      aria-expanded="false"
+    >
+      <span class="resume-item__header">
+        <span class="resume-item__name"></span>
+
+        <span class="resume-item__title"></span>
+
+        <span class="resume-item__location"></span>
+      </span>
+
+      <span
+        class="resume-item__icon"
+        aria-hidden="true"
+      >
+        +
+      </span>
+    </button>
+
+    <div class="resume-item__content">
+
+      <div class="resume-item__summary"></div>
+
+      <div class="resume-item__body"></div>
+
+    </div>
+
+  </article>
+</template>
         <div class="pagination-footer">
           <button id="load-more" type="button" class="visit-btn" hidden>
             <span>Carregar Mais</span>

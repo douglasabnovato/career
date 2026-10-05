@@ -1,6 +1,6 @@
 # Career
 
-Hub estratégico para conexões profissionais de alta performance, reunindo empresas de destaque, oportunidades profissionais e perfis que contribuem para a formação e evolução de pessoas desenvolvedoras.
+*Hub* estratégico para conexões profissionais de alta performance: apresentando empresas de destaque, oportunidades desafiadoras e perfis inspiradores que colaboram ativamente na jornada de formação e evolução na carreira tech.
 
 O **Career** faz parte do ecossistema **learnTECH** e foi desenvolvido como uma experiência independente para exploração de carreira no mercado de tecnologia.
 

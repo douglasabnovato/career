@@ -6,11 +6,12 @@ O **Career** faz parte do ecossistema **LearnTECH** e foi desenvolvido como uma 
 
 ## Visão geral
 
-O projeto organiza conteúdos relacionados à carreira tech em três áreas principais:
+O projeto organiza conteúdos relacionados à carreira tech em quatro áreas principais:
 
 * **Empresas** — empresas selecionadas por sua relevância, cultura, atuação e potencial de desenvolvimento profissional.
 * **Plataformas Jobs** — plataformas e serviços utilizados para encontrar oportunidades profissionais na área de tecnologia.
 * **Dev Profiles** — desenvolvedores, referências e profissionais que podem contribuir para a formação e evolução da comunidade.
+* **Currículos** — a construção do tradicional currículo ainda é uma fase importante em processos seletivos. Por isso, alguns templates cedidos por alunos e amigos em seus respectivos processos.
 
 A interface foi projetada para permitir navegação simples, busca rápida e exploração progressiva dos conteúdos.
 

@@ -1,5 +1,7 @@
+import { escapar } from "./utils.js";
+
 function criarLista(items = []) {
-  return items.map((item) => `<li>${item}</li>`).join("");
+  return items.map((item) => `<li>${escapar(item)}</li>`).join("");
 }
 
 function criarTags(items = []) {
@@ -7,7 +9,7 @@ function criarTags(items = []) {
     .map(
       (item) => `
         <span class="resume-tag">
-          ${item}
+          ${escapar(item)}
         </span>
       `,
     )
@@ -21,24 +23,24 @@ function criarExperiencias(experiencias = []) {
         <article class="resume-experience__item">
 
           <h4 class="resume-experience__role">
-            ${experiencia.cargo || ""}
+            ${escapar(experiencia.cargo || "")}
           </h4>
 
           <p class="resume-experience__company">
-            ${experiencia.empresa || ""}
+            ${escapar(experiencia.empresa || "")}
           </p>
 
           <p class="resume-experience__meta">
-            ${experiencia.periodo || ""}
-            ${experiencia.local ? ` • ${experiencia.local}` : ""}
-            ${experiencia.modelo ? ` • ${experiencia.modelo}` : ""}
+            ${escapar(experiencia.periodo || "")}
+            ${experiencia.local ? ` • ${escapar(experiencia.local)}` : ""}
+            ${experiencia.modelo ? ` • ${escapar(experiencia.modelo)}` : ""}
           </p>
 
           ${
             experiencia.descricaoEmpresa
               ? `
                 <p class="resume-experience__description">
-                  ${experiencia.descricaoEmpresa}
+                  ${escapar(experiencia.descricaoEmpresa)}
                 </p>
               `
               : ""
@@ -77,16 +79,16 @@ function criarFormacao(formacao = []) {
         <article class="resume-education__item">
 
           <h4 class="resume-education__course">
-            ${item.curso || ""}
+            ${escapar(item.curso || "")}
           </h4>
 
           <p class="resume-education__institution">
-            ${item.instituicao || ""}
+            ${escapar(item.instituicao || "")}
           </p>
 
           <p class="resume-education__meta">
-            ${item.periodo || ""}
-            ${item.status ? ` • ${item.status}` : ""}
+            ${escapar(item.periodo || "")}
+            ${item.status ? ` • ${escapar(item.status)}` : ""}
           </p>
 
         </article>
@@ -109,7 +111,7 @@ function criarCorpoCurriculo(curriculo) {
             </h3>
 
             <p class="resume-section__text">
-              ${curriculo.objetivo}
+              ${escapar(curriculo.objetivo)}
             </p>
 
           </section>
@@ -127,7 +129,7 @@ function criarCorpoCurriculo(curriculo) {
             </h3>
 
             <p class="resume-section__text">
-              ${curriculo.resumo}
+              ${escapar(curriculo.resumo)}
             </p>
 
           </section>
@@ -154,7 +156,7 @@ function criarCorpoCurriculo(curriculo) {
                 contato.telefone
                   ? `
                     <span class="resume-contact__item">
-                      ${contato.telefone}
+                      ${escapar(contato.telefone)}
                     </span>
                   `
                   : ""
@@ -165,9 +167,9 @@ function criarCorpoCurriculo(curriculo) {
                   ? `
                     <a
                       class="resume-contact__item resume-contact__link"
-                      href="mailto:${contato.email}"
+                      href="mailto:${escapar(contato.email)}"
                     >
-                      ${contato.email}
+                      ${escapar(contato.email)}
                     </a>
                   `
                   : ""
@@ -177,7 +179,7 @@ function criarCorpoCurriculo(curriculo) {
                 contato.linkedin
                   ? `
                     <span class="resume-contact__item">
-                      ${contato.linkedin}
+                      ${escapar(contato.linkedin)}
                     </span>
                   `
                   : ""
@@ -187,7 +189,7 @@ function criarCorpoCurriculo(curriculo) {
                 contato.github
                   ? `
                     <span class="resume-contact__item">
-                      ${contato.github}
+                      ${escapar(contato.github)}
                     </span>
                   `
                   : ""
@@ -197,7 +199,7 @@ function criarCorpoCurriculo(curriculo) {
                 contato.portfolio
                   ? `
                     <span class="resume-contact__item">
-                      ${contato.portfolio}
+                      ${escapar(contato.portfolio)}
                     </span>
                   `
                   : ""
@@ -225,7 +227,7 @@ function criarCorpoCurriculo(curriculo) {
                   <div class="resume-section">
 
                     <h4 class="resume-section__title">
-                      ${competencia.categoria}
+                      ${escapar(competencia.categoria)}
                     </h4>
 
                     <div class="resume-tags">
@@ -275,10 +277,10 @@ function criarCorpoCurriculo(curriculo) {
                   (item) => `
                     <li>
                       <strong>
-                        ${item.cargo || ""}
+                        ${escapar(item.cargo || "")}
                       </strong>
-                      — ${item.empresa || ""}
-                      ${item.periodo ? ` (${item.periodo})` : ""}
+                      — ${escapar(item.empresa || "")}
+                      ${item.periodo ? ` (${escapar(item.periodo)})` : ""}
                     </li>
                   `,
                 )
@@ -305,11 +307,11 @@ function criarCorpoCurriculo(curriculo) {
                   <article class="resume-project">
 
                     <h4 class="resume-project__name">
-                      ${projeto.nome || ""}
+                      ${escapar(projeto.nome || "")}
                     </h4>
 
                     <p class="resume-project__description">
-                      ${projeto.descricao || ""}
+                      ${escapar(projeto.descricao || "")}
                     </p>
 
                     ${
@@ -383,9 +385,9 @@ function criarCorpoCurriculo(curriculo) {
                   (idioma) => `
                     <li>
                       <strong>
-                        ${idioma.idioma}
+                        ${escapar(idioma.idioma)}
                       </strong>
-                      — ${idioma.nivel}
+                      — ${escapar(idioma.nivel)}
                     </li>
                   `,
                 )

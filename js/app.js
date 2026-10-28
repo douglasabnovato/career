@@ -15,6 +15,9 @@ import {
 
 const CHAVE_SECAO = "career:secao";
 
+/* Tipo usado na URL da página de detalhe para cada seção de cards. */
+const TIPO_DETALHE = { companies: "empresas", jobs: "vagas", profiles: "perfis" };
+
 export const App = {
   state: {
     secaoAtual: "companies",
@@ -203,6 +206,15 @@ export const App = {
           "aria-label",
           `Ver detalhes da empresa: ${item.title}`,
         );
+      } else if (item.slug && item.detalhe && TIPO_DETALHE[this.state.secaoAtual]) {
+        /* Item com página de detalhe: abre detalhe.html na mesma aba. */
+        link.href = `detalhe.html#tipo=${TIPO_DETALHE[this.state.secaoAtual]}&id=${encodeURIComponent(item.slug)}`; /* "#" sobrevive a servidores que redirecionam .html e descartam a query (ex.: npx serve). */
+
+        link.removeAttribute("target");
+
+        link.removeAttribute("rel");
+
+        link.setAttribute("aria-label", `Ver detalhes: ${item.title}`);
       } else {
         link.href = item.site_url || "#";
 
@@ -427,7 +439,11 @@ export const App = {
       curriculos,
     };
 
-    this.destaques = montarDestaques(this.state.dados, cat.destaques);
+    /* Sem seleção de destaques válida na API, mantém o banner local (launchBanner). */
+    this.destaques =
+      cat.destaques && typeof cat.destaques === "object"
+        ? montarDestaques(this.state.dados, cat.destaques)
+        : null;
   },
 };
 

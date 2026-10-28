@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhes | Career | learnTECH</title>
+
+    <meta
+      name="description"
+      content="Detalhes de empresas, plataformas de vagas e perfis de referência da curadoria Career do ecossistema learnTECH."
+    />
+
+    <meta name="theme-color" content="#0a0a0c" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Career | learnTECH" />
+    <meta property="og:image" content="https://douglasabnovato.github.io/career/public/og-image-career.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="./public/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./public/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./public/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./public/apple-touch-icon.png" />
+    <link rel="manifest" href="./public/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/cards.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/detalhe.css" />
+
+    <script>
+      (function () {
+        try {
+          var salvo = localStorage.getItem("career:theme");
+          var claro = window.matchMedia("(prefers-color-scheme: light)").matches;
+          document.documentElement.setAttribute("data-theme", salvo || (claro ? "light" : "dark"));
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+    <header class="site-header">
+      <div class="header-container">
+        <div class="header-top">
+          <a href="./" class="logo" aria-label="Career learnTECH, página inicial">
+            <img src="./assets/logo/logo-career.png" alt="" width="40" height="40" />
+            <span class="brand-text">
+              Learn<span class="highlight">TECH</span>
+              <small>Career</small>
+            </span>
+          </a>
+
+          <div class="header-controls">
+            <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="header-menu">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M3 12h18M3 6h18M3 18h18" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Na página de detalhe, cada item do menu volta ao catálogo já na seção escolhida. -->
+        <nav class="header-menu" id="header-menu" aria-label="Seções do catálogo">
+          <a href="./index.html" class="nav-link" data-secao="jobs">Oportunidades</a>
+          <a href="./index.html" class="nav-link" data-secao="companies">Empresas</a>
+          <a href="./index.html" class="nav-link" data-secao="profiles">Devs</a>
+          <a href="./index.html" class="nav-link" data-secao="curriculos">Currículos</a>
+
+          <button
+            type="button"
+            id="theme-toggle"
+            class="icon-btn"
+            aria-label="Alternar tema claro e escuro"
+          >
+            <i class="bx bx-sun" id="theme-icon" aria-hidden="true"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="detalhe-page">
+      <div class="container detalhe-container">
+        <a href="./index.html" class="detalhe-voltar" id="detalhe-voltar">
+          <i class="bx bx-arrow-back" aria-hidden="true"></i>
+          <span>Voltar</span>
+        </a>
+
+        <!-- Carregando, não encontrado e API indisponível. -->
+        <section class="detalhe-estado" id="detalhe-estado" aria-live="polite">
+          <h1 id="estado-titulo">Carregando...</h1>
+          <p id="estado-texto">Aguarde um momento enquanto buscamos os detalhes.</p>
+          <div class="detalhe-estado__acoes">
+            <button type="button" class="visit-btn" id="estado-tentar" hidden>
+              <i class="bx bx-refresh" aria-hidden="true"></i>
+              <span>Tentar novamente</span>
+            </button>
+            <a href="./index.html" class="visit-btn" id="estado-voltar" hidden>
+              <i class="bx bx-arrow-back" aria-hidden="true"></i>
+              <span>Voltar ao catálogo</span>
+            </a>
+          </div>
+        </section>
+
+        <article class="detalhe" id="detalhe" hidden>
+          <header class="detalhe-cabecalho">
+            <div class="detalhe-thumb">
+              <img id="detalhe-thumb" src="./assets/logo/logo-career.png" alt="" width="160" height="160" decoding="async" />
+            </div>
+            <div class="detalhe-identidade">
+              <p class="detalhe-tipo" id="detalhe-tipo"></p>
+              <h1 class="detalhe-titulo" id="detalhe-titulo"></h1>
+              <div class="detalhe-meta">
+                <span class="badge" id="detalhe-categoria"></span>
+                <span class="detalhe-secundario" id="detalhe-secundario"></span>
+              </div>
+            </div>
+          </header>
+
+          <p class="detalhe-resumo" id="detalhe-resumo"></p>
+
+          <div class="detalhe-acoes">
+            <a class="visit-btn" id="detalhe-site" href="#" target="_blank" rel="noopener noreferrer" hidden>
+              <span>Acessar site oficial</span>
+              <i class="bx bx-right-top-arrow-circle" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="detalhe-texto" id="detalhe-texto"></div>
+
+          <section class="detalhe-secao" id="secao-galeria" aria-labelledby="titulo-galeria" hidden>
+            <h2 id="titulo-galeria">Imagens</h2>
+            <div class="detalhe-galeria" id="detalhe-galeria"></div>
+          </section>
+
+          <section class="detalhe-secao" id="secao-video" aria-labelledby="titulo-video" hidden>
+            <h2 id="titulo-video">Vídeo</h2>
+            <div class="detalhe-video" id="detalhe-video"></div>
+          </section>
+
+          <section class="detalhe-secao" id="secao-links" aria-labelledby="titulo-links" hidden>
+            <h2 id="titulo-links">Links oficiais</h2>
+            <ul class="detalhe-lista-links" id="detalhe-links"></ul>
+          </section>
+
+          <section class="detalhe-secao" id="secao-fontes" aria-labelledby="titulo-fontes" hidden>
+            <h2 id="titulo-fontes">Fontes</h2>
+            <ul class="detalhe-lista-links detalhe-lista-links--fontes" id="detalhe-fontes"></ul>
+          </section>
+
+          <p class="detalhe-atualizado" id="detalhe-atualizado" hidden></p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="logo">
+              <img src="./assets/logo/logo-career.png" alt="" loading="lazy" width="40" height="40" />
+              <span class="brand-text">Learn<span class="highlight">TECH</span></span>
+            </div>
+            <p>Curadoria estratégica de carreira e oportunidades para o ecossistema dev.</p>
+          </div>
+
+          <div class="footer-social-section">
+            <span class="social-label">CONNECT WITH US</span>
+            <div class="footer-socials">
+              <a href="https://github.com/douglasabnovato" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <i class="bx bxl-github" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/douglasabnovato/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <i class="bx bxl-linkedin-square" aria-hidden="true"></i>
+              </a>
+              <a href="https://instagram.com/douglasabnovato" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <i class="bx bxl-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="copyright">&copy; <span id="year"></span> learnTECH. Todos os direitos reservados.</p>
+          <div class="tech-stack">
+            <span>Career, feito com </span>
+            <span class="stack-highlight">HTML + CSS + JavaScript</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="./js/detalhe.js"></script>
+  </body>
+</html>

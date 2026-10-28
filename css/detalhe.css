@@ -1,0 +1,293 @@
+/* detalhe.css — página de detalhe (detalhe.html). Usa só os tokens de layout.css, então vale nos dois temas. */
+
+.detalhe-page {
+  padding-top: 110px;
+}
+
+.detalhe-container {
+  max-width: 880px;
+}
+
+.detalhe-voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  padding: 0.4rem 0.8rem 0.4rem 0.5rem;
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition:
+    color 0.25s ease,
+    background 0.25s ease;
+}
+
+.detalhe-voltar:hover {
+  color: var(--brand-primary);
+  background: var(--brand-soft);
+}
+
+.detalhe-voltar .bx {
+  font-size: 1.2rem;
+}
+
+/* Estados: carregando, não encontrado, indisponível. */
+.detalhe-estado {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.detalhe-estado h1 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.detalhe-estado p {
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.detalhe-estado__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.detalhe-estado__acoes .visit-btn,
+.detalhe-acoes .visit-btn {
+  width: auto;
+  padding: 0.75rem 1.5rem;
+}
+
+/* Cabeçalho do item. */
+.detalhe-cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.detalhe-thumb {
+  flex-shrink: 0;
+  width: 128px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  padding: 0.75rem;
+  background: var(--bg-well);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.detalhe-thumb img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.detalhe-tipo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+}
+
+/* No tema claro, o laranja mais escuro mantém o rótulo pequeno acima de 4.5:1 de contraste. */
+[data-theme="light"] .detalhe-tipo {
+  color: var(--brand-hover);
+}
+
+.detalhe-titulo {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin: 0.25rem 0 0.6rem;
+  overflow-wrap: anywhere;
+}
+
+.detalhe-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+}
+
+.detalhe-meta .badge {
+  white-space: normal;
+}
+
+.detalhe-secundario {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.detalhe-resumo {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--brand-softer);
+  border-left: 4px solid var(--brand-primary);
+  border-radius: 0 12px 12px 0;
+}
+
+.detalhe-acoes {
+  margin-top: 1.5rem;
+}
+
+.detalhe-texto {
+  margin-top: 2rem;
+}
+
+.detalhe-texto p {
+  color: var(--text-primary);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  max-width: 70ch;
+}
+
+.detalhe-secao {
+  margin-top: 2.5rem;
+}
+
+.detalhe-secao h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* Galeria: proporção fixa reserva o espaço antes da imagem carregar. */
+.detalhe-galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.detalhe-figura {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.detalhe-figura img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--bg-well);
+}
+
+.detalhe-figura figcaption {
+  padding: 0.6rem 0.9rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.detalhe-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-well);
+  border: 1px solid var(--border);
+}
+
+.detalhe-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.detalhe-lista-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.detalhe-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.detalhe-link:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+.detalhe-lista-links--fontes {
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.detalhe-lista-links--fontes .detalhe-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.detalhe-atualizado {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .detalhe-page {
+    padding-top: 96px;
+  }
+
+  .detalhe-titulo {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .detalhe-cabecalho {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .detalhe-thumb {
+    width: 96px;
+  }
+
+  .detalhe-resumo {
+    padding: 1rem 1.1rem;
+    font-size: 1rem;
+  }
+
+  .detalhe-acoes .visit-btn {
+    width: 100%;
+  }
+}
+
+/* Fim de detalhe.css */

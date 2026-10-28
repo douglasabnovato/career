@@ -1,3 +1,4 @@
+import { escapar } from "./utils.js";
 import { companies } from "./good-companies.js";
 import { companyOpportunities } from "./company-opportunities.js";
 
@@ -32,7 +33,7 @@ const modalCareer = document.querySelector("#company-modal-career");
 const modalSite = document.querySelector("#company-modal-site");
 
 function createList(items = []) {
-  return items.map((item) => `<li>${item}</li>`).join("");
+  return items.map((item) => `<li>${escapar(item)}</li>`).join("");
 }
 
 function createTags(items = []) {
@@ -40,7 +41,7 @@ function createTags(items = []) {
     .map(
       (item) => `
       <span class="company-modal__tag">
-        ${item}
+        ${escapar(item)}
       </span>
     `,
     )
@@ -60,13 +61,13 @@ function createOpportunity(opportunity) {
         <span>
 
           <span class="opportunity__title">
-            ${opportunity.title}
+            ${escapar(opportunity.title)}
           </span>
 
           <span class="opportunity__meta">
-            ${opportunity.location}
+            ${escapar(opportunity.location)}
             •
-            ${opportunity.work_model}
+            ${escapar(opportunity.work_model)}
           </span>
 
         </span>
@@ -84,14 +85,14 @@ function createOpportunity(opportunity) {
       <div class="opportunity__content">
 
         <p>
-          ${opportunity.description}
+          ${escapar(opportunity.description)}
         </p>
 
 
         <h4>Resumo</h4>
 
         <p>
-          ${opportunity.summary}
+          ${escapar(opportunity.summary)}
         </p>
 
 
@@ -118,7 +119,7 @@ function createOpportunity(opportunity) {
 
         <a
           class="opportunity__link"
-          href="${opportunity.url}"
+          href="${escapar(opportunity.url)}"
           target="_blank"
           rel="noopener noreferrer"
         >

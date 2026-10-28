@@ -90,6 +90,19 @@ O modal apresenta informações como:
 
 A empresa BRQ Digital Solutions possui atualmente esse fluxo de detalhes.
 
+### Página de detalhe
+
+Itens de empresas, plataformas de vagas e perfis que chegam da API com `slug` e `detalhe` abrem `detalhe.html#tipo=<empresas|vagas|perfis>&id=<slug>` (o `#` funciona em qualquer servidor; `?tipo=&id=` também é aceito) na mesma aba. Os demais continuam abrindo o site oficial em nova aba, e a BRQ continua no modal.
+
+A página mostra miniatura, tipo, categoria, local ou duração, resumo, parágrafos, galeria de imagens, vídeo do YouTube (sempre pelo `youtube-nocookie.com`), botão para o site oficial, links oficiais, fontes e a data de atualização. O título e a meta description são preenchidos pelo item.
+
+* Os dados vêm só da API (`/v1/career/{tipo}.json`); sem `API_URL` configurada, a página mostra um aviso e o link de volta.
+* "Voltar" e os itens do menu gravam a seção em `career:secao`, para o `index.html` reabrir nela.
+* Todo dado externo entra no DOM por `textContent`, e só links `http(s)` são aceitos.
+* O script de identificação é carregado como no `index.html`.
+
+Arquivos: `detalhe.html`, `js/detalhe.js`, `css/detalhe.css`; `carregarItem` em `js/catalog.js`.
+
 ### Oportunidades profissionais
 
 As oportunidades associadas a uma empresa são apresentadas dentro do modal por meio de um **accordion**.
@@ -135,6 +148,7 @@ Principais módulos:
 * `good-companies.js` — dados das empresas.
 * `company-modal.js` — abertura, preenchimento e fechamento do modal de empresas.
 * `company-opportunities.js` — dados das oportunidades associadas às empresas.
+* `detalhe.js` — página de detalhe (`detalhe.html`) de empresa, plataforma ou perfil.
 * `jobs.js` — dados das plataformas de empregos.
 * `perfis-dev.js` — dados dos perfis de desenvolvedores.
 * `banner-data.js` — dados utilizados pelos destaques do banner.
@@ -154,6 +168,7 @@ Os arquivos principais incluem:
 * `banner.css` — banner e seus controles.
 * `footer.css` — rodapé.
 * `company-modal.css` — modal de empresas, oportunidades e accordion.
+* `detalhe.css` — página de detalhe.
 * `style.css` — estilos gerais da aplicação.
 
 ## Catálogo de dados
@@ -190,6 +205,8 @@ career/
 │   ├── banner.css
 │   ├── cards.css
 │   ├── company-modal.css
+│   ├── curriculos.css
+│   ├── detalhe.css
 │   ├── footer.css
 │   ├── header.css
 │   ├── layout.css
@@ -203,6 +220,10 @@ career/
 │   ├── catalog.js
 │   ├── company-modal.js
 │   ├── company-opportunities.js
+│   ├── config.js
+│   ├── curriculos-render.js
+│   ├── curriculos.js
+│   ├── detalhe.js
 │   ├── good-companies.js
 │   ├── jobs.js
 │   ├── perfis-dev.js
@@ -211,6 +232,7 @@ career/
 │
 ├── public/
 │
+├── detalhe.html
 ├── index.html
 ├── main.js
 └── Readme.md
@@ -324,8 +346,3 @@ Itens específicos podem ser acompanhados através das **issues do repositório*
 ---
 
 **@douglasabnovato**
-
-```
-
-Essa versão já está alinhada com a arquitetura atual que você me passou, principalmente com **modal, accordion de oportunidades, módulos JS, catálogo remoto e estrutura real de pastas**.
-```

@@ -5,6 +5,9 @@ import { API_URL } from "./config.js";
 const BASE = API_URL.includes("SEU-SUBDOMINIO") ? "" : API_URL.replace(/\/$/, "");
 const TEMPO_LIMITE_MS = 5000;
 
+/* Indica se a API está configurada em js/config.js (sem ela, só os dados locais existem). */
+export const API_CONFIGURADA = Boolean(BASE);
+
 /* Busca GET /v1/{caminho}; rejeita quando a API não está configurada, falha ou passa do tempo limite. */
 export async function buscarRecurso(caminho) {
   if (!BASE) throw new Error("API_URL não configurada em js/config.js");
@@ -19,9 +22,24 @@ export async function buscarRecurso(caminho) {
   }
 }
 
-/* Troca caminhos /media/... da API pela URL completa. */
+/* Completa um caminho /media/... da API com o endereço dela; outros valores passam como estão. */
+function urlDeMidia(url) {
+  return typeof url === "string" && url.startsWith("/media/") ? BASE + url : url;
+}
+
+/* Troca caminhos /media/... da API pela URL completa (miniatura e imagens da página de detalhe). */
 export function resolverMidia(lista) {
-  return lista.map((item) => (item.thumb?.startsWith("/media/") ? { ...item, thumb: BASE + item.thumb } : item));
+  return lista.map((item) => {
+    if (!item || typeof item !== "object") return item;
+    const novo = { ...item, thumb: urlDeMidia(item.thumb) };
+    if (item.detalhe && Array.isArray(item.detalhe.imagens)) {
+      novo.detalhe = {
+        ...item.detalhe,
+        imagens: item.detalhe.imagens.map((img) => (img && typeof img === "object" ? { ...img, url: urlDeMidia(img.url) } : img)),
+      };
+    }
+    return novo;
+  });
 }
 
 /* Espera a primeira resposta por um tempo curto; devolve undefined se ainda não chegou. */

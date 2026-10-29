@@ -5,6 +5,7 @@
 import { companies } from "./good-companies.js";
 import { jobs } from "./jobs.js";
 import { profiles } from "./perfis-dev.js";
+import { destaques } from "./destaques.js";
 
 /* Acha um item pelo título, ignorando caixa e acento; devolve null se sumiu. */
 function porTitulo(lista, nome, rotulo) {
@@ -34,10 +35,7 @@ export function montarDestaques(catalogo, selecao) {
   ].filter(Boolean);
 }
 
-export const launchBanner = [
-  porTitulo(jobs, "GeekHunter", "Oportunidade"),
-  porTitulo(companies, "Rocketseat", "Empresa"),
-  porTitulo(profiles, "Filipe Deschamps", "Dev"),
-].filter(Boolean);
+/* Seleção local: vem de destaques.js, gerado a partir da API (content/career/destaques.json). */
+export const launchBanner = montarDestaques({ companies, jobs, profiles }, destaques);
 
 /* Fim de banner-data.js */

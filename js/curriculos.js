@@ -1,933 +1,542 @@
-/**
- * curriculos.js
- * Modelos de currículos para referência profissional.
- */
+/* GERADO por learntech-content/scripts/exportar-copias.mjs a partir de content/career/modelos-curriculo.json.
+   Não edite à mão: mude o conteúdo na API e rode o script de novo. */
 
 export const curriculos = [
   {
-    id: "marina-alves-ferreira",
-
-    nome: "Marina Alves Ferreira",
-
-    titulo: "Produto, Tecnologia & Educação",
-
-    localizacao: "Belo Horizonte – MG",
-
-    contato: {
-      telefone: "(31) 98845-2176",
-      email: "marina.alves.dev@example.com",
-      linkedin: "linkedin.com/in/marinaalvesdev",
-      github: "github.com/marinaalvesdev",
-      portfolio: "marinaalves.dev",
+    "slug": "estagio-desenvolvimento-web",
+    "nivel": "estagio",
+    "paraQuem": "Para quem está na faculdade ou em um curso técnico, ainda sem emprego na área, e quer o primeiro estágio em desenvolvimento web. Mostra como trocar a falta de experiência formal por projetos, estudo e atividades acadêmicas.",
+    "ficticio": true,
+    "nome": "Ana Exemplo da Silva",
+    "titulo": "Estudante de Análise e Desenvolvimento de Sistemas | Estágio em Desenvolvimento Web",
+    "localizacao": "Juiz de Fora – MG",
+    "contato": {
+      "telefone": "(00) 00000-0000",
+      "email": "ana.exemplo@example.com",
+      "linkedin": "https://www.example.com/linkedin/ana-exemplo",
+      "github": "https://www.example.com/github/ana-exemplo",
+      "portfolio": "https://www.example.com/portfolio/ana-exemplo"
     },
-
-    objetivo:
-      "Atuar em Produto e Tecnologia, conectando necessidades dos usuários, evolução de plataformas digitais e indicadores de negócio.",
-
-    resumo:
-      "Profissional com experiência na interseção entre tecnologia, produto e educação. Atualmente atua na coordenação de uma operação de formação em tecnologia, participando da definição de trilhas de aprendizagem, acompanhamento de alunos e evolução da plataforma digital. Possui experiência anterior em desenvolvimento frontend, CRM, automação de jornadas e análise de dados. Ao longo da carreira, combinou atuação técnica com organização de processos, acompanhamento de indicadores e desenvolvimento de pessoas.",
-
-    competencias: [
+    "objetivo": "Estágio em desenvolvimento web front-end, com disponibilidade de 6 horas diárias no período da tarde.",
+    "resumo": "Estudante do 4º período de Análise e Desenvolvimento de Sistemas, com projetos pessoais e acadêmicos publicados em HTML, CSS, JavaScript e React. Experiência com versionamento em Git, trabalho em equipe em projetos da faculdade e atendimento ao público em emprego de meio período.",
+    "competencias": [
       {
-        categoria: "Produto e estratégia",
-        itens: [
-          "Descoberta de problemas",
-          "Jornada do usuário",
-          "Priorização de backlog",
-          "Definição de MVP",
-          "Especificação de requisitos",
-          "User Stories",
-          "OKRs",
-          "Design Thinking",
-        ],
+        "categoria": "Tecnologias",
+        "itens": [
+          "HTML (intermediário)",
+          "CSS (intermediário)",
+          "JavaScript (intermediário)",
+          "React (básico)",
+          "SQL (básico)"
+        ]
       },
-
       {
-        categoria: "Tecnologia",
-        itens: [
-          "React",
-          "TypeScript",
-          "Next.js",
-          "HTML",
-          "CSS",
-          "Tailwind CSS",
-          "Node.js",
-          "PostgreSQL",
-          "APIs REST",
-          "Git",
-          "GitHub",
-          "Vercel",
-        ],
+        "categoria": "Ferramentas",
+        "itens": [
+          "Git e GitHub",
+          "VS Code",
+          "npm",
+          "Figma (básico)"
+        ]
       },
-
       {
-        categoria: "Dados e Growth",
-        itens: [
-          "SQL",
-          "CRM",
-          "E-mail marketing",
-          "WhatsApp",
-          "Segmentação",
-          "Automação de jornadas",
-          "Dashboards",
-          "Looker Studio",
-        ],
-      },
-
-      {
-        categoria: "Gestão e colaboração",
-        itens: [
-          "Coordenação de equipe",
-          "Code review",
-          "Mentoria",
-          "Documentação",
-          "Interface com fornecedores",
-          "Interface com parceiros",
-        ],
-      },
+        "categoria": "Competências comportamentais",
+        "itens": [
+          "Comunicação com o público",
+          "Trabalho em equipe",
+          "Organização de tarefas",
+          "Aprendizado contínuo"
+        ]
+      }
     ],
-
-    experiencias: [
+    "experiencias": [],
+    "experienciaAnterior": [
       {
-        cargo: "Coordenadora de Produto e Tecnologia",
-        empresa: "Nexora Educação Digital",
-        descricaoEmpresa:
-          "Edtech especializada em formação profissional em tecnologia.",
-        periodo: "Ago/2024 – atual",
-        local: "Belo Horizonte – MG",
-        modelo: "Híbrido",
-
-        atividades: [
-          "Estruturei trilhas de aprendizagem e organizei o roadmap de evolução da plataforma.",
-          "Coordenei a operação de formação de aproximadamente 50 alunos.",
-          "Criei processos para acompanhamento de progresso, engajamento e conclusão das trilhas.",
-          "Atuei diretamente na evolução do LMS utilizado pelos alunos.",
-          "Desenvolvi funcionalidades frontend utilizando React, TypeScript e Next.js.",
-          "Participei da definição de requisitos e priorização do backlog.",
-          "Realizei code reviews e acompanhei o desenvolvimento de profissionais em início de carreira.",
-          "Criei dashboards para acompanhamento de indicadores de aprendizagem.",
-          "Estruturei processos para transformar aulas e conteúdos presenciais em materiais digitais reutilizáveis.",
-        ],
-
-        tecnologias: [
-          "React",
-          "Next.js",
-          "TypeScript",
-          "PostgreSQL",
-          "Prisma",
-          "Git",
-          "Vercel",
-        ],
-      },
-
+        "empresa": "Loja Exemplo de Utilidades",
+        "cargo": "Atendente (meio período)",
+        "periodo": "2023 – 2024"
+      }
+    ],
+    "projetos": [
       {
-        cargo: "Sócia e Desenvolvedora Fullstack",
-        empresa: "RotaLivre Tecnologia",
-        periodo: "Mar/2022 – atual",
-        local: "Remoto",
-        modelo: "Remoto",
-
-        atividades: [
-          "Responsável pela evolução do produto digital e da plataforma web.",
-          "Participei da definição do modelo de negócio e da estratégia de lançamento.",
-          "Transformei necessidades operacionais em requisitos funcionais.",
-          "Desenvolvi protótipos e MVPs para validação de novas ideias.",
-          "Estruturei landing pages e fluxos digitais de aquisição.",
-        ],
-
-        tecnologias: [
-          "React",
-          "TypeScript",
-          "Node.js",
-          "PostgreSQL",
-          "APIs REST",
-          "Vercel",
-        ],
-      },
-
-      {
-        cargo: "Especialista em CRM e Automação",
-        empresa: "Grupo Horizonte Varejo",
-        descricaoEmpresa:
-          "Grupo varejista com operação digital e lojas físicas.",
-        periodo: "Jan/2022 – Jul/2024",
-        local: "Belo Horizonte – MG",
-        modelo: "Híbrido",
-
-        atividades: [
-          "Estruturei jornadas automatizadas de relacionamento com clientes.",
-          "Criei segmentações para diferentes perfis e momentos da jornada.",
-          "Operei campanhas de comunicação multicanal.",
-          "Desenvolvi consultas SQL para análise e segmentação de bases.",
-          "Criei páginas de campanha e componentes para ações de aquisição.",
-          "Integrei ferramentas utilizando APIs REST e webhooks.",
-          "Atuei como interface técnica entre marketing, tecnologia e fornecedores.",
-          "Automatizei relatórios de acompanhamento de campanhas.",
-        ],
-
-        tecnologias: [
-          "SQL",
-          "CRM",
-          "APIs REST",
-          "Webhooks",
-          "Looker Studio",
-          "HTML",
-          "CSS",
-          "JavaScript",
-        ],
-      },
-
-      {
-        cargo: "Desenvolvedora Frontend",
-        empresa: "Estação Digital",
-        periodo: "Mai/2020 – Dez/2021",
-        local: "Belo Horizonte – MG",
-        modelo: "Remoto",
-
-        atividades: [
-          "Desenvolvi interfaces web a partir de protótipos de design.",
-          "Criei componentes reutilizáveis para aplicações frontend.",
-          "Integrei interfaces com APIs REST.",
-          "Participei de cerimônias ágeis e planejamento de entregas.",
-          "Atuei na correção de problemas de usabilidade e performance.",
-        ],
-
-        tecnologias: [
+        "nome": "Lista de tarefas com filtros",
+        "descricao": "Aplicação em React para criar, filtrar e concluir tarefas, com dados salvos no navegador. Código e instruções de uso publicados no GitHub.",
+        "tecnologias": [
           "React",
           "JavaScript",
-          "TypeScript",
           "CSS",
-          "Tailwind CSS",
-          "APIs REST",
-        ],
+          "Git"
+        ]
       },
-
       {
-        cargo: "Analista de Sistemas",
-        empresa: "Conecta Serviços Digitais",
-        periodo: "Jan/2018 – Abr/2020",
-        local: "Belo Horizonte – MG",
-        modelo: "Presencial",
-
-        atividades: [
-          "Realizei atendimento e investigação de problemas técnicos.",
-          "Documentei incidentes e procedimentos operacionais.",
-          "Participei da implantação de melhorias em sistemas internos.",
-          "Atuei na comunicação entre usuários e equipe de desenvolvimento.",
-          "Posteriormente passei a contribuir diretamente com pequenas evoluções de software.",
-        ],
-
-        tecnologias: ["JavaScript", "HTML", "CSS", "SQL", "Git"],
+        "nome": "Site responsivo para projeto de extensão",
+        "descricao": "Página institucional de um projeto de extensão da faculdade, feita em grupo de quatro pessoas. Fiquei responsável pelo layout responsivo e pela revisão de acessibilidade das imagens e dos formulários.",
+        "tecnologias": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ]
       },
+      {
+        "nome": "Consulta de dados públicos",
+        "descricao": "Página que consome uma API pública e exibe os resultados em tabela com busca. Tratamento de carregamento e de erro na interface.",
+        "tecnologias": [
+          "JavaScript",
+          "Fetch API",
+          "HTML",
+          "CSS"
+        ]
+      }
     ],
-
-    experienciaAnterior: [
+    "formacao": [
       {
-        empresa: "Aliança Atendimento",
-        cargo: "Analista de Atendimento e Líder de Equipe",
-        periodo: "2015 – 2017",
-      },
-
-      {
-        empresa: "MídiaTech Comunicação",
-        cargo: "Assistente de Conteúdo Digital",
-        periodo: "2014 – 2015",
-      },
-
-      {
-        empresa: "Instituto Metropolitano de Tecnologia",
-        cargo: "Bolsista de Desenvolvimento Web",
-        periodo: "2012 – 2014",
-      },
+        "curso": "Tecnologia em Análise e Desenvolvimento de Sistemas",
+        "instituicao": "Faculdade Exemplo de Tecnologia",
+        "periodo": "Fev/2025 – Dez/2027 (previsão)",
+        "status": "Em andamento – 4º período"
+      }
     ],
-
-    projetos: [
-      {
-        nome: "Plataforma de aprendizagem",
-        descricao:
-          "LMS com trilhas de aprendizagem, acompanhamento de progresso e área administrativa.",
-        tecnologias: ["Next.js", "TypeScript", "PostgreSQL", "Prisma"],
-      },
-
-      {
-        nome: "Portal de carreira",
-        descricao:
-          "Plataforma para reunir oportunidades, empresas, perfis profissionais e referências de carreira.",
-        tecnologias: ["HTML", "CSS", "JavaScript", "GitHub Pages"],
-      },
-
-      {
-        nome: "Dashboard de campanhas",
-        descricao:
-          "Painel para acompanhamento de indicadores de campanhas e jornadas de relacionamento.",
-        tecnologias: ["SQL", "Looker Studio", "APIs REST"],
-      },
+    "certificados": [
+      "Lógica de Programação (40 h) – Escola Exemplo Online, 2025",
+      "JavaScript Moderno (30 h) – Escola Exemplo Online, 2026"
     ],
-
-    formacao: [
+    "idiomas": [
       {
-        curso: "Tecnologia em Análise e Desenvolvimento de Sistemas",
-        instituicao: "Centro Universitário Vale Digital",
-        periodo: "Fev/2019 – Dez/2021",
-        status: "Concluído",
-      },
-
-      {
-        curso: "Técnico em Informática",
-        instituicao: "Instituto Técnico Horizonte",
-        periodo: "2015 – 2016",
-        status: "Concluído",
-      },
-
-      {
-        curso: "Gestão de Produtos Digitais",
-        instituicao: "Escola Brasileira de Produtos",
-        periodo: "2023",
-        status: "Formação complementar",
-      },
+        "idioma": "Inglês",
+        "nivel": "Intermediário — leitura de documentação técnica"
+      }
     ],
-
-    certificados: [
-      "Product Discovery",
-      "Design Thinking",
-      "OKRs",
-      "Gestão de Produtos Digitais",
-      "Fundamentos de UX",
-      "Growth Hacking",
-      "SQL para análise de dados",
-      "React e TypeScript",
-      "Next.js",
-      "Node.js",
-      "APIs REST",
-      "Gerenciamento de Projetos",
+    "comunidade": [
+      "Participação em hackathon universitário da Faculdade Exemplo de Tecnologia (2025).",
+      "Monitoria voluntária de Algoritmos para turmas do 1º período (2026)."
     ],
-
-    idiomas: [
+    "dicas": [
       {
-        idioma: "Inglês",
-        nivel: "Intermediário — leitura técnica e conversação",
+        "secao": "Geral",
+        "texto": "Para estágio, uma página costuma bastar. Escolha o que tem relação com a vaga em vez de listar tudo o que você já fez."
       },
-
       {
-        idioma: "Espanhol",
-        nivel: "Básico",
+        "secao": "Objetivo",
+        "texto": "Seja direto: diga o tipo de vaga e, no estágio, a disponibilidade de horário. Um objetivo genérico não ajuda quem está fazendo a triagem."
       },
+      {
+        "secao": "Contato",
+        "texto": "Coloque links para LinkedIn, GitHub e portfólio no topo, para que quem recruta possa ver seu código. Não inclua RG, CPF nem foto, a menos que a empresa peça."
+      },
+      {
+        "secao": "Competências",
+        "texto": "Indique o seu nível em cada tecnologia e liste só o que você realmente sabe usar: na entrevista, qualquer item pode virar pergunta."
+      },
+      {
+        "secao": "Experiência profissional",
+        "texto": "Se você ainda não teve emprego na área, deixe essa seção vazia em vez de forçar. Um trabalho de outra área entra em Experiência anterior, de forma resumida, porque mostra responsabilidade e contato com o público."
+      },
+      {
+        "secao": "Projetos",
+        "texto": "Sem experiência formal, os projetos são a parte mais importante. Para cada um, diga o que ele faz, qual foi a sua parte e quais tecnologias usou. Projetos de aula, de extensão e pessoais contam."
+      },
+      {
+        "secao": "Formação",
+        "texto": "Informe curso, instituição, período e previsão de conclusão. Cursos livres entram só quando têm relação com a vaga."
+      },
+      {
+        "secao": "Revisão",
+        "texto": "Revise mais de uma vez e peça para outra pessoa ler. Erro de digitação em um currículo de tecnologia passa a impressão de pouca atenção aos detalhes."
+      }
     ],
-
-    comunidade: [
-      "Mentora voluntária em iniciativas de formação para pessoas iniciantes em tecnologia.",
-      "Participação na organização de encontros da comunidade local de tecnologia.",
-      "Colaboradora em projetos de conteúdo sobre carreira e desenvolvimento profissional.",
-      "Palestrante convidada em encontros sobre tecnologia e carreira.",
+    "fontes": [
+      {
+        "label": "Governo de Minas Gerais (Estágio): Sobre currículo",
+        "url": "https://www.mg.gov.br/estagio/pagina/sobre-curriculo"
+      },
+      {
+        "label": "Prefeitura de São Paulo (Secretaria de Desenvolvimento Econômico e Trabalho): Como preparar um currículo",
+        "url": "https://prefeitura.sp.gov.br/web/desenvolvimento/w/dicas/preparar_um_curriculo/619"
+      },
+      {
+        "label": "UNC Computer Science: Writing a Technical Resume",
+        "url": "https://cs.unc.edu/student-life/career/technical-resumes/"
+      },
+      {
+        "label": "University of Richmond Career Services: Entry-Level Software Engineer Resume: What Recruiters Want to See",
+        "url": "https://careerservices.richmond.edu/blog/2025/08/05/entry-level-software-engineer-resume-what-recruiters-want-to-see/"
+      }
     ],
+    "atualizadoEm": "2026-10-28"
   },
   {
-    id: "rafael-martins-silva",
-    nome: "Rafael Martins Silva",
-    titulo: "UX Writing, Produto Digital & Frontend",
-    localizacao: "Campinas – SP",
-
-    contato: {
-      telefone: "(19) 98742-3158",
-      email: "rafael.martins.dev@example.com",
-      linkedin: "linkedin.com/in/rafaelmartinsdev",
-      portfolio: "rafaelmartins.dev",
+    "slug": "transicao-de-carreira-para-dados",
+    "nivel": "transicao",
+    "paraQuem": "Para quem já tem anos de trabalho em outra área e está migrando para tecnologia, aqui do financeiro para análise de dados. Mostra como dar destaque às habilidades que se transferem e aos projetos da nova área sem esconder a trajetória anterior.",
+    "ficticio": true,
+    "nome": "Bruno Modelo Costa",
+    "titulo": "Analista de Dados Júnior | Transição do Financeiro para Dados",
+    "localizacao": "Belo Horizonte – MG",
+    "contato": {
+      "telefone": "(00) 00000-0000",
+      "email": "bruno.modelo@example.com",
+      "linkedin": "https://www.example.com/linkedin/bruno-modelo",
+      "github": "https://www.example.com/github/bruno-modelo",
+      "portfolio": "https://www.example.com/portfolio/bruno-modelo"
     },
-
-    objetivo:
-      "Atuar em UX Writing e Produto Digital, conectando conteúdo estratégico, jornadas de usuário e prototipação à capacidade técnica de transformar layouts e referências de mercado em interfaces funcionais, acessíveis e orientadas à conversão.",
-
-    resumo:
-      "Profissional com experiência multidisciplinar em conteúdo digital, marketing, CRM e desenvolvimento de software. Atua na interseção entre experiência do usuário, comunicação e tecnologia, traduzindo protótipos, wireframes e referências de mercado em interfaces responsivas. Combina conhecimento de UX Writing, arquitetura de conteúdo e jornadas conversacionais com experiência prática em React, Vue, TypeScript, Tailwind CSS, APIs e plataformas de CRM.",
-
-    competencias: [
+    "objetivo": "Atuar como Analista de Dados Júnior, aplicando SQL, Python e visualização de dados a problemas de negócio, especialmente na área financeira.",
+    "resumo": "Profissional com sete anos de experiência na área financeira, dos quais os últimos três dedicados a relatórios gerenciais e automação de planilhas. Concluiu em 2026 uma formação de 240 horas em análise de dados e mantém projetos publicados com SQL, Python e Power BI. Traz para a nova área o conhecimento do negócio, a familiaridade com indicadores e a experiência de apresentar números para gestores.",
+    "competencias": [
       {
-        categoria: "UX Writing e conteúdo",
-        itens: [
-          "Microcopy",
-          "Arquitetura de conteúdo",
-          "Tom de voz",
-          "Conteúdo orientado à conversão",
-          "Redução de atrito em interfaces",
-          "Roteiros conversacionais",
-          "Testes A/B",
-        ],
+        "categoria": "Dados",
+        "itens": [
+          "SQL (intermediário)",
+          "Python com pandas (básico a intermediário)",
+          "Power BI (intermediário)",
+          "Excel avançado",
+          "Limpeza e validação de dados"
+        ]
       },
       {
-        categoria: "UI/UX e prototipação",
-        itens: [
-          "Figma",
-          "Wireframes",
-          "Prototipação",
-          "Jornada do usuário",
-          "Personas",
-          "Análise de usabilidade",
-          "Benchmarking",
-        ],
+        "categoria": "Negócio",
+        "itens": [
+          "Indicadores financeiros",
+          "Fluxo de caixa",
+          "Conciliação",
+          "Relatórios gerenciais"
+        ]
       },
       {
-        categoria: "Frontend",
-        itens: [
+        "categoria": "Habilidades transferíveis",
+        "itens": [
+          "Apresentação de resultados para gestores",
+          "Atenção a detalhes",
+          "Resolução de problemas",
+          "Trabalho com prazos de fechamento"
+        ]
+      }
+    ],
+    "experiencias": [
+      {
+        "cargo": "Analista Financeiro",
+        "empresa": "Empresa Exemplo Distribuidora",
+        "descricaoEmpresa": "Distribuidora fictícia de produtos de limpeza, usada apenas como exemplo.",
+        "periodo": "Jul/2022 – atual",
+        "local": "Belo Horizonte – MG",
+        "modelo": "Híbrido",
+        "atividades": [
+          "Automatizei o relatório mensal de inadimplência com consultas SQL e Power BI, reduzindo de dois dias para meio dia o tempo de preparação.",
+          "Criei um painel de fluxo de caixa usado nas reuniões semanais da diretoria.",
+          "Padronizei a conferência de dados entre o sistema de gestão e as planilhas da equipe, diminuindo retrabalho no fechamento.",
+          "Apresentei mensalmente os principais indicadores financeiros para gestores de outras áreas."
+        ],
+        "tecnologias": [
+          "SQL",
+          "Power BI",
+          "Excel"
+        ]
+      },
+      {
+        "cargo": "Assistente Financeiro",
+        "empresa": "Empresa Exemplo Distribuidora",
+        "periodo": "Mar/2019 – Jun/2022",
+        "local": "Belo Horizonte – MG",
+        "modelo": "Presencial",
+        "atividades": [
+          "Realizei conciliações bancárias diárias e lançamentos de contas a pagar e a receber.",
+          "Montei planilhas de controle que depois serviram de base para os relatórios automatizados."
+        ],
+        "tecnologias": [
+          "Excel"
+        ]
+      }
+    ],
+    "experienciaAnterior": [
+      {
+        "empresa": "Escritório Exemplo de Contabilidade",
+        "cargo": "Auxiliar Administrativo",
+        "periodo": "2017 – 2019"
+      }
+    ],
+    "projetos": [
+      {
+        "nome": "Análise de vendas com dados públicos",
+        "descricao": "Limpeza e análise de uma base pública de vendas com Python, com notebook comentado e conclusões escritas para um leitor não técnico.",
+        "tecnologias": [
+          "Python",
+          "pandas",
+          "Jupyter"
+        ]
+      },
+      {
+        "nome": "Painel de indicadores financeiros",
+        "descricao": "Painel em Power BI com dados fictícios de uma empresa, com receita, despesas e margem por mês. Modelo de dados e medidas documentados no repositório.",
+        "tecnologias": [
+          "Power BI",
+          "SQL"
+        ]
+      },
+      {
+        "nome": "Consultas SQL comentadas",
+        "descricao": "Repositório com exercícios de SQL resolvidos e explicados, de filtros simples a funções de janela.",
+        "tecnologias": [
+          "SQL",
+          "PostgreSQL",
+          "Git"
+        ]
+      }
+    ],
+    "formacao": [
+      {
+        "curso": "Formação em Análise de Dados (240 h)",
+        "instituicao": "Escola Exemplo de Tecnologia",
+        "periodo": "Mar/2025 – Mar/2026",
+        "status": "Concluído"
+      },
+      {
+        "curso": "Bacharelado em Administração",
+        "instituicao": "Faculdade Exemplo",
+        "periodo": "2014 – 2018",
+        "status": "Concluído"
+      }
+    ],
+    "certificados": [
+      "SQL para Análise de Dados (20 h) – Escola Exemplo Online, 2025",
+      "Introdução ao Power BI (16 h) – Escola Exemplo Online, 2024"
+    ],
+    "idiomas": [
+      {
+        "idioma": "Inglês",
+        "nivel": "Intermediário — leitura técnica"
+      }
+    ],
+    "comunidade": [
+      "Participação em grupo de estudos de SQL e Python (encontros quinzenais, desde 2025)."
+    ],
+    "dicas": [
+      {
+        "secao": "Resumo profissional",
+        "texto": "Na transição, o resumo é o lugar para contar a mudança em duas ou três frases: de onde você vem, o que estudou e o que leva para a nova área."
+      },
+      {
+        "secao": "Competências",
+        "texto": "Inclua as habilidades transferíveis que a vaga pede, como comunicação, resolução de problemas e atenção a detalhes, e prove cada uma com uma realização nas atividades."
+      },
+      {
+        "secao": "Experiência profissional",
+        "texto": "Mantenha a trajetória anterior, mas reescreva as atividades pensando em quem vai ler: destaque o que se aproxima da nova área, como relatórios, automação e uso de dados. Quando possível, mostre o resultado."
+      },
+      {
+        "secao": "Formação",
+        "texto": "Coloque a formação na nova área antes da graduação antiga. A ordem das seções e dos itens sinaliza o que é mais importante."
+      },
+      {
+        "secao": "Projetos",
+        "texto": "Projetos pessoais, cursos e trabalho voluntário contam como prova de qualificação, mesmo sem salário. Na transição, eles mostram que você já pratica o novo trabalho."
+      },
+      {
+        "secao": "Palavras-chave",
+        "texto": "Use os termos técnicos da descrição da vaga, mas só quando eles descrevem de verdade o que você fez. Muitas empresas usam sistemas de triagem que buscam essas palavras."
+      }
+    ],
+    "fontes": [
+      {
+        "label": "University of Northwestern – St. Paul: Career Change: A Guide to Resume Writing",
+        "url": "https://www.unwsp.edu/blog/career-change-a-guide-to-resume-writing/"
+      },
+      {
+        "label": "USC Career Center: Transferable Skills",
+        "url": "https://careers.usc.edu/resources/transferable-skills/"
+      },
+      {
+        "label": "MIT Career Advising & Professional Development: Career toolkit: Crafting an effective resume",
+        "url": "https://capd.mit.edu/resources/career-toolkit-crafting-an-effective-resume/"
+      },
+      {
+        "label": "Prefeitura de São Paulo (Secretaria de Desenvolvimento Econômico e Trabalho): Como preparar um currículo",
+        "url": "https://prefeitura.sp.gov.br/web/desenvolvimento/w/dicas/preparar_um_curriculo/619"
+      }
+    ],
+    "atualizadoEm": "2026-10-28"
+  },
+  {
+    "slug": "desenvolvedora-front-end-junior",
+    "nivel": "junior",
+    "paraQuem": "Para quem já tem o primeiro emprego ou estágio em desenvolvimento e quer uma vaga de pessoa desenvolvedora júnior ou o passo para pleno. Mostra como escrever atividades com verbo de ação e resultado e como separar experiência, projetos e formação.",
+    "ficticio": true,
+    "nome": "Carla Fictícia Rocha",
+    "titulo": "Desenvolvedora Front-end Júnior | React e TypeScript",
+    "localizacao": "Juiz de Fora – MG",
+    "contato": {
+      "telefone": "(00) 00000-0000",
+      "email": "carla.ficticia@example.com",
+      "linkedin": "https://www.example.com/linkedin/carla-ficticia",
+      "github": "https://www.example.com/github/carla-ficticia",
+      "portfolio": "https://www.example.com/portfolio/carla-ficticia"
+    },
+    "objetivo": "Atuar como Desenvolvedora Front-end, com foco em React, TypeScript, acessibilidade e qualidade de interface.",
+    "resumo": "Desenvolvedora front-end com quase três anos de experiência entre estágio e emprego efetivo, construindo interfaces em React e TypeScript para produtos web. Experiência com testes automatizados, revisão de código e trabalho em equipes ágeis, junto com produto e design.",
+    "competencias": [
+      {
+        "categoria": "Front-end",
+        "itens": [
           "React",
-          "Vue.js",
           "TypeScript",
           "JavaScript",
-          "HTML5",
-          "CSS3",
-          "Tailwind CSS",
-          "Styled-components",
-        ],
+          "HTML semântico",
+          "CSS e Tailwind CSS",
+          "Acessibilidade web"
+        ]
       },
       {
-        categoria: "CRM e automação",
-        itens: [
-          "Salesforce Marketing Cloud",
-          "Journey Builder",
-          "Automation Studio",
-          "AMPscript",
-          "SSJS",
-          "SQL",
-          "SOQL",
-          "CloudPages",
-        ],
+        "categoria": "Qualidade e ferramentas",
+        "itens": [
+          "Jest",
+          "Testing Library",
+          "Git e GitHub",
+          "Revisão de código",
+          "Integração contínua"
+        ]
       },
+      {
+        "categoria": "Integração",
+        "itens": [
+          "APIs REST",
+          "Node.js (básico)"
+        ]
+      },
+      {
+        "categoria": "Colaboração",
+        "itens": [
+          "Scrum",
+          "Documentação técnica",
+          "Trabalho com design e produto"
+        ]
+      }
     ],
-
-    experiencias: [
+    "experiencias": [
       {
-        cargo: "Coordenador de Educação e Tecnologia",
-        empresa: "CodeLab Formação Digital",
-        periodo: "Ago/2025 – atual",
-        local: "Campinas – SP",
-        modelo: "Presencial",
-        atividades: [
-          "Estruturei trilhas de aprendizagem voltadas à formação profissional em tecnologia.",
-          "Produzi conteúdos educacionais considerando clareza, progressão de aprendizagem e experiência do aluno.",
-          "Desenvolvi Landing Pages orientadas à conversão e aquisição de novos alunos.",
-          "Participei da definição da experiência de navegação dos ambientes digitais.",
-          "Coordenei processos pedagógicos, técnicos e operacionais da instituição.",
-          "Defini metodologias de ensino e acompanhamento orientadas a resultados.",
+        "cargo": "Desenvolvedora Front-end Júnior",
+        "empresa": "Empresa Exemplo Software",
+        "descricaoEmpresa": "Empresa fictícia de software para gestão de clínicas, usada apenas como exemplo.",
+        "periodo": "Mar/2025 – atual",
+        "local": "Juiz de Fora – MG",
+        "modelo": "Híbrido",
+        "atividades": [
+          "Desenvolvi as telas de agendamento do produto web em React e TypeScript, junto com a equipe de design.",
+          "Criei testes automatizados com Jest e Testing Library para os componentes principais, aumentando a cobertura do módulo de agenda de 20% para 70%.",
+          "Corrigi problemas de acessibilidade apontados em auditoria, como contraste, rótulos de formulário e navegação por teclado.",
+          "Participei das revisões de código da equipe e documentei o padrão de componentes reutilizáveis."
         ],
-        tecnologias: [
+        "tecnologias": [
+          "React",
+          "TypeScript",
+          "Jest",
+          "Testing Library",
+          "Git"
+        ]
+      },
+      {
+        "cargo": "Estagiária de Desenvolvimento Web",
+        "empresa": "Agência Exemplo Digital",
+        "periodo": "Jan/2024 – Fev/2025",
+        "local": "Remoto",
+        "modelo": "Remoto",
+        "atividades": [
+          "Construí páginas responsivas para sites de clientes a partir de protótipos no Figma.",
+          "Integrei formulários de contato a uma API REST interna, com validação no navegador.",
+          "Melhorei o tempo de carregamento de páginas otimizando imagens e removendo scripts sem uso."
+        ],
+        "tecnologias": [
           "HTML",
           "CSS",
           "JavaScript",
-          "Figma",
-          "CMS",
-          "Google Analytics",
-        ],
-      },
-
+          "React"
+        ]
+      }
+    ],
+    "experienciaAnterior": [],
+    "projetos": [
       {
-        cargo: "Desenvolvedor de Produtos Digitais",
-        empresa: "NorteHub Tecnologia",
-        periodo: "Mar/2021 – atual",
-        local: "Remoto",
-        modelo: "Remoto",
-        atividades: [
-          "Transformei protótipos, wireframes e referências de benchmarking em interfaces funcionais.",
-          "Desenvolvi aplicações frontend responsivas com foco em usabilidade.",
-          "Analisei produtos digitais de referência para identificar padrões de navegação e interação.",
-          "Modelei bancos de dados relacionais e não relacionais.",
-          "Integrei APIs REST aos produtos desenvolvidos.",
-          "Participei da definição de funcionalidades e fluxos de produto.",
-        ],
-        tecnologias: [
-          "React",
-          "Vue.js",
-          "TypeScript",
-          "Tailwind CSS",
-          "Node.js",
-          "PostgreSQL",
-          "MongoDB",
-          "APIs REST",
-        ],
-      },
-
-      {
-        cargo: "Especialista em CRM e Tecnologia",
-        empresa: "Grupo NovaCasa",
-        periodo: "Fev/2025 – Fev/2026",
-        local: "Campinas – SP",
-        modelo: "Híbrido",
-        atividades: [
-          "Estruturei jornadas multicanal utilizando Salesforce Marketing Cloud.",
-          "Desenvolvi CloudPages para campanhas e experiências personalizadas.",
-          "Configurei automações utilizando Automation Studio e Journey Builder.",
-          "Desenvolvi consultas SQL e SOQL para segmentação e análise de dados.",
-          "Criei scripts utilizando AMPscript e SSJS.",
-          "Aprimorei conteúdos e fluxos de comunicação buscando maior clareza para o usuário.",
-        ],
-        tecnologias: [
-          "Salesforce Marketing Cloud",
-          "Journey Builder",
-          "Automation Studio",
-          "AMPscript",
-          "SSJS",
-          "SQL",
-          "SOQL",
-        ],
-      },
-
-      {
-        cargo: "Especialista em Growth e Experiência Digital",
-        empresa: "CasaNova Marketplace",
-        periodo: "Jul/2023 – Jun/2025",
-        local: "Campinas – SP",
-        modelo: "Híbrido",
-        atividades: [
-          "Mantive e evoluí interfaces frontend de uma operação de e-commerce.",
-          "Otimizei fluxos de navegação com foco em conversão.",
-          "Desenvolvi componentes utilizando HTML, CSS e JavaScript.",
-          "Estruturei campanhas de comunicação multicanal.",
-          "Realizei processos de higienização e organização de bases de clientes.",
-          "Analisei jornadas digitais para identificar oportunidades de melhoria.",
-        ],
-        tecnologias: [
-          "HTML5",
-          "CSS3",
-          "JavaScript",
-          "CRM",
-          "E-commerce",
-          "Google Analytics",
-        ],
-      },
-
-      {
-        cargo: "Desenvolvedor Frontend",
-        empresa: "Orbit Sistemas Digitais",
-        periodo: "Nov/2022 – Fev/2023",
-        local: "Campinas – SP",
-        modelo: "Híbrido",
-        atividades: [
-          "Desenvolvi interfaces para produtos de fidelidade e comércio eletrônico.",
-          "Transformei especificações visuais em componentes frontend reutilizáveis.",
-          "Implementei interfaces responsivas seguindo padrões definidos pelo design.",
-          "Integrei componentes com APIs utilizadas pelos produtos.",
-          "Participei de ajustes de usabilidade e refinamento visual das interfaces.",
-        ],
-        tecnologias: [
+        "nome": "Biblioteca de componentes acessíveis",
+        "descricao": "Conjunto de componentes React (botão, modal, abas) com testes e documentação de uso, publicado como projeto de estudo.",
+        "tecnologias": [
           "React",
           "TypeScript",
-          "Tailwind CSS",
-          "Styled-components",
-          "JavaScript",
-          "APIs REST",
-        ],
+          "Storybook",
+          "Testing Library"
+        ]
       },
+      {
+        "nome": "Painel de finanças pessoais",
+        "descricao": "Aplicação para registrar gastos por categoria e visualizar gráficos mensais, com dados salvos no navegador.",
+        "tecnologias": [
+          "React",
+          "TypeScript",
+          "Tailwind CSS"
+        ]
+      }
     ],
-
-    experienciaAnterior: [
+    "formacao": [
       {
-        empresa: "Connecta Digital",
-        cargo: "Assistente de Marketing Digital",
-        periodo: "2020 – 2021",
-      },
-      {
-        empresa: "Studio WebLab",
-        cargo: "Analista de Conteúdo Digital",
-        periodo: "2018 – 2020",
-      },
-      {
-        empresa: "Instituto Técnico Paulista",
-        cargo: "Estagiário de Desenvolvimento Web",
-        periodo: "2017 – 2018",
-      },
+        "curso": "Tecnologia em Análise e Desenvolvimento de Sistemas",
+        "instituicao": "Faculdade Exemplo de Tecnologia",
+        "periodo": "Fev/2022 – Dez/2024",
+        "status": "Concluído"
+      }
     ],
-
-    projetos: [
-      {
-        nome: "Biblioteca de Microcopy",
-        descricao:
-          "Projeto de estudo para organização de padrões de microcopy, mensagens de erro, estados vazios, confirmações e chamadas para ação.",
-        tecnologias: ["UX Writing", "HTML", "CSS", "JavaScript"],
-      },
-
-      {
-        nome: "Interface de Jornada Digital",
-        descricao:
-          "Protótipo de uma jornada de aquisição que demonstra como conteúdo, navegação e componentes de interface podem trabalhar juntos para reduzir atrito.",
-        tecnologias: ["Figma", "React", "TypeScript", "Tailwind CSS"],
-      },
-
-      {
-        nome: "Dashboard de Comunicação",
-        descricao:
-          "Painel conceitual para acompanhamento de campanhas, segmentações, jornadas e indicadores de comunicação digital.",
-        tecnologias: ["React", "TypeScript", "APIs REST", "SQL"],
-      },
+    "certificados": [
+      "TypeScript para Aplicações Web (24 h) – Escola Exemplo Online, 2025",
+      "Acessibilidade na Web (12 h) – Escola Exemplo Online, 2025"
     ],
-
-    formacao: [
+    "idiomas": [
       {
-        curso: "Análise e Desenvolvimento de Sistemas",
-        instituicao: "Centro Universitário Horizonte",
-        periodo: "2019 – 2021",
-        status: "Concluído",
+        "idioma": "Inglês",
+        "nivel": "Intermediário — leitura técnica e reuniões"
       },
       {
-        curso: "Técnico em Informática",
-        instituicao: "Instituto Técnico de Tecnologia Aplicada",
-        periodo: "2016 – 2017",
-        status: "Concluído",
-      },
-      {
-        curso: "Bacharelado em Sistemas de Informação",
-        instituicao: "Universidade Metropolitana de Campinas",
-        periodo: "2018 – 2020",
-        status: "Cursado parcialmente",
-      },
-      {
-        curso: "UX Writing e Conteúdo para Produtos Digitais",
-        instituicao: "Escola de Produto Digital",
-        periodo: "2024",
-        status: "Formação complementar",
-      },
+        "idioma": "Espanhol",
+        "nivel": "Básico"
+      }
     ],
-
-    certificados: [
-      "UX Writing para Produtos Digitais",
-      "Fundamentos de UX Design",
-      "React e Desenvolvimento Frontend",
-      "TypeScript para Aplicações Web",
-      "APIs REST",
-      "Salesforce Marketing Cloud",
-      "SQL para Análise de Dados",
-      "Fundamentos de Product Discovery",
+    "comunidade": [
+      "Palestra sobre acessibilidade em formulários em encontro da comunidade local de desenvolvimento (2026)."
     ],
-
-    idiomas: [
+    "dicas": [
       {
-        idioma: "Inglês",
-        nivel: "Avançado — leitura, escrita e comunicação profissional",
+        "secao": "Experiência profissional",
+        "texto": "Liste os empregos do mais recente para o mais antigo. O estágio feito durante a faculdade entra como experiência, com período claro, para não parecer sobreposição sem explicação."
       },
       {
-        idioma: "Espanhol",
-        nivel: "Básico",
+        "secao": "Atividades",
+        "texto": "Comece cada atividade com um verbo de ação, diga o que você fez e termine com o resultado. Números ajudam quando existem, mas não são obrigatórios: descreva o efeito do seu trabalho."
       },
+      {
+        "secao": "Competências",
+        "texto": "Agrupe as tecnologias por tipo, como linguagens, frameworks e ferramentas. Isso facilita a leitura rápida de quem faz a triagem."
+      },
+      {
+        "secao": "Projetos",
+        "texto": "Mesmo com experiência, mantenha um ou dois projetos com link para o código. Eles mostram o que você estuda além do trabalho e ajudam a sustentar o pedido de uma vaga mais sênior."
+      },
+      {
+        "secao": "Adaptação para a vaga",
+        "texto": "Ajuste o currículo para cada vaga: traga para cima o que a descrição pede e use os mesmos termos quando forem verdadeiros. Nunca copie o anúncio nem invente experiência."
+      },
+      {
+        "secao": "Formato",
+        "texto": "Prefira um layout simples, sem excesso de enfeites, em uma ou no máximo duas páginas. Não reduza a fonte para caber mais texto: corte o que é menos relevante."
+      }
     ],
-
-    comunidade: [
-      "Mentor voluntário em iniciativas de formação para profissionais iniciantes em tecnologia.",
-      "Participação em comunidades de UX, produto e desenvolvimento frontend.",
-      "Produção de conteúdos educacionais sobre tecnologia e carreira.",
-      "Participação em encontros e eventos relacionados a produtos digitais.",
+    "fontes": [
+      {
+        "label": "MIT Career Advising & Professional Development: Career toolkit: Crafting an effective resume",
+        "url": "https://capd.mit.edu/resources/career-toolkit-crafting-an-effective-resume/"
+      },
+      {
+        "label": "UNC Computer Science: Writing a Technical Resume",
+        "url": "https://cs.unc.edu/student-life/career/technical-resumes/"
+      },
+      {
+        "label": "Prefeitura de São Paulo (Secretaria de Desenvolvimento Econômico e Trabalho): Como preparar um currículo",
+        "url": "https://prefeitura.sp.gov.br/web/desenvolvimento/w/dicas/preparar_um_curriculo/619"
+      }
     ],
-  },
-  {
-  id: "lucas-augusto-ferreira",
-  nome: "Lucas Augusto Ferreira",
-  titulo: "Suporte Técnico, Tecnologia & Operações",
-  localizacao: "Campinas – SP",
-
-  contato: {
-    telefone: "(19) 98652-4173",
-    email: "lucas.ferreira.tech@example.com",
-    linkedin: "linkedin.com/in/lucasferreiratech",
-    portfolio: "lucasferreira.dev",
-  },
-
-  objetivo:
-    "Atuar em Suporte Técnico e Customer Success, combinando experiência em atendimento especializado, resolução de incidentes, análise de indicadores e conhecimento em tecnologia para proporcionar uma experiência eficiente ao cliente.",
-
-  resumo:
-    "Profissional com trajetória em tecnologia, suporte técnico e gestão de operações. Possui experiência em atendimento especializado, investigação de incidentes, sistemas corporativos, infraestrutura de TI e desenvolvimento de software. Ao longo da carreira, também atuou na liderança de equipes, acompanhamento de KPIs e elaboração de planos de ação. Combina conhecimento técnico com comunicação, organização e foco na resolução de problemas e satisfação do cliente.",
-
-  competencias: [
-    {
-      categoria: "Suporte técnico",
-      itens: [
-        "Atendimento multicanal",
-        "Troubleshooting",
-        "Análise de incidentes",
-        "Suporte a sistemas",
-        "Suporte a redes",
-        "Telefonia IP",
-        "Infraestrutura de TI",
-        "Documentação técnica",
-      ],
-    },
-
-    {
-      categoria: "Gestão e qualidade",
-      itens: [
-        "Gestão de KPIs",
-        "PDCA",
-        "5W2H",
-        "FMEA",
-        "Diagrama de Ishikawa",
-        "Análise SWOT",
-        "Planos de ação",
-        "Melhoria contínua",
-      ],
-    },
-
-    {
-      categoria: "Tecnologia",
-      itens: [
-        "JavaScript",
-        "TypeScript",
-        "React",
-        "Node.js",
-        "SQL",
-        "PostgreSQL",
-        "Git",
-        "GitHub",
-        "APIs REST",
-      ],
-    },
-
-    {
-      categoria: "Liderança e Customer Success",
-      itens: [
-        "Gestão de equipes",
-        "Customer Success",
-        "Satisfação do cliente",
-        "Acompanhamento de desempenho",
-        "Feedback",
-        "Treinamento",
-        "Gestão de conflitos",
-        "Análise de resultados",
-      ],
-    },
-  ],
-
-  experiencias: [
-    {
-      cargo: "Coordenador de Educação e Tecnologia",
-      empresa: "CodeLab Formação Digital",
-      periodo: "Ago/2025 – atual",
-      local: "Campinas – SP",
-      modelo: "Presencial",
-
-      atividades: [
-        "Coordenei a estrutura pedagógica, técnica e operacional da instituição.",
-        "Atuei no suporte técnico às plataformas utilizadas por alunos e equipes.",
-        "Acompanhei indicadores de retenção, engajamento e satisfação dos usuários.",
-        "Investiguei problemas técnicos e organizei processos para reduzir impactos na experiência dos alunos.",
-        "Estruturei procedimentos internos para atendimento e resolução de problemas.",
-        "Conectei necessidades operacionais às demandas técnicas da plataforma.",
-      ],
-
-      tecnologias: [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Git",
-        "GitHub",
-        "Plataformas LMS",
-      ],
-    },
-
-    {
-      cargo: "Analista de Sistemas e Suporte Técnico",
-      empresa: "VozLink Tecnologia",
-      periodo: "Dez/2020 – Ago/2021",
-      local: "Campinas – SP",
-      modelo: "Híbrido",
-
-      atividades: [
-        "Atuei no suporte técnico especializado a clientes e novos usuários.",
-        "Investiguei problemas de configuração e utilização de sistemas de telefonia digital.",
-        "Acompanhei clientes durante processos de implementação e ativação da tecnologia.",
-        "Realizei diagnóstico de incidentes e encaminhamento de problemas para equipes técnicas.",
-        "Desenvolvi interfaces frontend para ferramentas internas de suporte.",
-        "Integrei aplicações frontend com serviços backend e bancos de dados.",
-      ],
-
-      tecnologias: [
-        "React",
-        "JavaScript",
-        "Java",
-        "MariaDB",
-        "APIs",
-        "Git",
-      ],
-    },
-
-    {
-      cargo: "Supervisor de Operações",
-      empresa: "Aliança Contact Center",
-      periodo: "Jul/2019 – Out/2019",
-      local: "Campinas – SP",
-      modelo: "Presencial",
-
-      atividades: [
-        "Supervisionei equipes responsáveis pelo atendimento de produtos e serviços.",
-        "Acompanhei indicadores de produtividade, qualidade e satisfação dos clientes.",
-        "Atuei no suporte operacional aos atendentes durante situações críticas.",
-        "Analisei resultados e identifiquei oportunidades de melhoria nos processos.",
-        "Apoiei a elaboração de planos de ação para melhoria dos indicadores.",
-        "Realizei acompanhamento individual de desempenho.",
-      ],
-
-      tecnologias: [
-        "CRM",
-        "Excel",
-        "Pacote Office",
-        "KPIs",
-        "Gestão de operações",
-      ],
-    },
-
-    {
-      cargo: "Analista de Suporte Técnico e Líder de Equipe",
-      empresa: "Conecta Telecom",
-      periodo: "Set/2015 – Set/2019",
-      local: "Campinas – SP",
-      modelo: "Presencial",
-
-      atividades: [
-        "Realizei atendimento especializado para clientes de serviços de telecomunicações.",
-        "Atuei na investigação de problemas relacionados a rede, conectividade e serviços digitais.",
-        "Prestei suporte em situações de maior complexidade encaminhadas pela operação.",
-        "Acompanhei indicadores de qualidade, produtividade e satisfação.",
-        "Utilizei ferramentas de análise de causa para investigação de problemas recorrentes.",
-        "Assumi posteriormente a liderança de equipe, acompanhando resultados e desenvolvendo planos de ação.",
-        "Realizei feedbacks e acompanhamento de desempenho dos integrantes da equipe.",
-      ],
-
-      tecnologias: [
-        "CRM",
-        "Pacote Office",
-        "Excel",
-        "PDCA",
-        "5W2H",
-        "FMEA",
-        "Ishikawa",
-      ],
-    },
-
-    {
-      cargo: "Estagiário de TI e Planejamento",
-      empresa: "Centro Administrativo Federal",
-      periodo: "Mai/2011 – Jun/2013",
-      local: "Campinas – SP",
-      modelo: "Presencial",
-
-      atividades: [
-        "Atuei no suporte à infraestrutura de tecnologia da organização.",
-        "Realizei configuração e substituição de estações de trabalho.",
-        "Acompanhei o ciclo de vida de equipamentos de informática.",
-        "Apoiei processos de modernização e digitalização de atividades internas.",
-        "Desenvolvi ferramentas para apoio às rotinas administrativas.",
-        "Criei soluções para processamento de documentos e controle de prazos.",
-      ],
-
-      tecnologias: [
-        "Delphi",
-        "Microsoft Access",
-        "SQL",
-        "Windows",
-        "Hardware",
-        "Redes",
-      ],
-    },
-  ],
-
-  experienciaAnterior: [
-    {
-      empresa: "TechService Informática",
-      cargo: "Assistente de Suporte",
-      periodo: "2013 – 2015",
-    },
-    {
-      empresa: "DataCenter Solutions",
-      cargo: "Auxiliar de Infraestrutura",
-      periodo: "2010 – 2011",
-    },
-  ],
-
-  projetos: [
-    {
-      nome: "Central de Diagnóstico de Incidentes",
-      descricao:
-        "Projeto conceitual de uma central para registro, classificação e acompanhamento de incidentes técnicos, facilitando a identificação de problemas recorrentes.",
-      tecnologias: [
-        "React",
-        "TypeScript",
-        "Node.js",
-        "PostgreSQL",
-      ],
-    },
-
-    {
-      nome: "Dashboard de Suporte",
-      descricao:
-        "Painel para acompanhamento de chamados, tempo médio de atendimento, incidentes recorrentes e indicadores de satisfação.",
-      tecnologias: [
-        "JavaScript",
-        "SQL",
-        "APIs REST",
-        "Charts",
-      ],
-    },
-
-    {
-      nome: "Base de Conhecimento Técnico",
-      descricao:
-        "Estrutura de documentação para registrar procedimentos de diagnóstico, soluções de incidentes frequentes e orientações para equipes de atendimento.",
-      tecnologias: [
-        "Markdown",
-        "Git",
-        "GitHub",
-        "Documentação técnica",
-      ],
-    },
-  ],
-
-  formacao: [
-    {
-      curso: "Análise e Desenvolvimento de Sistemas",
-      instituicao: "Centro Universitário Nova Geração",
-      periodo: "2018 – 2021",
-      status: "Concluído",
-    },
-
-    {
-      curso: "Técnico em Informática",
-      instituicao: "Instituto Técnico do Interior",
-      periodo: "2014 – 2016",
-      status: "Concluído",
-    },
-
-    {
-      curso: "Bacharelado em Ciência da Computação",
-      instituicao: "Universidade Metropolitana de Tecnologia",
-      periodo: "2016 – 2018",
-      status: "Cursado parcialmente",
-    },
-  ],
-
-  certificados: [
-    "Fundamentos de Customer Success",
-    "Gestão de Incidentes e Problemas",
-    "ITIL Foundation",
-    "React e Desenvolvimento Frontend",
-    "JavaScript e TypeScript",
-    "SQL para Análise de Dados",
-    "Fundamentos de APIs REST",
-    "Gestão de Indicadores e KPIs",
-    "Gestão da Qualidade",
-  ],
-
-  idiomas: [
-    {
-      idioma: "Inglês",
-      nivel: "Intermediário — leitura técnica e comunicação profissional",
-    },
-
-    {
-      idioma: "Espanhol",
-      nivel: "Básico",
-    },
-  ],
-
-  comunidade: [
-    "Participação em comunidades de tecnologia e suporte técnico.",
-    "Mentoria informal para profissionais iniciantes em tecnologia.",
-    "Compartilhamento de conhecimentos sobre diagnóstico de problemas e desenvolvimento de software.",
-    "Participação em eventos relacionados a tecnologia, atendimento e Customer Success.",
-  ],
-},
+    "atualizadoEm": "2026-10-28"
+  }
 ];

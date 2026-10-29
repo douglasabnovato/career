@@ -97,10 +97,34 @@ function criarFormacao(formacao = []) {
     .join("");
 }
 
+/* Dicas por seção e fontes públicas que embasam o modelo. */
+function criarOrientacao(curriculo) {
+  const dicas = (curriculo.dicas || [])
+    .map((d) => `<li><strong>${escapar(d.secao || "")}:</strong> ${escapar(d.texto || "")}</li>`)
+    .join("");
+  const fontes = (curriculo.fontes || [])
+    .filter((f) => /^https:\/\//.test(String(f.url)))
+    .map((f) => `<li><a href="${escapar(f.url)}" target="_blank" rel="noopener noreferrer">${escapar(f.label || f.url)}</a></li>`)
+    .join("");
+  return `
+    ${dicas ? `<section class="resume-section"><h3 class="resume-section__title">Dicas para montar o seu</h3><ul class="resume-section__list">${dicas}</ul></section>` : ""}
+    ${fontes ? `<section class="resume-section"><h3 class="resume-section__title">Fontes</h3><ul class="resume-section__list">${fontes}</ul></section>` : ""}
+  `;
+}
+
 function criarCorpoCurriculo(curriculo) {
   const contato = curriculo.contato || {};
 
   return `
+    ${
+      curriculo.ficticio || curriculo.paraQuem
+        ? `
+          <section class="resume-section resume-section--aviso">
+            <p>${curriculo.ficticio ? "<strong>Modelo fictício:</strong> nomes, empresas e contatos são exemplos. " : ""}${escapar(curriculo.paraQuem || "")}</p>
+          </section>
+        `
+        : ""
+    }
     ${
       curriculo.objetivo
         ? `
@@ -420,6 +444,7 @@ function criarCorpoCurriculo(curriculo) {
 }
 
 export function renderCurriculos({ container, template, dados, visiveis }) {
+  /* criarCorpoCurriculo + orientação (dicas e fontes) */
   if (!template) {
     console.error("Template #curriculo-template não encontrado.");
 
@@ -452,7 +477,7 @@ export function renderCurriculos({ container, template, dados, visiveis }) {
 
     summary.textContent = curriculo.resumo || "";
 
-    body.innerHTML = criarCorpoCurriculo(curriculo);
+    body.innerHTML = criarCorpoCurriculo(curriculo) + criarOrientacao(curriculo);
 
     lista.appendChild(clone);
   });

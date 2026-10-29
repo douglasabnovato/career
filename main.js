@@ -3,7 +3,6 @@
 import { App } from "./js/app.js";
 import { carregarCatalogo } from "./js/catalog.js";
 import { carregarIdentificacao, esperarAte } from "./js/api.js";
-import "./js/company-modal.js";
 
 const ESPERA_API_MS = 1500;
 

@@ -1,91 +1,89 @@
-/**
- * perfis-dev.js
- * Perfis inspiradores e mentores para acompanhar.
- */
+/* GERADO por learntech-content/scripts/exportar-copias.mjs a partir de content/career/perfis.json.
+   Não edite à mão: mude o conteúdo na API e rode o script de novo. */
 
 export const profiles = [
   {
-    title: "Tiago Gouvêa",
-    duration: "Tech Lead",
-    thumb: "./assets/thumb_perfis-dev/tiagogouvea.jpg",
-    site_url: "https://www.tiagogouvea.com.br/",
-    category: "Tech Leadership",
+    "title": "Tiago Gouvêa",
+    "duration": "Tech Lead",
+    "thumb": "./assets/thumb_perfis-dev/tiagogouvea.jpg",
+    "site_url": "https://www.tiagogouvea.com.br/",
+    "category": "Tech Leadership"
   },
   {
-    title: "Gabs Ferreira",
-    duration: "Dev Content",
-    thumb: "./assets/thumb_perfis-dev/gabsferreira.jpg",
-    site_url: "http://gabsferreira.com/",
-    category: "Career Content",
+    "title": "Gabs Ferreira",
+    "duration": "Dev Content",
+    "thumb": "./assets/thumb_perfis-dev/gabsferreira.jpg",
+    "site_url": "http://gabsferreira.com/",
+    "category": "Career Content"
   },
   {
-    title: "Filipe Deschamps",
-    duration: "Clean Code",
-    thumb: "./assets/thumb_perfis-dev/filipedeschamps.jpg",
-    site_url: "https://filipedeschamps.com.br/",
-    category: "Tech Education",
+    "title": "Filipe Deschamps",
+    "duration": "Clean Code",
+    "thumb": "./assets/thumb_perfis-dev/filipedeschamps.jpg",
+    "site_url": "https://filipedeschamps.com.br/",
+    "category": "Tech Education"
   },
   {
-    title: "Lucas Montano",
-    duration: "Seniority",
-    thumb: "./assets/thumb_perfis-dev/lucasmontano.jpg",
-    site_url: "https://lucasmontano.com/",
-    category: "Seniority",
+    "title": "Lucas Montano",
+    "duration": "Seniority",
+    "thumb": "./assets/thumb_perfis-dev/lucasmontano.jpg",
+    "site_url": "https://lucasmontano.com/",
+    "category": "Seniority"
   },
   {
-    title: "Rodrigo Branas",
-    duration: "Architecture",
-    thumb: "./assets/thumb_perfis-dev/branas.jpg",
-    site_url: "https://app.branas.io/",
-    category: "Architecture",
+    "title": "Rodrigo Branas",
+    "duration": "Architecture",
+    "thumb": "./assets/thumb_perfis-dev/branas.jpg",
+    "site_url": "https://app.branas.io/",
+    "category": "Architecture"
   },
   {
-    title: "Programador BR",
-    duration: "Fullstack",
-    thumb: "./assets/thumb_perfis-dev/programadorbr.jpg",
-    site_url: "https://programadorbr.com/",
-    category: "Fullstack",
+    "title": "Programador BR",
+    "duration": "Fullstack",
+    "thumb": "./assets/thumb_perfis-dev/programadorbr.jpg",
+    "site_url": "https://programadorbr.com/",
+    "category": "Fullstack"
   },
   {
-    title: "Código Fonte TV",
-    duration: "Curiosidades",
-    thumb: "./assets/thumb_perfis-dev/codigofonte-tv.jpg",
-    site_url: "https://codigofonte.tv/",
-    category: "Tech Media",
+    "title": "Código Fonte TV",
+    "duration": "Curiosidades",
+    "thumb": "./assets/thumb_perfis-dev/codigofonte-tv.jpg",
+    "site_url": "https://codigofonte.tv/",
+    "category": "Tech Media"
   },
   {
-    title: "Tania Rascia",
-    duration: "Front/Writing",
-    thumb: "./assets/thumb_perfis-dev/taniarascia.jpg",
-    site_url: "https://www.taniarascia.com/",
-    category: "Frontend",
+    "title": "Tania Rascia",
+    "duration": "Front/Writing",
+    "thumb": "./assets/thumb_perfis-dev/taniarascia.jpg",
+    "site_url": "https://www.taniarascia.com/",
+    "category": "Frontend"
   },
   {
-    title: "O Dev Tá Ligado",
-    duration: "Dicas/Carreira",
-    thumb: "./assets/thumb_perfis-dev/odevtaligado.jpg",
-    site_url: "https://www.odevtaligado.com/",
-    category: "Career Content",
+    "title": "O Dev Tá Ligado",
+    "duration": "Dicas/Carreira",
+    "thumb": "./assets/thumb_perfis-dev/odevtaligado.jpg",
+    "site_url": "https://www.odevtaligado.com/",
+    "category": "Career Content"
   },
   {
-    title: "Vinicius Gomes",
-    duration: "Frontend",
-    thumb: "./assets/thumb_perfis-dev/vinniciusgomes.jpg",
-    site_url: "https://vinniciusgomes.dev/",
-    category: "Frontend",
+    "title": "Vinicius Gomes",
+    "duration": "Frontend",
+    "thumb": "./assets/thumb_perfis-dev/vinniciusgomes.jpg",
+    "site_url": "https://vinniciusgomes.dev/",
+    "category": "Frontend"
   },
   {
-    title: "Mario Souto",
-    duration: "Next.js",
-    thumb: "./assets/thumb_perfis-dev/mariosouto.jpg",
-    site_url: "https://mariosouto.com/",
-    category: "Next.js Expert",
+    "title": "Mario Souto",
+    "duration": "Next.js",
+    "thumb": "./assets/thumb_perfis-dev/mariosouto.jpg",
+    "site_url": "https://mariosouto.com/",
+    "category": "Next.js Expert"
   },
   {
-    title: "João Fernando Baraky",
-    duration: "Soft Skills",
-    thumb: "./assets/thumb_perfis-dev/baraky.jpg",
-    site_url: "https://baraky.com.br/",
-    category: "Leadership",
-  },
+    "title": "João Fernando Baraky",
+    "duration": "Soft Skills",
+    "thumb": "./assets/thumb_perfis-dev/baraky.jpg",
+    "site_url": "https://baraky.com.br/",
+    "category": "Leadership"
+  }
 ];

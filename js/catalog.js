@@ -10,7 +10,9 @@ export async function carregarCatalogo() {
     );
     /* Resposta fora do formato esperado (não-lista) cai nos dados locais, em vez de quebrar a renderização. */
     if (![c, j, p].every(Array.isArray)) throw new Error("catálogo remoto fora do formato esperado");
-    return { companies: resolverMidia(c), jobs: resolverMidia(j), profiles: resolverMidia(p), destaques: d };
+    /* Modelos de currículo vêm à parte: se falharem, o catálogo segue e a seção usa a cópia local. */
+    const curriculos = await buscarRecurso("career/modelos-curriculo.json").then((m) => (Array.isArray(m) ? m : null)).catch(() => null);
+    return { companies: resolverMidia(c), jobs: resolverMidia(j), profiles: resolverMidia(p), destaques: d, curriculos };
   } catch (e) {
     console.warn("[learntech-content] usando dados locais:", e.message);
     return null;

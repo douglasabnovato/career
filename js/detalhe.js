@@ -102,6 +102,26 @@ function preencherLinks(lista, secaoId, ulId) {
   $(secaoId).hidden = ul.children.length === 0;
 }
 
+const NOME_PROJETO = { "learn-tech": "learnTECH", bootcamps: "Bootcamps", career: "Career", tools: "Tools" };
+
+/* "Veja também": conteúdos de outros sites ligados a este item (título e URL prontos vindos da API). */
+function preencherRelacionados(lista) {
+  const ul = $("detalhe-relacionados");
+  ul.replaceChildren();
+  (Array.isArray(lista) ? lista : []).forEach((r) => {
+    const url = urlSegura(r?.url);
+    const rotulo = texto(r?.titulo);
+    if (!url || !rotulo) return;
+    const li = document.createElement("li");
+    const projeto = NOME_PROJETO[r?.projeto];
+    const a = criar("a", "detalhe-link", projeto ? `${projeto}: ${rotulo}` : rotulo);
+    a.href = url;
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+  $("secao-relacionados").hidden = ul.children.length === 0;
+}
+
 function preencherGaleria(imagens) {
   const galeria = $("detalhe-galeria");
   galeria.replaceChildren();
@@ -176,6 +196,7 @@ function renderizar(item, config) {
 
   preencherGaleria(d.imagens);
   preencherVideo(d.video, titulo);
+  preencherRelacionados(d.relacionados);
   preencherLinks(d.links, "secao-links", "detalhe-links");
   preencherLinks(d.fontes, "secao-fontes", "detalhe-fontes");
 

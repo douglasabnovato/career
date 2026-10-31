@@ -194,19 +194,7 @@ export const App = {
 
       const img = clone.querySelector("img");
 
-      /*
-       * BRQ abre o modal interno.
-       */
-      if (this.state.secaoAtual === "companies" && item.id === "brq") {
-        link.href = "#";
-
-        link.dataset.companyId = item.id;
-
-        link.setAttribute(
-          "aria-label",
-          `Ver detalhes da empresa: ${item.title}`,
-        );
-      } else if (item.slug && item.detalhe && TIPO_DETALHE[this.state.secaoAtual]) {
+      if (item.slug && item.detalhe && TIPO_DETALHE[this.state.secaoAtual]) {
         /* Item com página de detalhe: abre detalhe.html na mesma aba. */
         link.href = `detalhe.html#tipo=${TIPO_DETALHE[this.state.secaoAtual]}&id=${encodeURIComponent(item.slug)}`; /* "#" sobrevive a servidores que redirecionam .html e descartam a query (ex.: npx serve). */
 
@@ -436,7 +424,8 @@ export const App = {
       companies: cat.companies,
       jobs: cat.jobs,
       profiles: cat.profiles,
-      curriculos,
+      /* Modelos de currículo da API; se essa lista falhar, mantém a cópia local gerada. */
+      curriculos: cat.curriculos || curriculos,
     };
 
     /* Sem seleção de destaques válida na API, mantém o banner local (launchBanner). */

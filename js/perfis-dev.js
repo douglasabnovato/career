@@ -66,7 +66,7 @@ export const profiles = [
     "category": "Career Content"
   },
   {
-    "title": "Vinicius Gomes",
+    "title": "Vinnicius Gomes",
     "duration": "Frontend",
     "thumb": "./assets/thumb_perfis-dev/vinniciusgomes.jpg",
     "site_url": "https://vinniciusgomes.dev/",

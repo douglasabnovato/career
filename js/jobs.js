@@ -13,7 +13,7 @@ export const jobs = [
     "title": "GeekHunter",
     "duration": "Atualizado",
     "thumb": "./assets/thumb_jobs/geekhunter.jpg",
-    "site_url": "https://www.geekhunter.com.br/vagas",
+    "site_url": "https://www.geekhunter.com/en/jobs",
     "category": "Tech Jobs"
   },
   {
@@ -25,7 +25,7 @@ export const jobs = [
   },
   {
     "title": "Polywork",
-    "duration": "Professional",
+    "duration": "Descontinuado",
     "thumb": "./assets/thumb_jobs/polywork.jpg",
     "site_url": "https://www.polywork.com/",
     "category": "Networking"
@@ -69,7 +69,7 @@ export const jobs = [
     "title": "Revelo",
     "duration": "International",
     "thumb": "./assets/thumb_jobs/revelo.jpg",
-    "site_url": "https://app.careers.revelo.com/#/international/positions/list",
+    "site_url": "https://app.careers.revelo.com/",
     "category": "Global Jobs"
   },
   {

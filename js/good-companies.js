@@ -14,7 +14,7 @@ export const companies = [
     "location": "Juiz de Fora",
     "thumb": "./assets/thumb_good-companies/vivaeventos.jpg",
     "site_url": "https://vivaeventos.com.br/",
-    "category": "Events Tech"
+    "category": "Event Services"
   },
   {
     "title": "Nova Tendência",
@@ -27,7 +27,7 @@ export const companies = [
     "title": "Handcom",
     "location": "Juiz de Fora",
     "thumb": "./assets/thumb_good-companies/handcom.jpg",
-    "site_url": "http://v2.handcom.com.br/",
+    "site_url": "https://handcom.com.br/",
     "category": "Software House"
   },
   {
@@ -69,14 +69,14 @@ export const companies = [
     "title": "Revelo",
     "location": "Remote",
     "thumb": "./assets/thumb_good-companies/revelo.jpg",
-    "site_url": "https://www.revelo.com.br/",
+    "site_url": "https://www.revelo.com/",
     "category": "HR Tech"
   },
   {
     "title": "Google Careers",
     "location": "Global / Remote",
     "thumb": "./assets/thumb_good-companies/google.jpg",
-    "site_url": "https://careers.google.com/",
+    "site_url": "https://www.google.com/about/careers/applications/",
     "category": "Big Tech"
   },
   {
@@ -109,7 +109,7 @@ export const companies = [
   },
   {
     "title": "Cadastra",
-    "location": "São Paulo",
+    "location": "Porto Alegre / São Paulo",
     "thumb": "https://www.google.com/s2/favicons?domain=cadastra.com&sz=128",
     "site_url": "https://pt.cadastra.com/carreiras",
     "category": "Marketing Tech"
@@ -183,5 +183,12 @@ export const companies = [
     "thumb": "./assets/thumb_good-companies/brq.jpg",
     "site_url": "https://www.brq.com/carreiras",
     "category": "Consultancy"
+  },
+  {
+    "title": "ABC da Construção",
+    "location": "Juiz de Fora, MG",
+    "thumb": "./assets/logo/logo-career.png",
+    "site_url": "https://www.abcdaconstrucao.com.br/",
+    "category": "Retail Franchise"
   }
 ];

@@ -16,17 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
 
-      # O verificar.ps1 foi escrito no Windows e nunca rodou no Linux do runner: na primeira execução,
-      # se o passo falhar por caminho com barra invertida, o erro é do script. Depois do primeiro verde, remova o continue-on-error.
       - name: Verificações estáticas (arquivos, dados, links locais)
         shell: pwsh
-        continue-on-error: true
         run: ./docs/claudeia/verificar.ps1
 
       - name: Sintaxe dos módulos JS

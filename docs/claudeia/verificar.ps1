@@ -1,8 +1,9 @@
 ﻿<#
+  Caminhos com / (funciona no Windows e no Linux da CI do GitHub).
   verificar.ps1 — verificação do projeto Career (site estático, sem build).
   Uso, na RAIZ do projeto:
-    powershell -ExecutionPolicy Bypass -File docs\claudeia\verificar.ps1
-    powershell -ExecutionPolicy Bypass -File docs\claudeia\verificar.ps1 -Online
+    powershell -ExecutionPolicy Bypass -File docs/claudeia/verificar.ps1
+    powershell -ExecutionPolicy Bypass -File docs/claudeia/verificar.ps1 -Online
   Para no primeiro erro (exit 1). Avisos não param a execução.
 #>
 param([switch]$Online)
@@ -23,10 +24,10 @@ function EhExterno($u) { return ($u -match '^(https?:|mailto:|data:|#|//)') -or 
 
 # ---------------------------------------------------------------------------
 Etapa 1 'Confere que o script roda na raiz do Career'
-foreach ($f in 'index.html', 'main.js', 'js\app.js', 'css\layout.css') {
+foreach ($f in 'index.html', 'main.js', 'js/app.js', 'css/layout.css') {
   if (-not (Test-Path $f)) { Falha "não encontrei '$f'. Rode o script na raiz do projeto career." }
 }
-Ok 'index.html, main.js, js\ e css\ presentes'
+Ok 'index.html, main.js, js/ e css/ presentes'
 
 # ---------------------------------------------------------------------------
 Etapa 2 'Confere que todo arquivo LOCAL referenciado existe (HTML, CSS, imports JS, imagens nos dados, manifest)'
@@ -49,7 +50,7 @@ foreach ($f in Get-ChildItem 'css' -Filter '*.css' -File) {
     $u = $m.Groups[1].Value
     if (EhExterno $u) { continue }
     $total++
-    if (-not (Test-Path (Resolver $f.DirectoryName $u))) { $faltando.Add("css\$($f.Name) -> $u") }
+    if (-not (Test-Path (Resolver $f.DirectoryName $u))) { $faltando.Add("css/$($f.Name) -> $u") }
   }
 }
 
@@ -68,8 +69,8 @@ foreach ($f in $js) {
 }
 
 # Manifest: ícones relativos à pasta public
-if (Test-Path 'public\site.webmanifest') {
-  $man = Get-Content -Raw -Encoding UTF8 'public\site.webmanifest' | ConvertFrom-Json
+if (Test-Path 'public/site.webmanifest') {
+  $man = Get-Content -Raw -Encoding UTF8 'public/site.webmanifest' | ConvertFrom-Json
   foreach ($i in $man.icons) {
     $total++
     if (-not (Test-Path (Resolver (Join-Path $raiz 'public') $i.src))) { $faltando.Add("site.webmanifest -> $($i.src)") }
@@ -104,7 +105,7 @@ Ok 'lang, meta description e nome acessível do modal presentes'
 
 # ---------------------------------------------------------------------------
 Etapa 5 'Avisos de qualidade (não param a execução)'
-$http = Select-String -Path 'js\*.js' -Pattern 'site_url:\s*"http://' -SimpleMatch:$false
+$http = Select-String -Path 'js/*.js' -Pattern 'site_url:\s*"http://' -SimpleMatch:$false
 foreach ($h in $http) { Aviso "link sem https: $($h.Filename):$($h.LineNumber)" }
 
 $textoTodo = (@($html) + @($js | ForEach-Object { Get-Content -Raw -Encoding UTF8 $_.FullName })) -join ' '

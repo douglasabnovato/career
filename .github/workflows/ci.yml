@@ -1,0 +1,41 @@
+# CI do site estático "career": sem build e sem npm install.
+# Roda a verificação estática (docs/claudeia/verificar.ps1), confere a sintaxe dos módulos JS
+# e executa os testes com o test runner nativo do Node (node --test), que não pede dependências.
+name: ci
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # O verificar.ps1 foi escrito no Windows e nunca rodou no Linux do runner: na primeira execução,
+      # se o passo falhar por caminho com barra invertida, o erro é do script. Depois do primeiro verde, remova o continue-on-error.
+      - name: Verificações estáticas (arquivos, dados, links locais)
+        shell: pwsh
+        continue-on-error: true
+        run: ./docs/claudeia/verificar.ps1
+
+      - name: Sintaxe dos módulos JS
+        run: |
+          set -e
+          for f in main.js js/*.js; do
+            node --input-type=module --check < "$f"
+            echo "ok $f"
+          done
+
+      - name: Testes (node --test)
+        run: node --test "tests/*.test.js"

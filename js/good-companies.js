@@ -190,5 +190,103 @@ export const companies = [
     "thumb": "./assets/logo/logo-career.png",
     "site_url": "https://www.abcdaconstrucao.com.br/",
     "category": "Retail Franchise"
+  },
+  {
+    "title": "Ambev Tech",
+    "location": "Blumenau / Remote",
+    "thumb": "https://www.google.com/s2/favicons?domain=ambevtech.com.br&sz=128",
+    "site_url": "https://ambevtech.gupy.io/",
+    "category": "Software House"
+  },
+  {
+    "title": "KaBuM!",
+    "location": "Limeira",
+    "thumb": "https://www.google.com/s2/favicons?domain=kabum.com.br&sz=128",
+    "site_url": "https://www.kabum.com.br/hotsite/programa-de-estagio/",
+    "category": "E-commerce"
+  },
+  {
+    "title": "Pipefy",
+    "location": "Curitiba / Remote",
+    "thumb": "https://www.google.com/s2/favicons?domain=pipefy.com&sz=128",
+    "site_url": "https://www.pipefy.com/careers/",
+    "category": "SaaS"
+  },
+  {
+    "title": "iFood",
+    "location": "Osasco / Remote",
+    "thumb": "https://www.google.com/s2/favicons?domain=ifood.com.br&sz=128",
+    "site_url": "https://carreiras.ifood.com.br/",
+    "category": "E-commerce"
+  },
+  {
+    "title": "Mercado Livre",
+    "location": "São Paulo / Remote",
+    "thumb": "https://www.google.com/s2/favicons?domain=mercadolivre.com.br&sz=128",
+    "site_url": "https://mercadolibre.eightfold.ai/careers",
+    "category": "E-commerce"
+  },
+  {
+    "title": "PM3",
+    "location": "Remote",
+    "thumb": "https://www.google.com/s2/favicons?domain=pm3.com.br&sz=128",
+    "site_url": "https://www.pm3.com.br/",
+    "category": "Education"
+  },
+  {
+    "title": "Dev em Dobro",
+    "location": "Remote",
+    "thumb": "https://www.google.com/s2/favicons?domain=devemdobro.com&sz=128",
+    "site_url": "https://devemdobro.com/",
+    "category": "Education"
+  },
+  {
+    "title": "Alura",
+    "location": "Remote",
+    "thumb": "https://www.google.com/s2/favicons?domain=alura.com.br&sz=128",
+    "site_url": "https://www.alura.com.br/",
+    "category": "Education"
+  },
+  {
+    "title": "DIO (Digital Innovation One)",
+    "location": "Remote",
+    "thumb": "https://www.google.com/s2/favicons?domain=dio.me&sz=128",
+    "site_url": "https://www.dio.me/",
+    "category": "Education"
+  },
+  {
+    "title": "TreinaWeb",
+    "location": "São Paulo",
+    "thumb": "https://www.google.com/s2/favicons?domain=treinaweb.com.br&sz=128",
+    "site_url": "https://www.treinaweb.com.br/",
+    "category": "Education"
+  },
+  {
+    "title": "Conquer",
+    "location": "Curitiba",
+    "thumb": "https://www.google.com/s2/favicons?domain=escolaconquer.com.br&sz=128",
+    "site_url": "https://www.escolaconquer.com.br/",
+    "category": "Education"
+  },
+  {
+    "title": "Grupo Voitto",
+    "location": "Juiz de Fora",
+    "thumb": "https://www.google.com/s2/favicons?domain=voitto.com.br&sz=128",
+    "site_url": "https://www.voitto.com.br/",
+    "category": "Education"
+  },
+  {
+    "title": "Ada Tech (antiga Let's Code)",
+    "location": "São Paulo",
+    "thumb": "https://www.google.com/s2/favicons?domain=ada.tech&sz=128",
+    "site_url": "https://ada.tech/",
+    "category": "Education"
+  },
+  {
+    "title": "OneBitCode",
+    "location": "Remote",
+    "thumb": "https://www.google.com/s2/favicons?domain=onebitcode.com&sz=128",
+    "site_url": "https://onebitcode.com/",
+    "category": "Education"
   }
 ];

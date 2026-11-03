@@ -134,5 +134,33 @@ export const jobs = [
     "thumb": "https://learntech-content.douglasabnovato.workers.dev/media/career/we-work-remotely.webp",
     "site_url": "https://weworkremotely.com/categories/remote-programming-jobs",
     "category": "Global Jobs"
+  },
+  {
+    "title": "Catho",
+    "duration": "Brasil",
+    "thumb": "https://www.google.com/s2/favicons?domain=catho.com.br&sz=128",
+    "site_url": "https://www.catho.com.br/",
+    "category": "General Jobs"
+  },
+  {
+    "title": "frontendbr/vagas",
+    "duration": "Comunidade",
+    "thumb": "https://www.google.com/s2/favicons?domain=github.com&sz=128",
+    "site_url": "https://github.com/frontendbr/vagas",
+    "category": "Community"
+  },
+  {
+    "title": "Sólides Vagas",
+    "duration": "Brasil",
+    "thumb": "https://www.google.com/s2/favicons?domain=solides.com.br&sz=128",
+    "site_url": "https://vagas.solides.com.br/",
+    "category": "ATS"
+  },
+  {
+    "title": "Estágio Trainee",
+    "duration": "Brasil",
+    "thumb": "https://www.google.com/s2/favicons?domain=estagiotrainee.com&sz=128",
+    "site_url": "https://www.estagiotrainee.com/",
+    "category": "General Jobs"
   }
 ];

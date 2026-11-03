@@ -85,5 +85,12 @@ export const profiles = [
     "thumb": "./assets/thumb_perfis-dev/baraky.jpg",
     "site_url": "https://baraky.com.br/",
     "category": "Leadership"
+  },
+  {
+    "title": "Sujeito Programador",
+    "duration": "Fullstack",
+    "thumb": "https://www.google.com/s2/favicons?domain=sujeitoprogramador.com&sz=128",
+    "site_url": "https://sujeitoprogramador.com/",
+    "category": "Tech Education"
   }
 ];

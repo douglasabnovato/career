@@ -100,8 +100,12 @@ if (-not $node) {
 Etapa 4 'Confere o básico de SEO e acessibilidade no index.html'
 if ($html -notmatch '<html[^>]*lang="pt-BR"') { Falha 'index.html sem lang="pt-BR"' }
 if ($html -notmatch '<meta\s+name="description"') { Falha 'index.html sem meta description' }
-if ($html -notmatch 'aria-labelledby="company-modal-title"') { Falha 'modal sem aria-labelledby (regressão do lote 1)' }
-Ok 'lang, meta description e nome acessível do modal presentes'
+# O modal de empresa saiu em 29/10/2026 (commit 983a490): o detalhe agora é a página detalhe.html.
+$detalhe = Get-Content -Raw -Encoding UTF8 'detalhe.html'
+if ($html -match 'role="dialog"' -and $html -notmatch 'role="dialog"[^>]*aria-labelledby=') { Falha 'diálogo sem aria-labelledby' }
+if ($detalhe -notmatch '<html[^>]*lang="pt-BR"') { Falha 'detalhe.html sem lang="pt-BR"' }
+if ($detalhe -notmatch '<h1') { Falha 'detalhe.html sem título h1' }
+Ok 'lang, meta description, diálogos com nome acessível e título da página de detalhe presentes'
 
 # ---------------------------------------------------------------------------
 Etapa 5 'Avisos de qualidade (não param a execução)'

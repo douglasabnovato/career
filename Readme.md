@@ -11,7 +11,7 @@ O projeto organiza conteúdos relacionados à carreira tech em quatro áreas pri
 * **Empresas** — empresas selecionadas por sua relevância, cultura, atuação e potencial de desenvolvimento profissional.
 * **Plataformas Jobs** — plataformas e serviços utilizados para encontrar oportunidades profissionais na área de tecnologia.
 * **Dev Profiles** — desenvolvedores, referências e profissionais que podem contribuir para a formação e evolução da comunidade.
-* **Currículos** — a construção do tradicional currículo ainda é uma fase importante em processos seletivos. Por isso, alguns templates cedidos por alunos e amigos em seus respectivos processos.
+* **Currículos** — a construção do tradicional currículo ainda é uma fase importante em processos seletivos. Por isso, a seção traz modelos fictícios por nível (estágio, transição de carreira, júnior e pleno), com dicas e fontes.
 
 A interface foi projetada para permitir navegação simples, busca rápida e exploração progressiva dos conteúdos.
 
@@ -27,11 +27,12 @@ O projeto também está integrado ao ecossistema **LearnTECH**, onde a área de 
 
 ### Navegação por seções
 
-A aplicação possui três seções principais:
+A aplicação possui quatro seções principais. Os números abaixo são os das cópias locais geradas pela API em 03/11/2026:
 
-* Empresas
-* Plataformas Jobs
-* Dev Profiles
+* Empresas (41);
+* Plataformas Jobs (23);
+* Dev Profiles (13);
+* Currículos (4 modelos fictícios: estágio, transição de carreira, júnior e pleno).
 
 A seção selecionada é armazenada no `localStorage`, permitindo que a aplicação preserve a última área visitada.
 
@@ -39,12 +40,13 @@ A seção selecionada é armazenada no `localStorage`, permitindo que a aplicaç
 
 A busca funciona de forma dinâmica e possui **debounce de 300 ms** para evitar processamento excessivo durante a digitação.
 
-Os resultados podem ser filtrados por:
+A busca vale para a seção aberta, ignora acentos e maiúsculas e compara o texto digitado com:
 
 * título;
 * categoria;
-* localização;
-* duração, quando aplicável.
+* localização, quando aplicável.
+
+Ainda não existe filtro por categoria (chips) nem estado da busca na URL.
 
 ### Carregamento progressivo
 
@@ -64,70 +66,38 @@ A preferência do usuário é armazenada no `localStorage` para ser preservada e
 
 O projeto possui um banner de destaques com:
 
-* rotação automática;
-* navegação manual;
-* indicadores de posição;
-* pausa durante interação com o mouse.
+* rotação automática a cada 6 segundos (desligada com `prefers-reduced-motion`);
+* indicadores de posição clicáveis (dots);
+* pausa ao passar o mouse ou focar um slide.
 
-Os dados dos destaques são organizados separadamente da lógica de apresentação.
-
-### Detalhes de empresas
-
-Empresas que possuem informações detalhadas podem abrir uma experiência de visualização em **modal**, em vez de direcionar imediatamente para o site externo.
-
-O modal apresenta informações como:
-
-* nome da empresa;
-* localização;
-* categoria;
-* apresentação;
-* descrição;
-* áreas de atuação;
-* modelo de trabalho;
-* cultura;
-* desenvolvimento profissional;
-* oportunidades disponíveis.
-
-A empresa BRQ Digital Solutions possui atualmente esse fluxo de detalhes.
+Os destaques (uma vaga, uma empresa e um perfil) vêm de `js/destaques.js`, também gerado pela API; `js/banner-data.js` monta os slides a partir do catálogo.
 
 ### Página de detalhe
 
-Itens de empresas, plataformas de vagas e perfis que chegam da API com `slug` e `detalhe` abrem `detalhe.html#tipo=<empresas|vagas|perfis>&id=<slug>` (o `#` funciona em qualquer servidor; `?tipo=&id=` também é aceito) na mesma aba. Os demais continuam abrindo o site oficial em nova aba, e a BRQ continua no modal.
+Itens de empresas, plataformas de vagas e perfis que chegam da API com `slug` e `detalhe` abrem `detalhe.html?tipo=<empresas|vagas|perfis>&id=<slug>` na mesma aba. É o mesmo endereço do `sitemap.xml`; o formato antigo `#tipo=&id=` continua aceito. Sem API, as cópias locais não trazem `slug` nem `detalhe`, e o card abre o site oficial em nova aba.
 
-A página mostra miniatura, tipo, categoria, local ou duração, resumo, parágrafos, galeria de imagens, vídeo do YouTube (sempre pelo `youtube-nocookie.com`), botão para o site oficial, links oficiais, fontes e a data de atualização. O título e a meta description são preenchidos pelo item.
+A página mostra miniatura, tipo, categoria, local ou duração, resumo, parágrafos, galeria de imagens, vídeo do YouTube (sempre pelo `youtube-nocookie.com`), botão para o site oficial, links oficiais, fontes e a data de atualização. O título, a meta description, o `og:description`, o `canonical` e o `og:url` são preenchidos pelo item (o `canonical` aponta para `https://douglasabnovato.github.io/career/detalhe.html?tipo=...&id=...`).
 
 * Os dados vêm só da API (`/v1/career/{tipo}.json`); sem `API_URL` configurada, a página mostra um aviso e o link de volta.
 * "Voltar" e os itens do menu gravam a seção em `career:secao`, para o `index.html` reabrir nela.
-* Todo dado externo entra no DOM por `textContent`, e só links `http(s)` são aceitos.
+* Todo dado externo entra no DOM por `textContent`.
 * O script de identificação é carregado como no `index.html`.
 
 Arquivos: `detalhe.html`, `js/detalhe.js`, `css/detalhe.css`; `carregarItem` em `js/catalog.js`.
 
-### Oportunidades profissionais
-
-As oportunidades associadas a uma empresa são apresentadas dentro do modal por meio de um **accordion**.
-
-Cada oportunidade pode apresentar:
-
-* título;
-* localização;
-* modelo de trabalho;
-* resumo;
-* descrição;
-* tecnologias;
-* requisitos;
-* diferenciais;
-* link para a oportunidade original.
-
-Somente uma oportunidade permanece expandida por vez.
-
-Quando uma empresa não possui oportunidades cadastradas, o sistema informa que não existem oportunidades disponíveis.
-
 ### Links externos
 
-Os links para sites das empresas, páginas de carreira e oportunidades originais são mantidos separados da experiência interna do Career.
+Os links para sites das empresas, páginas de carreira e fontes são mantidos separados da experiência interna do Career e abrem em nova aba.
 
-Quando aplicável, esses links são abertos em uma nova aba.
+Todo `href` que vem de dado (card, banner e página de detalhe) passa por `urlSegura` (`js/utils.js`): só `https:`, `http:`, `mailto:` ou caminho relativo são aceitos. Qualquer outro esquema (`javascript:`, `data:`...) vira `#` ou é descartado.
+
+### Identificação
+
+Com a API configurada, o `js/api.js` injeta o script único de identificação do ecossistema (`/sdk/identificacao.js`), que pede nome e e-mail, sem login. Hoje o modal é obrigatório na primeira visita, por decisão do autor.
+
+### Página 404
+
+O `404.html` é servido pelo GitHub Pages para qualquer endereço inexistente em `/career/`. Por isso usa caminhos absolutos (`/career/...`).
 
 ## Arquitetura
 
@@ -141,20 +111,25 @@ O projeto utiliza **ES Modules**, permitindo separar responsabilidades entre dad
 
 Principais módulos:
 
-* `main.js` — ponto de entrada da aplicação.
+* `main.js` — ponto de entrada: carrega a identificação, espera o catálogo remoto por até 1,5 s e inicia o app.
 * `app.js` — estado global, renderização, navegação, busca e paginação.
-* `catalog.js` — carregamento e gerenciamento do catálogo.
-* `api.js` — comunicação e identificação relacionadas à API.
-* `good-companies.js` — dados das empresas.
-* `company-modal.js` — abertura, preenchimento e fechamento do modal de empresas.
-* `company-opportunities.js` — dados das oportunidades associadas às empresas.
+* `catalog.js` — carregamento do catálogo remoto e de um item para a página de detalhe.
+* `api.js` — cliente da API (tempo limite, caminhos `/media/`) e injeção do script de identificação.
+* `config.js` — endereço da API (`API_URL`).
 * `detalhe.js` — página de detalhe (`detalhe.html`) de empresa, plataforma ou perfil.
-* `jobs.js` — dados das plataformas de empregos.
-* `perfis-dev.js` — dados dos perfis de desenvolvedores.
-* `banner-data.js` — dados utilizados pelos destaques do banner.
+* `banner-data.js` — monta os slides do banner a partir do catálogo e dos destaques.
 * `banner.js` — comportamento do banner.
+* `curriculos-render.js` — renderização e acordeão dos modelos de currículo.
 * `theme.js` — gerenciamento do tema visual.
-* `utils.js` — funções utilitárias utilizadas pela aplicação.
+* `utils.js` — funções puras: busca sem acento, `escapar` para HTML e `urlSegura` para links.
+
+Cópias geradas pela API (não edite à mão; veja "Catálogo de dados"):
+
+* `good-companies.js` — empresas.
+* `jobs.js` — plataformas de vagas.
+* `perfis-dev.js` — perfis de desenvolvedores.
+* `destaques.js` — seleção do banner.
+* `curriculos.js` — modelos de currículo fictícios.
 
 ### CSS
 
@@ -167,28 +142,19 @@ Os arquivos principais incluem:
 * `cards.css` — componentes de cards.
 * `banner.css` — banner e seus controles.
 * `footer.css` — rodapé.
-* `company-modal.css` — modal de empresas, oportunidades e accordion.
-* `detalhe.css` — página de detalhe.
+* `curriculos.css` — seção de currículos e acordeão.
+* `detalhe.css` — página de detalhe (também usado pela 404).
 * `style.css` — estilos gerais da aplicação.
 
 ## Catálogo de dados
 
-O Career possui uma estrutura de dados local utilizada como base da aplicação.
+O conteúdo do Career vem da API **learntech-content** (`/v1/career/empresas.json`, `vagas.json`, `perfis.json`, `destaques.json` e `modelos-curriculo.json`). O endereço fica em `js/config.js`.
 
-Além disso, o projeto possui suporte ao carregamento de um **catálogo remoto**.
-
-Quando o catálogo remoto está disponível, os dados de:
-
-* empresas;
-* oportunidades/plataformas;
-* perfis;
-* destaques;
-
-podem ser utilizados pela aplicação.
-
-Existe também um mecanismo de espera inicial para permitir que a interface seja apresentada rapidamente enquanto o catálogo remoto é carregado.
-
-Caso o catálogo remoto não esteja disponível inicialmente, a aplicação utiliza os dados locais e pode atualizar a interface quando os dados remotos forem carregados.
+* O `main.js` espera o catálogo remoto por até 1,5 s. Se ele não chegar a tempo, a página abre com as cópias locais e troca para os dados da API quando eles chegarem.
+* Se a API falhar ou responder fora do formato, o site segue com as cópias locais.
+* As cópias locais (`js/good-companies.js`, `js/jobs.js`, `js/perfis-dev.js`, `js/destaques.js` e `js/curriculos.js`) são **geradas** pelo script `exportar-copias.mjs` do repositório `learntech-content` (`npm run copias`). Não edite esses arquivos à mão: mude o conteúdo na API e gere as cópias de novo. Elas ficam fora do Prettier (`.prettierignore`).
+* As cópias não levam o campo `detalhe`; por isso a página de detalhe depende da API.
+* O `sitemap.xml` também é gerado pela API e lista a home e uma URL `detalhe.html?tipo=&id=` por empresa, plataforma e perfil.
 
 ## Estrutura de pastas
 
@@ -204,7 +170,6 @@ career/
 ├── css/
 │   ├── banner.css
 │   ├── cards.css
-│   ├── company-modal.css
 │   ├── curriculos.css
 │   ├── detalhe.css
 │   ├── footer.css
@@ -218,23 +183,28 @@ career/
 │   ├── banner-data.js
 │   ├── banner.js
 │   ├── catalog.js
-│   ├── company-modal.js
-│   ├── company-opportunities.js
 │   ├── config.js
 │   ├── curriculos-render.js
-│   ├── curriculos.js
+│   ├── curriculos.js        (gerado pela API)
+│   ├── destaques.js         (gerado pela API)
 │   ├── detalhe.js
-│   ├── good-companies.js
-│   ├── jobs.js
-│   ├── perfis-dev.js
+│   ├── good-companies.js    (gerado pela API)
+│   ├── jobs.js              (gerado pela API)
+│   ├── perfis-dev.js        (gerado pela API)
 │   ├── theme.js
 │   └── utils.js
 │
+├── docs/
 ├── public/
+├── tests/
 │
+├── 404.html
 ├── detalhe.html
 ├── index.html
 ├── main.js
+├── package.json             (só ferramentas de desenvolvimento)
+├── serve.json
+├── sitemap.xml              (gerado pela API)
 └── Readme.md
 ```
 
@@ -261,7 +231,21 @@ Com Node.js instalado, execute na raiz do projeto:
 npx serve .
 ```
 
-Depois, abra o endereço HTTP fornecido pelo servidor.
+Depois, abra o endereço HTTP fornecido pelo servidor. O `serve.json` deixa as "URLs limpas" do `serve` ligadas só na raiz, para que `detalhe.html?tipo=&id=` não seja redirecionado sem a query.
+
+### Testes, lint e formatação
+
+O `package.json` existe só para as ferramentas de desenvolvimento; o site não tem build nem dependências em produção.
+
+```bash
+npm install
+npm test               # node --test
+npm run lint           # ESLint em js/
+npm run format:check   # Prettier (as cópias geradas ficam de fora)
+powershell -ExecutionPolicy Bypass -File docs/claudeia/verificar.ps1
+```
+
+A CI (`.github/workflows/ci.yml`) roda os mesmos passos em todo push e pull request.
 
 ## Requisitos
 
@@ -272,7 +256,7 @@ Para executar o projeto localmente, é necessário:
 * Node.js, caso seja utilizada a opção `npx serve`;
 * ou a extensão Live Server do VS Code.
 
-Não é necessário instalar um framework ou executar um processo de build.
+Não é necessário instalar um framework ou executar um processo de build. O `npm install` só é preciso para rodar testes, lint e formatação.
 
 ## Princípios do projeto
 
@@ -309,21 +293,17 @@ A interface possui recursos básicos de acessibilidade, incluindo:
 
 * skip-link;
 * atributos `aria-label`;
-* estados `aria-expanded`;
-* `aria-hidden` no modal;
-* `role="dialog"` no modal;
-* `aria-modal`;
-* navegação por teclado com fechamento do modal através da tecla `Escape`;
-* textos alternativos nas imagens;
-* indicação semântica de estados da interface.
+* estados `aria-expanded` e `aria-pressed` no menu;
+* `aria-live` na grade de resultados e no estado da página de detalhe;
+* foco visível (`:focus-visible`);
+* respeito a `prefers-reduced-motion`;
+* textos alternativos nas imagens.
 
 A acessibilidade continua sendo uma área de evolução do projeto.
 
 ## Responsividade
 
-A interface possui regras específicas para diferentes tamanhos de tela.
-
-O modal de empresas também possui comportamento adaptado para dispositivos menores, utilizando praticamente toda a área disponível em telas de até 600px.
+A interface possui regras específicas para diferentes tamanhos de tela, com menu recolhível no mobile.
 
 ## Próximos passos
 
@@ -335,9 +315,8 @@ Possíveis próximos ciclos incluem:
 * ampliar o catálogo de oportunidades;
 * ampliar os perfis de desenvolvedores;
 * melhorar a experiência de acessibilidade;
-* aprimorar o sistema de oportunidades;
 * evoluir a integração com o catálogo remoto;
-* melhorar filtros e mecanismos de busca;
+* filtro por categoria e estado da seção e da busca na URL;
 * aprimorar a experiência mobile;
 * adicionar novas informações relevantes sobre empresas e carreira.
 

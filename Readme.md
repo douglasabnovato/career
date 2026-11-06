@@ -6,6 +6,14 @@ Hub estratégico para conexões profissionais reunindo empresas de destaque, opo
 
 O **Career** faz parte do ecossistema **LearnTECH** e foi desenvolvido como uma experiência independente para exploração de carreira no mercado de tecnologia.
 
+## 📍 Estado do projeto (06/11/2026)
+
+- **Onde está:** Em produção no GitHub Pages. CI verde com lint, formato, 15 testes e verificação estática.
+- **O que fizemos na rodada de MVP (03 a 05/11):** Links vindos de dado sempre seguros, SEO do detalhe com canonical, página 404 e o lote 4 de conteúdo (Zé Delivery, Nubank, Remotar, Loiane Groner e currículo sênior).
+- **O que queremos fazer:** [#33](https://github.com/douglasabnovato/career/issues/33), [#28](https://github.com/douglasabnovato/career/issues/28), [#31](https://github.com/douglasabnovato/career/issues/31), [#30](https://github.com/douglasabnovato/career/issues/30), [#32](https://github.com/douglasabnovato/career/issues/32), [#29](https://github.com/douglasabnovato/career/issues/29) (acessibilidade, filtro na URL, limpeza de assets, Lighthouse, CSP e currículos). Todas com o label `proximos-passos` e critérios de entrega.
+
+A linha do tempo completa, os números e a ordem sugerida estão em [`docs/ESTADO-DO-PROJETO.md`](docs/ESTADO-DO-PROJETO.md).
+
 ## Visão geral
 
 O projeto organiza conteúdos relacionados à carreira tech em quatro áreas principais:
@@ -309,20 +317,18 @@ A interface possui regras específicas para diferentes tamanhos de tela, com men
 
 ## Próximos passos
 
-A evolução do Career continuará sendo organizada de forma incremental.
+O que falta virou issue com o label `proximos-passos` e critérios de entrega, na ordem sugerida. O detalhe está em [`docs/ESTADO-DO-PROJETO.md`](docs/ESTADO-DO-PROJETO.md).
 
-Possíveis próximos ciclos incluem:
+| Issue | Item |
+| --- | --- |
+| [#33](https://github.com/douglasabnovato/career/issues/33) | Acessibilidade: contraste, nome acessível e área de toque |
+| [#28](https://github.com/douglasabnovato/career/issues/28) | Filtro por categoria e seção refletidos na URL |
+| [#31](https://github.com/douglasabnovato/career/issues/31) | Limpar os 25 assets sem referência (cerca de 12 MB) |
+| [#30](https://github.com/douglasabnovato/career/issues/30) | Lighthouse e e2e da career com relatório |
+| [#32](https://github.com/douglasabnovato/career/issues/32) | Content-Security-Policy compatível com a API e o Turnstile |
+| [#29](https://github.com/douglasabnovato/career/issues/29) | Currículos: imprimir, link direto e mais níveis |
 
-* ampliar o catálogo de empresas;
-* ampliar o catálogo de oportunidades;
-* ampliar os perfis de desenvolvedores;
-* melhorar a experiência de acessibilidade;
-* evoluir a integração com o catálogo remoto;
-* filtro por categoria e estado da seção e da busca na URL;
-* aprimorar a experiência mobile;
-* adicionar novas informações relevantes sobre empresas e carreira.
-
-Itens específicos podem ser acompanhados através das **issues do repositório**.
+Empresas, vagas e perfis novos não precisam de issue de código: entram pela API, seguindo [`docs/COMO-EVOLUIR.md`](docs/COMO-EVOLUIR.md).
 
 ---
 

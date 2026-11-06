@@ -1,5 +1,7 @@
 # Career
 
+> **Vai evoluir o projeto ou trouxe arquivos novos?** Comece por [`docs/COMO-EVOLUIR.md`](docs/COMO-EVOLUIR.md): onde fica cada coisa, o que é gerado pela API, comandos e a checklist de estabilidade.
+
 Hub estratégico para conexões profissionais reunindo empresas de destaque, oportunidades profissionais e perfis que contribuem para a formação e evolução de pessoas desenvolvedoras.
 
 O **Career** faz parte do ecossistema **LearnTECH** e foi desenvolvido como uma experiência independente para exploração de carreira no mercado de tecnologia.
@@ -29,10 +31,10 @@ O projeto também está integrado ao ecossistema **LearnTECH**, onde a área de 
 
 A aplicação possui quatro seções principais. Os números abaixo são os das cópias locais geradas pela API em 03/11/2026:
 
-* Empresas (41);
-* Plataformas Jobs (23);
-* Dev Profiles (13);
-* Currículos (4 modelos fictícios: estágio, transição de carreira, júnior e pleno).
+* Empresas (43);
+* Plataformas Jobs (24);
+* Dev Profiles (14);
+* Currículos (5 modelos fictícios: estágio, transição de carreira, júnior, pleno e sênior de back-end).
 
 A seção selecionada é armazenada no `localStorage`, permitindo que a aplicação preserve a última área visitada.
 

@@ -1,6 +1,6 @@
-# CI do site estático "career": sem build e sem npm install.
-# Roda a verificação estática (docs/claudeia/verificar.ps1), confere a sintaxe dos módulos JS
-# e executa os testes com o test runner nativo do Node (node --test), que não pede dependências.
+# CI do site estático "career": sem build. O npm ci instala só as ferramentas de desenvolvimento (ESLint e Prettier).
+# Roda a verificação estática (docs/claudeia/verificar.ps1), confere a sintaxe dos módulos JS, o lint e a formatação,
+# e executa os testes com o test runner nativo do Node (node --test).
 name: ci
 
 on:
@@ -21,6 +21,10 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: npm
+
+      - name: Ferramentas de desenvolvimento (npm ci)
+        run: npm ci
 
       - name: Verificações estáticas (arquivos, dados, links locais)
         shell: pwsh
@@ -33,6 +37,12 @@ jobs:
             node --input-type=module --check < "$f"
             echo "ok $f"
           done
+
+      - name: Lint (ESLint)
+        run: npm run lint
+
+      - name: Formatação (Prettier; as cópias geradas pela API ficam no .prettierignore)
+        run: npm run format:check
 
       - name: Testes (node --test)
         run: node --test "tests/*.test.js"

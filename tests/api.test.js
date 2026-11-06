@@ -5,7 +5,9 @@ import { buscarRecurso, resolverMidia, API_CONFIGURADA } from "../js/api.js";
 import { carregarCatalogo, carregarItem } from "../js/catalog.js";
 
 const original = globalThis.fetch;
-afterEach(() => { globalThis.fetch = original; });
+afterEach(() => {
+  globalThis.fetch = original;
+});
 const responder = (mapa) => {
   globalThis.fetch = async (url) => {
     const chave = Object.keys(mapa).find((k) => String(url).endsWith(k));
@@ -22,7 +24,10 @@ test("buscarRecurso rejeita quando a API responde erro", async () => {
 });
 
 test("resolverMidia completa só caminhos /media/", () => {
-  const [a, b] = resolverMidia([{ thumb: "/media/x.webp", detalhe: { imagens: [{ url: "/media/y.webp", alt: "y" }] } }, { thumb: "./assets/z.png" }]);
+  const [a, b] = resolverMidia([
+    { thumb: "/media/x.webp", detalhe: { imagens: [{ url: "/media/y.webp", alt: "y" }] } },
+    { thumb: "./assets/z.png" },
+  ]);
   assert.match(a.thumb, /^https:\/\/.+\/media\/x\.webp$/);
   assert.match(a.detalhe.imagens[0].url, /\/media\/y\.webp$/);
   assert.equal(b.thumb, "./assets/z.png");
@@ -30,13 +35,20 @@ test("resolverMidia completa só caminhos /media/", () => {
 
 test("carregarCatalogo devolve null e não quebra quando a API falha", async () => {
   responder({});
-  const original = console.warn; console.warn = () => {};
+  const original = console.warn;
+  console.warn = () => {};
   assert.equal(await carregarCatalogo(), null);
   console.warn = original;
 });
 
 test("carregarCatalogo monta empresas, vagas, perfis e currículos", async () => {
-  responder({ "empresas.json": [{ title: "A", thumb: "/media/a.webp" }], "vagas.json": [], "perfis.json": [], "destaques.json": {}, "modelos-curriculo.json": [{ slug: "m" }] });
+  responder({
+    "empresas.json": [{ title: "A", thumb: "/media/a.webp" }],
+    "vagas.json": [],
+    "perfis.json": [],
+    "destaques.json": {},
+    "modelos-curriculo.json": [{ slug: "m" }],
+  });
   const c = await carregarCatalogo();
   assert.equal(c.companies.length, 1);
   assert.match(c.companies[0].thumb, /\/media\/a\.webp$/);

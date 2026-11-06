@@ -162,11 +162,7 @@ function criarCorpoCurriculo(curriculo) {
     }
 
     ${
-      contato.email ||
-      contato.telefone ||
-      contato.linkedin ||
-      contato.github ||
-      contato.portfolio
+      contato.email || contato.telefone || contato.linkedin || contato.github || contato.portfolio
         ? `
           <section class="resume-section">
 
@@ -472,8 +468,7 @@ export function renderCurriculos({ container, template, dados, visiveis }) {
 
     titulo.textContent = curriculo.titulo || "Título profissional";
 
-    localizacao.textContent =
-      curriculo.localizacao || "Localização não informada";
+    localizacao.textContent = curriculo.localizacao || "Localização não informada";
 
     summary.textContent = curriculo.resumo || "";
 
@@ -504,9 +499,7 @@ export function iniciarAccordionCurriculos(container) {
     container.querySelectorAll(".resume-item.is-open").forEach((outro) => {
       outro.classList.remove("is-open");
 
-      outro
-        .querySelector(".resume-item__trigger")
-        ?.setAttribute("aria-expanded", "false");
+      outro.querySelector(".resume-item__trigger")?.setAttribute("aria-expanded", "false");
     });
 
     if (!aberto) {

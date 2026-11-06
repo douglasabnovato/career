@@ -5,3 +5,10 @@ content
 media
 *.min.js
 package-lock.json
+
+# Cópias geradas pela API learntech-content (npm run copias no repositório da API): não se editam nem se formatam aqui.
+js/good-companies.js
+js/jobs.js
+js/perfis-dev.js
+js/destaques.js
+js/curriculos.js

@@ -1,12 +1,14 @@
-/* detalhe.js — página de detalhe de empresa, plataforma de vagas ou profissional (detalhe.html#tipo=...&id=..., também aceita ?tipo=...&id=...). */
+/* detalhe.js — página de detalhe de empresa, plataforma de vagas ou profissional (detalhe.html?tipo=...&id=..., também aceita o formato antigo #tipo=...&id=...). */
 
 import { API_CONFIGURADA, carregarIdentificacao } from "./api.js";
 import { carregarItem } from "./catalog.js";
 import { inicializarTema } from "./theme.js";
+import { urlSegura } from "./utils.js";
 
 const CHAVE_SECAO = "career:secao";
 const LOGO_PADRAO = "./assets/logo/logo-career.png";
 const TITULO_SITE = "Career | learnTECH";
+const URL_DETALHE = "https://douglasabnovato.github.io/career/detalhe.html"; /* endereço publicado; o mesmo formato do sitemap.xml */
 
 /* Cada tipo aceito na URL: rótulo exibido, seção do index de onde veio e campo secundário do card. */
 const TIPOS = {
@@ -20,18 +22,6 @@ const VIDEO_VALIDO = /^https:\/\/www\.youtube(-nocookie)?\.com\/embed\/([\w-]{11
 const DATA_VALIDA = /^(\d{4})-(\d{2})-(\d{2})$/;
 
 const $ = (id) => document.getElementById(id);
-
-/* Devolve a URL absoluta só se for http(s); qualquer outro esquema (javascript:, data:...) vira null. */
-function urlSegura(valor) {
-  if (typeof valor !== "string" || !valor.trim()) return null;
-  try {
-    const url = new URL(valor, window.location.href);
-    return url.protocol === "https:" || url.protocol === "http:" ? url.href : null;
-  } catch (e) {
-    void e;
-    return null;
-  }
-}
 
 function texto(valor) {
   return typeof valor === "string" ? valor.trim() : "";
@@ -52,13 +42,22 @@ function salvarSecao(secao) {
   }
 }
 
-function definirMeta(titulo, descricao) {
+/* Endereço canônico do item (?tipo=&id=, como no sitemap.xml); sem tipo e id válidos, fica a página genérica. */
+function urlCanonica(tipo, id) {
+  if (!TIPOS[tipo] || !SLUG_VALIDO.test(id)) return URL_DETALHE;
+  return `${URL_DETALHE}?${new URLSearchParams({ tipo, id })}`;
+}
+
+function definirMeta(titulo, descricao, canonica = URL_DETALHE) {
   document.title = titulo ? `${titulo} | ${TITULO_SITE}` : TITULO_SITE;
-  const meta = document.querySelector('meta[name="description"]');
-  if (meta && descricao) {
-    meta.setAttribute("content", descricao.length > 160 ? `${descricao.slice(0, 157).trimEnd()}...` : descricao);
+  const resumo = descricao && descricao.length > 160 ? `${descricao.slice(0, 157).trimEnd()}...` : descricao;
+  if (resumo) {
+    document.querySelector('meta[name="description"]')?.setAttribute("content", resumo);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", resumo);
   }
   document.querySelector('meta[property="og:title"]')?.setAttribute("content", document.title);
+  document.querySelector('link[rel="canonical"]')?.setAttribute("href", canonica);
+  document.querySelector('meta[property="og:url"]')?.setAttribute("content", canonica);
 }
 
 /* Mostra o bloco de estado (carregando, não encontrado, erro) e esconde o artigo. */
@@ -162,7 +161,7 @@ function preencherVideo(video, titulo) {
   $("secao-video").hidden = !m;
 }
 
-function renderizar(item, config) {
+function renderizar(item, config, canonica) {
   const d = item.detalhe;
   const titulo = texto(item.title) || "Sem título";
   const resumo = texto(d.resumo);
@@ -191,7 +190,10 @@ function renderizar(item, config) {
 
   const corpo = $("detalhe-texto");
   corpo.replaceChildren(
-    ...(Array.isArray(d.paragrafos) ? d.paragrafos : []).map(texto).filter(Boolean).map((p) => criar("p", "", p)),
+    ...(Array.isArray(d.paragrafos) ? d.paragrafos : [])
+      .map(texto)
+      .filter(Boolean)
+      .map((p) => criar("p", "", p)),
   );
 
   preencherGaleria(d.imagens);
@@ -210,7 +212,7 @@ function renderizar(item, config) {
     atualizado.append("Atualizado em ", tempo);
   }
 
-  definirMeta(titulo, resumo);
+  definirMeta(titulo, resumo, canonica);
   $("detalhe-estado").hidden = true;
   $("detalhe").hidden = false;
 }
@@ -251,7 +253,7 @@ async function carregar(tipo, id) {
     return;
   }
 
-  renderizar(item, config);
+  renderizar(item, config, urlCanonica(tipo, id));
 }
 
 function ligarNavegacao(secaoDeOrigem) {

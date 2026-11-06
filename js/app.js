@@ -5,13 +5,10 @@ import { jobs } from "./jobs.js";
 import { profiles } from "./perfis-dev.js";
 import { curriculos } from "./curriculos.js";
 import { launchBanner, montarDestaques } from "./banner-data.js";
-import { normalizar } from "./utils.js";
+import { normalizar, urlSegura } from "./utils.js";
 import { iniciarBanner } from "./banner.js";
 import { inicializarTema } from "./theme.js";
-import {
-  renderCurriculos,
-  iniciarAccordionCurriculos,
-} from "./curriculos-render.js";
+import { renderCurriculos, iniciarAccordionCurriculos } from "./curriculos-render.js";
 
 const CHAVE_SECAO = "career:secao";
 
@@ -58,8 +55,7 @@ export const App = {
   secoes: {
     companies: {
       titulo: 'Empresas <span class="highlight">Legais</span>',
-      subtitulo:
-        "Me contaram que essas empresas eram legais para trabalhar, tinham cultura sólida e oportunidades desafiadoras",
+      subtitulo: "Me contaram que essas empresas eram legais para trabalhar, tinham cultura sólida e oportunidades desafiadoras",
       rotulo: "empresas",
       singular: "empresa",
       acao: "Ver Empresa",
@@ -83,8 +79,7 @@ export const App = {
 
     curriculos: {
       titulo: 'Modelos de <span class="highlight">Currículos</span>',
-      subtitulo:
-        "Explore diferentes modelos de currículos e referências para apresentar sua experiência profissional.",
+      subtitulo: "Explore diferentes modelos de currículos e referências para apresentar sua experiência profissional.",
       rotulo: "currículos",
       singular: "currículo",
       acao: "Ver Currículo",
@@ -108,9 +103,7 @@ export const App = {
     iniciarBanner({
       bannerTrack: this.el.bannerTrack,
       bannerDots: this.el.bannerDots,
-      destaques: (this.destaques || launchBanner).filter(
-        (item) => item && item.title,
-      ),
+      destaques: (this.destaques || launchBanner).filter((item) => item && item.title),
     });
   },
 
@@ -196,7 +189,7 @@ export const App = {
 
       if (item.slug && item.detalhe && TIPO_DETALHE[this.state.secaoAtual]) {
         /* Item com página de detalhe: abre detalhe.html na mesma aba. */
-        link.href = `detalhe.html#tipo=${TIPO_DETALHE[this.state.secaoAtual]}&id=${encodeURIComponent(item.slug)}`; /* "#" sobrevive a servidores que redirecionam .html e descartam a query (ex.: npx serve). */
+        link.href = `detalhe.html?tipo=${TIPO_DETALHE[this.state.secaoAtual]}&id=${encodeURIComponent(item.slug)}`; /* "?" é o formato do sitemap.xml e é rastreável; o serve.json evita que o "npx serve" descarte a query. */
 
         link.removeAttribute("target");
 
@@ -204,12 +197,9 @@ export const App = {
 
         link.setAttribute("aria-label", `Ver detalhes: ${item.title}`);
       } else {
-        link.href = item.site_url || "#";
+        link.href = urlSegura(item.site_url) || "#"; /* só https:, http:, mailto: ou caminho relativo */
 
-        link.setAttribute(
-          "aria-label",
-          `${secao.acao}: ${item.title} — abre em nova aba`,
-        );
+        link.setAttribute("aria-label", `${secao.acao}: ${item.title} — abre em nova aba`);
       }
 
       img.src = item.thumb || "./assets/logo/logo-career.png";
@@ -252,8 +242,7 @@ export const App = {
 
     const rotulo = total === 1 ? secao.singular : secao.rotulo;
 
-    this.el.contador.textContent =
-      total === 0 ? `0 ${secao.rotulo}` : `${exibidos} ${rotulo} de ${total}`;
+    this.el.contador.textContent = total === 0 ? `0 ${secao.rotulo}` : `${exibidos} ${rotulo} de ${total}`;
   },
 
   trocarSecao(nome, inicial = false) {
@@ -327,13 +316,7 @@ export const App = {
      */
     if (this.state.secaoAtual === "curriculos") {
       this.state.filtrados = origem.filter((curriculo) => {
-        const texto = [
-          curriculo.nome,
-          curriculo.titulo,
-          curriculo.localizacao,
-          curriculo.objetivo,
-          curriculo.resumo,
-        ]
+        const texto = [curriculo.nome, curriculo.titulo, curriculo.localizacao, curriculo.objetivo, curriculo.resumo]
           .filter(Boolean)
           .join(" ");
 
@@ -350,11 +333,7 @@ export const App = {
      * vagas e perfis.
      */
     this.state.filtrados = origem.filter((item) =>
-      normalizar(
-        `${item.title || ""} ${item.category || ""} ${item.location || ""} ${
-          item.duration || ""
-        }`,
-      ).includes(alvo),
+      normalizar(`${item.title || ""} ${item.category || ""} ${item.location || ""} ${item.duration || ""}`).includes(alvo),
     );
 
     this.render();
@@ -429,10 +408,7 @@ export const App = {
     };
 
     /* Sem seleção de destaques válida na API, mantém o banner local (launchBanner). */
-    this.destaques =
-      cat.destaques && typeof cat.destaques === "object"
-        ? montarDestaques(this.state.dados, cat.destaques)
-        : null;
+    this.destaques = cat.destaques && typeof cat.destaques === "object" ? montarDestaques(this.state.dados, cat.destaques) : null;
   },
 };
 

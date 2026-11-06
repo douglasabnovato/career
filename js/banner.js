@@ -1,6 +1,6 @@
 /* banner.js — carrossel de destaques do topo: monta os slides, os dots e cuida da rotação automática. */
 
-import { escapar } from "./utils.js";
+import { escapar, urlSegura } from "./utils.js";
 
 /* Monta o carrossel a partir da lista de destaques e liga rotação, dots, pausa ao focar/passar o mouse. */
 export function iniciarBanner({ bannerTrack, bannerDots, destaques }) {
@@ -24,14 +24,14 @@ export function iniciarBanner({ bannerTrack, bannerDots, destaques }) {
         <span class="banner-slide-badge">${escapar(item.badgeLabel)}</span>
         <h2 class="banner-slide-title">${escapar(item.title)}</h2>
         <p class="banner-slide-category">${escapar(item.category || "")}</p>
-        <a class="visit-btn banner-slide-btn" href="${escapar(item.site_url || "#")}"
+        <a class="visit-btn banner-slide-btn" href="${escapar(urlSegura(item.site_url) || "#")}"
            target="_blank" rel="noopener noreferrer"
            aria-label="Conferir ${escapar(item.title)} — abre em nova aba">
           <span>Conferir</span>
           <i class="bx bx-right-top-arrow-circle" aria-hidden="true"></i>
         </a>
       </div>
-    </article>`
+    </article>`,
     )
     .join("");
 
@@ -39,7 +39,7 @@ export function iniciarBanner({ bannerTrack, bannerDots, destaques }) {
     .map(
       (item, i) => `
     <button type="button" class="banner-dot ${i === 0 ? "active" : ""}" data-index="${i}"
-      aria-label="Ir para o destaque ${i + 1}: ${escapar(item.title)}"></button>`
+      aria-label="Ir para o destaque ${i + 1}: ${escapar(item.title)}"></button>`,
     )
     .join("");
 

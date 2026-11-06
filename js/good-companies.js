@@ -288,5 +288,19 @@ export const companies = [
     "thumb": "https://www.google.com/s2/favicons?domain=onebitcode.com&sz=128",
     "site_url": "https://onebitcode.com/",
     "category": "Education"
+  },
+  {
+    "title": "Zé Delivery",
+    "location": "São Paulo",
+    "thumb": "https://www.google.com/s2/favicons?domain=ze.delivery&sz=128",
+    "site_url": "https://www.ze.delivery/",
+    "category": "E-commerce"
+  },
+  {
+    "title": "Nubank",
+    "location": "São Paulo / Global",
+    "thumb": "https://www.google.com/s2/favicons?domain=nu.com&sz=128",
+    "site_url": "https://nu.com/pt/carreiras",
+    "category": "Fintech"
   }
 ];

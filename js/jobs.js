@@ -162,5 +162,12 @@ export const jobs = [
     "thumb": "https://www.google.com/s2/favicons?domain=estagiotrainee.com&sz=128",
     "site_url": "https://www.estagiotrainee.com/",
     "category": "General Jobs"
+  },
+  {
+    "title": "Remotar",
+    "duration": "Remoto",
+    "thumb": "https://www.google.com/s2/favicons?domain=remotar.com.br&sz=128",
+    "site_url": "https://remotar.com.br/",
+    "category": "General Jobs"
   }
 ];

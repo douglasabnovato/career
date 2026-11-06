@@ -92,5 +92,12 @@ export const profiles = [
     "thumb": "https://www.google.com/s2/favicons?domain=sujeitoprogramador.com&sz=128",
     "site_url": "https://sujeitoprogramador.com/",
     "category": "Tech Education"
+  },
+  {
+    "title": "Loiane Groner",
+    "duration": "Java/Angular",
+    "thumb": "https://www.google.com/s2/favicons?domain=loiane.com&sz=128",
+    "site_url": "https://loiane.com/",
+    "category": "Tech Education"
   }
 ];

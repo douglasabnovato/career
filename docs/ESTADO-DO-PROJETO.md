@@ -1,6 +1,6 @@
 # Estado do projeto: career
 
-**Atualizado em 06/11/2026.** Este arquivo responde a três perguntas: onde o projeto está, o que já fizemos e o que queremos fazer. Para trazer conteúdo novo ou mudar o site, siga [`COMO-EVOLUIR.md`](COMO-EVOLUIR.md).
+**Atualizado em 10/11/2026.** Este arquivo responde a três perguntas: onde o projeto está, o que já fizemos e o que queremos fazer. Para trazer conteúdo novo ou mudar o site, siga [`COMO-EVOLUIR.md`](COMO-EVOLUIR.md).
 
 ## Onde está
 
@@ -8,9 +8,11 @@
 |---|---|
 | Produção | `https://douglasabnovato.github.io/career/` (GitHub Pages, publicado a cada push na `main`) |
 | Repositório | `main` protegida (check `verificar` obrigatório, sem force push). Fluxo: `feature/tasks-DD-MM-AAAA` → `developer-mvp-2026-2` → `main`, só fast-forward |
-| CI | `npm ci`, lint, `format:check`, 15 testes (`node --test`) e `verificar.ps1` |
+| CI | `npm ci`, lint, `format:check`, 21 testes (`node --test`) e `verificar.ps1` |
 | Conteúdo | 43 empresas, 24 plataformas de vagas, 14 perfis e 5 modelos de currículo, com reserva local gerada pela API |
-| Acessibilidade | Sem violação crítica no axe. Restam contraste (23 na home, 5 na empresa), nome acessível diferente do texto visível (10) e área de toque (3), na #33 |
+| Acessibilidade | axe sem `color-contrast`, `label-content-name-mismatch` e `target-size` na home e no detalhe, nos temas claro e escuro, servido local em 10/11/2026 (#33). Falta conferir na produção depois do merge |
+| Filtro | Categoria em empresas, vagas e perfis; `?secao=&categoria=` na URL; estado vazio com "Limpar filtros" (#28) |
+| Imagens | Duas imagens usadas passam de 300 KB (`handcom.jpg`, `99freelas.jpg`). Elas vêm das cópias geradas pela API: a conversão para WebP vai pela API (#31) |
 
 ## O que fizemos
 
@@ -24,6 +26,7 @@
 | 05/11, MVP | Código formatado, lint e formato obrigatórios na CI; `urlSegura` em todo link vindo de dado; SEO do detalhe com `?tipo=&id=` e canonical; página 404 |
 | 05/11, estabilidade | e2e contra a produção passando; `COMO-EVOLUIR.md`; README com os números reais |
 | 06/11 | Este documento, README com o estado e issue nova (#33) |
+| 10/11 | Contraste, nome acessível e alvo de toque (#33); filtro por categoria na URL (#28) |
 
 Detalhes: `docs/claudeia/diagnostico-mvp-2026-11-03.md` e `docs/claudeia/06-mvp-2026-11-03.md`.
 

@@ -1,6 +1,6 @@
 # Estado do projeto: career
 
-**Atualizado em 10/11/2026.** Este arquivo responde a três perguntas: onde o projeto está, o que já fizemos e o que queremos fazer. Para trazer conteúdo novo ou mudar o site, siga [`COMO-EVOLUIR.md`](COMO-EVOLUIR.md).
+**Atualizado em 10/11/2026.** A régua dos 12 critérios está em [`MVP.md`](MVP.md). Este arquivo responde a três perguntas: onde o projeto está, o que já fizemos e o que queremos fazer. Para trazer conteúdo novo ou mudar o site, siga [`COMO-EVOLUIR.md`](COMO-EVOLUIR.md).
 
 ## Onde está
 

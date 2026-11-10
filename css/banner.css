@@ -103,22 +103,32 @@
  .banner-dots {
      display: flex;
      justify-content: center;
-     gap: 0.6rem;
+     gap: 0.2rem;
      margin-top: 1.5rem;
  }
 
+ /* O botão tem 24x24 px (alvo de toque mínimo da WCAG 2.2); a bolinha visível é o ::before. */
  .banner-dot {
-     width: 10px;
-     height: 10px;
+     position: relative;
+     width: 24px;
+     height: 24px;
      border-radius: 50%;
      border: none;
-     background: var(--border);
+     background: transparent;
      cursor: pointer;
      padding: 0;
+ }
+
+ .banner-dot::before {
+     content: "";
+     position: absolute;
+     inset: 7px;
+     border-radius: 50%;
+     background: var(--border);
      transition: background 0.3s ease, transform 0.3s ease;
  }
 
- .banner-dot.active {
+ .banner-dot.active::before {
      background: var(--brand-primary);
      transform: scale(1.2);
  }
@@ -159,7 +169,7 @@
          transition: opacity 0.2s linear;
      }
 
-     .banner-dot {
+     .banner-dot::before {
          transition: none;
      }
  }

@@ -8,7 +8,7 @@ O **Career** faz parte do ecossistema **LearnTECH** e foi desenvolvido como uma 
 
 ## 📍 Estado do projeto (06/11/2026)
 
-- **Onde está:** Em produção no GitHub Pages. CI verde com lint, formato, 15 testes e verificação estática.
+- **Onde está:** Em produção no GitHub Pages. CI verde com lint, formato, 21 testes e verificação estática.
 - **O que fizemos na rodada de MVP (03 a 05/11):** Links vindos de dado sempre seguros, SEO do detalhe com canonical, página 404 e o lote 4 de conteúdo (Zé Delivery, Nubank, Remotar, Loiane Groner e currículo sênior).
 - **O que queremos fazer:** [#33](https://github.com/douglasabnovato/career/issues/33), [#28](https://github.com/douglasabnovato/career/issues/28), [#31](https://github.com/douglasabnovato/career/issues/31), [#30](https://github.com/douglasabnovato/career/issues/30), [#32](https://github.com/douglasabnovato/career/issues/32), [#29](https://github.com/douglasabnovato/career/issues/29) (acessibilidade, filtro na URL, limpeza de assets, Lighthouse, CSP e currículos). Todas com o label `proximos-passos` e critérios de entrega.
 

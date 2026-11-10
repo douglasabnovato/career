@@ -26,7 +26,7 @@ export const companies = [
   {
     "title": "Handcom",
     "location": "Juiz de Fora",
-    "thumb": "./assets/thumb_good-companies/handcom.jpg",
+    "thumb": "https://learntech-content.douglasabnovato.workers.dev/media/career/handcom.webp",
     "site_url": "https://handcom.com.br/",
     "category": "Software House"
   },

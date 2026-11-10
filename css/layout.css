@@ -6,7 +6,7 @@
   --brand-primary: #f97316;
   --brand-hover: #ea580c;
   --brand-accent: #fdba74;
-  --brand-on: #ffffff;
+  --brand-on: #0a0a0c;
 
   --bg-body: #0a0a0c;
   --bg-surface: #121216;
@@ -28,8 +28,8 @@
 }
 
 [data-theme="light"] {
-  --brand-primary: #ea580c;
-  --brand-hover: #c2410c;
+  --brand-primary: #b93c0b;
+  --brand-hover: #9a3412;
   --brand-accent: #f97316;
   --brand-on: #ffffff;
 
@@ -107,6 +107,16 @@ body {
   top: 0;
 }
 
+/* Texto só para leitor de tela (ex.: aviso de nova aba nos cards). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 .section-header {
   margin: 3rem 0 1rem;
   display: flex;
@@ -124,6 +134,38 @@ body {
 #section-subtitle {
   color: var(--text-muted);
   max-width: 600px;
+}
+
+/* Filtro por categoria da seção (empresas, vagas e perfis). */
+.category-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.category-filter select {
+  min-height: 36px;
+  max-width: 240px;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.empty-state p {
+  margin-bottom: 1.25rem;
+}
+
+.clear-filters-btn {
+  width: auto;
+  display: inline-flex;
+  padding: 0.75rem 1.75rem;
 }
 
 .stats-bar {

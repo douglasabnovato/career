@@ -9,7 +9,8 @@ Guia curto para mudar o site com segurança. Empresas, vagas, perfis, destaques 
 ## 2. Onde fica cada coisa
 | Arquivo | Papel |
 |---|---|
-| `index.html`, `main.js`, `js/app.js`, `js/catalog.js` | Catálogo com busca e seções (empresas, vagas, perfis) |
+| `index.html`, `main.js`, `js/app.js`, `js/catalog.js` | Catálogo com busca, filtro por categoria e seções (empresas, vagas, perfis) |
+| `js/filtro-url.js` | Seção e categoria na URL (`?secao=` (empresas, vagas, perfis ou curriculos) e `&categoria=`), funções puras com teste |
 | `detalhe.html`, `js/detalhe.js` | Página de detalhe (`?tipo=empresas|vagas|perfis&id=<slug>`; o formato antigo com `#` continua aceito), com canonical e Open Graph |
 | `js/curriculos.js` (gerado) e `js/curriculos-render.js` | Modelos de currículo fictícios |
 | `js/api.js`, `js/config.js` | Endereço da API e SDK de identificação |
@@ -34,7 +35,7 @@ Guia curto para mudar o site com segurança. Empresas, vagas, perfis, destaques 
 | Comando | Para quê |
 |---|---|
 | `npx serve .` | Servidor local (o `serve.json` mantém a query do detalhe) |
-| `npm test` | `node --test` (15 testes em 05/11/2026) |
+| `npm test` | `node --test` (21 testes em 10/11/2026) |
 | `npm run lint` / `npm run format:check` | ESLint e Prettier (obrigatórios na CI) |
 | `powershell -ExecutionPolicy Bypass -File docs/claudeia/verificar.ps1` | Mesma verificação estática da CI |
 

@@ -107,6 +107,16 @@ body {
   top: 0;
 }
 
+/* Texto só para leitor de tela (ex.: aviso de nova aba nos cards). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 .section-header {
   margin: 3rem 0 1rem;
   display: flex;

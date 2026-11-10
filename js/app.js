@@ -194,17 +194,22 @@ export const App = {
         link.removeAttribute("target");
 
         link.removeAttribute("rel");
-
-        link.setAttribute("aria-label", `Ver detalhes: ${item.title}`);
       } else {
         link.href = urlSegura(item.site_url) || "#"; /* só https:, http:, mailto: ou caminho relativo */
 
-        link.setAttribute("aria-label", `${secao.acao}: ${item.title} — abre em nova aba`);
+        /* O nome acessível é o próprio texto do card; o aviso de nova aba vai num texto só para leitor de tela. */
+        const aviso = document.createElement("span");
+
+        aviso.className = "sr-only";
+
+        aviso.textContent = " (abre em nova aba)";
+
+        link.appendChild(aviso);
       }
 
       img.src = item.thumb || "./assets/logo/logo-career.png";
 
-      img.alt = `Logo de ${item.title}`;
+      img.alt = ""; /* decorativa: o título do card já diz o nome */
 
       img.addEventListener(
         "error",

@@ -96,7 +96,7 @@ export const jobs = [
   {
     "title": "99freelas",
     "duration": "Freelance",
-    "thumb": "./assets/thumb_jobs/99freelas.jpg",
+    "thumb": "https://learntech-content.douglasabnovato.workers.dev/media/career/99freelas.webp",
     "site_url": "https://www.99freelas.com.br/projects",
     "category": "Freelance"
   },

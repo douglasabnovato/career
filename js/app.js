@@ -9,6 +9,7 @@ import { normalizar, urlSegura } from "./utils.js";
 import { iniciarBanner } from "./banner.js";
 import { inicializarTema } from "./theme.js";
 import { renderCurriculos, iniciarAccordionCurriculos } from "./curriculos-render.js";
+import { lerFiltroDaUrl, escreverFiltroNaUrl, categoriaDe, categoriasDe, casarCategoria, SECOES_COM_CATEGORIA } from "./filtro-url.js";
 
 const CHAVE_SECAO = "career:secao";
 
@@ -28,6 +29,9 @@ export const App = {
 
     filtrados: [],
 
+    /* Categoria escolhida no filtro da seção atual ("" = todas). */
+    categoria: "",
+
     visiveis: 8,
     lote: 6,
   },
@@ -36,6 +40,8 @@ export const App = {
     container: document.querySelector("#box-projects"),
     template: document.querySelector("#card-template"),
     busca: document.querySelector("#search-input"),
+    filtroCategoria: document.querySelector("#category-filter"),
+    caixaFiltro: document.querySelector("#category-filter-box"),
     navLinks: document.querySelectorAll(".nav-link"),
     titulo: document.querySelector("#section-title"),
     subtitulo: document.querySelector("#section-subtitle"),
@@ -87,7 +93,10 @@ export const App = {
   },
 
   init() {
-    this.state.secaoAtual = this.lerSecaoSalva();
+    /* Um link com ?secao=&categoria= tem prioridade sobre a seção salva no navegador. */
+    const daUrl = lerFiltroDaUrl(globalThis.location?.search);
+
+    this.state.secaoAtual = daUrl.secao || this.lerSecaoSalva();
 
     this.definirAno();
 
@@ -98,7 +107,7 @@ export const App = {
 
     this.ligarEventos();
 
-    this.trocarSecao(this.state.secaoAtual, true);
+    this.trocarSecao(this.state.secaoAtual, true, daUrl.categoria);
 
     iniciarBanner({
       bannerTrack: this.el.bannerTrack,
@@ -135,12 +144,7 @@ export const App = {
     this.el.container.innerHTML = "";
 
     if (!dados || dados.length === 0) {
-      this.el.container.innerHTML = `
-        <p class="end-message">
-          Nenhuma ${secao.singular}
-          encontrada para sua busca.
-        </p>
-      `;
+      this.renderVazio(secao);
 
       this.atualizarContador(0, 0);
 
@@ -250,7 +254,7 @@ export const App = {
     this.el.contador.textContent = total === 0 ? `0 ${secao.rotulo}` : `${exibidos} ${rotulo} de ${total}`;
   },
 
-  trocarSecao(nome, inicial = false) {
+  trocarSecao(nome, inicial = false, categoria = "") {
     /*
      * Impede navegação para uma seção
      * que não existe nos dados.
@@ -296,52 +300,142 @@ export const App = {
 
     this.el.busca.value = "";
 
-    this.state.filtrados = this.state.dados[nome];
+    /* Troca de seção zera a categoria; na abertura da página, ela pode vir do link. */
+    this.state.categoria = categoria;
+
+    this.listaDoFiltro = null;
+
+    this.aplicarFiltros("");
+
+    this.atualizarUrl();
+  },
+
+  /*
+   * Monta as opções do filtro de categoria da seção atual.
+   * Só refaz quando a lista de dados muda (troca de seção ou catálogo da API).
+   */
+  montarFiltro() {
+    const origem = this.state.dados[this.state.secaoAtual];
+
+    const temCategoria = SECOES_COM_CATEGORIA.includes(this.state.secaoAtual);
+
+    if (this.el.caixaFiltro) this.el.caixaFiltro.hidden = !temCategoria;
+
+    if (!temCategoria) {
+      this.state.categoria = "";
+
+      return;
+    }
+
+    const categorias = categoriasDe(origem);
+
+    /* Categoria do link que não existe na seção é ignorada. */
+    this.state.categoria = casarCategoria(categorias, this.state.categoria);
+
+    if (!this.el.filtroCategoria || this.listaDoFiltro === origem) {
+      if (this.el.filtroCategoria) this.el.filtroCategoria.value = this.state.categoria;
+
+      return;
+    }
+
+    this.listaDoFiltro = origem;
+
+    const opcoes = [new Option("Todas", "")];
+
+    categorias.forEach((c) => opcoes.push(new Option(c, c)));
+
+    this.el.filtroCategoria.replaceChildren(...opcoes);
+
+    this.el.filtroCategoria.value = this.state.categoria;
+  },
+
+  /* Aplica busca e categoria juntas sobre os dados da seção atual. */
+  aplicarFiltros(termo) {
+    this.montarFiltro();
+
+    const alvo = normalizar(termo).trim();
+
+    const origem = this.state.dados[this.state.secaoAtual];
+
+    const categoria = normalizar(this.state.categoria);
+
+    this.state.filtrados = origem.filter((item) => {
+      if (categoria && normalizar(categoriaDe(item)) !== categoria) return false;
+
+      if (!alvo) return true;
+
+      /* Busca específica para currículos. */
+      if (this.state.secaoAtual === "curriculos") {
+        const texto = [item.nome, item.titulo, item.localizacao, item.objetivo, item.resumo].filter(Boolean).join(" ");
+
+        return normalizar(texto).includes(alvo);
+      }
+
+      /* Busca tradicional para empresas, vagas e perfis. */
+      return normalizar(`${item.title || ""} ${item.category || ""} ${item.location || ""} ${item.duration || ""}`).includes(alvo);
+    });
 
     this.render();
   },
 
   buscar(termo) {
-    const alvo = normalizar(termo).trim();
+    this.state.visiveis = 8;
 
-    const origem = this.state.dados[this.state.secaoAtual];
+    this.aplicarFiltros(termo);
+  },
+
+  definirCategoria(categoria) {
+    this.state.categoria = categoria;
 
     this.state.visiveis = 8;
 
-    if (!alvo) {
-      this.state.filtrados = origem;
+    this.aplicarFiltros(this.el.busca.value);
 
-      this.render();
+    this.atualizarUrl();
+  },
 
-      return;
+  limparFiltros() {
+    this.el.busca.value = "";
+
+    this.definirCategoria("");
+
+    this.el.busca.focus();
+  },
+
+  /* Grava seção e categoria na URL sem criar entrada no histórico, para o link poder ser compartilhado. */
+  atualizarUrl() {
+    try {
+      const query = escreverFiltroNaUrl(location.search, { secao: this.state.secaoAtual, categoria: this.state.categoria });
+
+      history.replaceState(history.state, "", `${location.pathname}${query}${location.hash}`);
+    } catch (e) {
+      void e;
     }
+  },
 
-    /*
-     * Busca específica para currículos.
-     */
-    if (this.state.secaoAtual === "curriculos") {
-      this.state.filtrados = origem.filter((curriculo) => {
-        const texto = [curriculo.nome, curriculo.titulo, curriculo.localizacao, curriculo.objetivo, curriculo.resumo]
-          .filter(Boolean)
-          .join(" ");
+  /* Estado vazio: mensagem e botão "Limpar filtros". */
+  renderVazio(secao) {
+    const caixa = document.createElement("div");
 
-        return normalizar(texto).includes(alvo);
-      });
+    caixa.className = "end-message empty-state";
 
-      this.render();
+    const texto = document.createElement("p");
 
-      return;
-    }
+    texto.textContent = `Nenhuma ${secao.singular} encontrada com estes filtros.`;
 
-    /*
-     * Busca tradicional para empresas,
-     * vagas e perfis.
-     */
-    this.state.filtrados = origem.filter((item) =>
-      normalizar(`${item.title || ""} ${item.category || ""} ${item.location || ""} ${item.duration || ""}`).includes(alvo),
-    );
+    const botao = document.createElement("button");
 
-    this.render();
+    botao.type = "button";
+
+    botao.className = "visit-btn clear-filters-btn";
+
+    botao.textContent = "Limpar filtros";
+
+    botao.addEventListener("click", () => this.limparFiltros());
+
+    caixa.append(texto, botao);
+
+    this.el.container.replaceChildren(caixa);
   },
 
   ligarEventos() {
@@ -357,6 +451,11 @@ export const App = {
 
       atraso = setTimeout(() => this.buscar(valor), 300);
     });
+
+    /*
+     * Filtro por categoria.
+     */
+    this.el.filtroCategoria?.addEventListener("change", (evento) => this.definirCategoria(evento.target.value));
 
     /*
      * Botão "Ver mais".

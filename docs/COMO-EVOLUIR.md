@@ -10,7 +10,7 @@ Guia curto para mudar o site com segurança. Empresas, vagas, perfis, destaques 
 | Arquivo | Papel |
 |---|---|
 | `index.html`, `main.js`, `js/app.js`, `js/catalog.js` | Catálogo com busca, filtro por categoria e seções (empresas, vagas, perfis) |
-| `js/filtro-url.js` | Seção e categoria na URL (`?secao=empresas|vagas|perfis|curriculos&categoria=`), funções puras com teste |
+| `js/filtro-url.js` | Seção e categoria na URL (`?secao=` (empresas, vagas, perfis ou curriculos) e `&categoria=`), funções puras com teste |
 | `detalhe.html`, `js/detalhe.js` | Página de detalhe (`?tipo=empresas|vagas|perfis&id=<slug>`; o formato antigo com `#` continua aceito), com canonical e Open Graph |
 | `js/curriculos.js` (gerado) e `js/curriculos-render.js` | Modelos de currículo fictícios |
 | `js/api.js`, `js/config.js` | Endereço da API e SDK de identificação |

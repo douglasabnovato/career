@@ -26,6 +26,27 @@
   font-size: 0.9rem;
   margin-top: 1rem;
 }
+.footer-brand .footer-conheca {
+  margin-top: 0.5rem;
+}
+.footer-conheca a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.3s;
+}
+.footer-conheca a:hover,
+.footer-conheca a:focus-visible {
+  color: var(--primary);
+}
+.footer-conheca .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
 .footer-socials {
   display: flex;
   gap: 1.5rem;

@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' https://learntech-content.douglasabnovato.workers.dev https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com https://unpkg.com; img-src 'self' data: https://learntech-content.douglasabnovato.workers.dev https://www.google.com https://*.gstatic.com; connect-src 'self' https://learntech-content.douglasabnovato.workers.dev; frame-src https://www.youtube-nocookie.com https://challenges.cloudflare.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+    />
     <title>Career | learnTECH</title>
 
     <meta
@@ -46,17 +50,7 @@
     <link rel="stylesheet" href="./css/banner.css" />
     <link rel="stylesheet" href="./css/curriculos.css" />
 
-    <script>
-      (function () {
-        try {
-          var salvo = localStorage.getItem("career:theme");
-          var claro = window.matchMedia("(prefers-color-scheme: light)").matches;
-          document.documentElement.setAttribute("data-theme", salvo || (claro ? "light" : "dark"));
-        } catch (e) {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      })();
-    </script>
+    <script src="./js/tema-inicial.js"></script>
   </head>
 
   <body>

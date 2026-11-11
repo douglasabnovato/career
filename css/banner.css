@@ -134,28 +134,25 @@
  }
 
  @media (max-width: 860px) {
+     /* Os slides ficam empilhados na mesma célula: a altura é a do maior e não muda na rotação.
+        A altura mínima reserva o espaço antes de os destaques chegarem (career#36, CLS). */
      .banner-track {
-         min-height: unset;
+         display: grid;
+         min-height: 500px;
      }
 
      .banner-slide {
          position: relative;
+         grid-area: 1 / 1;
          grid-template-columns: 1fr;
          text-align: center;
          padding: 2rem;
          gap: 1.5rem;
      }
 
-     .banner-slide.active {
-         display: grid;
-     }
-
-     .banner-slide:not(.active) {
-         display: none;
-     }
-
      .banner-slide-image {
-         min-height: 200px;
+         height: 200px;
+         min-height: 0;
          order: -1;
      }
 

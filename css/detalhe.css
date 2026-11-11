@@ -1,7 +1,9 @@
 /* detalhe.css — página de detalhe (detalhe.html). Usa só os tokens de layout.css, então vale nos dois temas. */
 
+/* A altura mínima deixa o rodapé abaixo da dobra enquanto o detalhe carrega (career#36, CLS). */
 .detalhe-page {
   padding-top: 110px;
+  min-height: 100vh;
 }
 
 .detalhe-container {

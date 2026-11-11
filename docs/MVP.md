@@ -19,7 +19,7 @@ Empresas, vagas, perfis profissionais e modelos de currículo para quem procura 
 | 4 | Escopo enxuto | Atende | Seção "Fora do MVP" abaixo, com as decisões do autor. |
 | 5 | Medição de uso | Não atende | Sem painel de visitas. A API registra só as identificações (D1). Ferramenta gratuita a escolher: [learntech-content#24](https://github.com/douglasabnovato/learntech-content/issues/24). |
 | 6 | Falhas tratadas | Parcial | `tests/api.test.js` cobre a falha da API com a cópia de reserva; estado vazio com "Limpar filtros" (#28). Carregamento sem teste próprio. |
-| 7 | Desempenho aceitável | Não atende | `npm run ux:lighthouse` (móvel) contra a produção em 10/11/2026, 3 execuções. Home: 6,0 / 5,7 / 6,5 s, mediana 6,0 s, TBT 11 ms, CLS 0,64; empresa: 5,1 / 3,5 / 4,4 s, mediana 4,4 s, TBT 0 ms, CLS 0,45. Na home, o elemento do LCP é o texto da janela de identificação. CLS alto: [#36](https://github.com/douglasabnovato/career/issues/36). Meta: 2,5 s. |
+| 7 | Desempenho aceitável | Não atende | `npm run ux:lighthouse` (móvel) contra a produção em 10/11/2026, 3 execuções. Home: 6,0 / 5,7 / 6,5 s, mediana 6,0 s, TBT 11 ms, CLS 0,64; empresa: 5,1 / 3,5 / 4,4 s, mediana 4,4 s, TBT 0 ms, CLS 0,45. Na home, o elemento do LCP é o texto da janela de identificação. CLS resolvido em 11/11/2026 ([#36](https://github.com/douglasabnovato/career/issues/36)): Lighthouse na produção com 0,005 na home e 0 no detalhe, e `e2e/estabilidade.spec.mjs` com 2 de 2. Meta: 2,5 s. |
 | 8 | Acessibilidade básica | Parcial | Produção, axe em 10/11/2026: `color-contrast` 23, `label-content-name-mismatch` 9 e `target-size` 3 na home. Na `developer-mvp-2026-2`, axe local sem violações nos temas claro e escuro ([#33](https://github.com/douglasabnovato/career/issues/33)). Falta confirmar na produção. |
 | 9 | Segurança e conformidade | Parcial | `npm audit --omit=dev` em 10/11/2026: 0 vulnerabilidades. Alertas do Dependabot desligados (`gh api .../dependabot/alerts` responde 403 em 10/11/2026; ligar é do autor). Sem segredo no código. Falta a CSP ([#32](https://github.com/douglasabnovato/career/issues/32)). |
 | 10 | Entrega confiável | Atende | `gh api repos/douglasabnovato/career/rulesets` em 10/11/2026: ruleset "main protegida" ativo (check `verificar` obrigatório, sem force push, sem apagar a `main`). CI em todo push e PR. |
@@ -33,4 +33,5 @@ Empresas, vagas, perfis profissionais e modelos de currículo para quem procura 
 - Currículos para imprimir e com link direto ([#29](https://github.com/douglasabnovato/career/issues/29)): depois do MVP.
 
 ## Histórico
+- 11/11/2026: CLS resolvido (#36); o LCP continua acima da meta.
 - 10/11/2026: primeira tabela, depois do ciclo de acessibilidade e busca nos quatro sites.

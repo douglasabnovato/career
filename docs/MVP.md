@@ -30,7 +30,7 @@ Empresas, vagas, perfis profissionais e modelos de currículo para quem procura 
 - Domínio próprio e qualquer serviço pago: o ambiente fica gratuito (decisão do autor, 10/11/2026).
 - Identificação opcional: a identificação obrigatória continua ([learntech-content#5](https://github.com/douglasabnovato/learntech-content/issues/5), não autorizada pelo autor em 10/11/2026).
 - Votação de temas nos cards de programa ([learntech-content#4](https://github.com/douglasabnovato/learntech-content/issues/4), aguardando o autor).
-- Currículos para imprimir e com link direto ([#29](https://github.com/douglasabnovato/career/issues/29)): depois do MVP.
+- Currículos para imprimir e com link direto ([#29](https://github.com/douglasabnovato/career/issues/29)): entregues na `developer-mvp-2026-2` em 12/11/2026 (fce1219), com os modelos de QA e de suporte de TI na API. Valem depois do deploy.
 
 ## Histórico
 - 11/11/2026: CLS resolvido (#36); o LCP continua acima da meta.

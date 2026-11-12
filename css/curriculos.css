@@ -423,3 +423,145 @@ body.dark-theme .resume-contact {
     gap: 7px;
   }
 }
+
+/* =========================================================
+   Ações do modelo e impressão (career#29)
+   ========================================================= */
+
+.resume-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.resume-actions__btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 16px;
+
+  border: 1px solid #e30613;
+  border-radius: 999px;
+  background: transparent;
+  color: #b0050f;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.resume-actions__btn:hover {
+  background: #e30613;
+  color: #ffffff;
+}
+
+.resume-actions__btn:focus-visible {
+  outline: 2px solid #e30613;
+  outline-offset: 2px;
+}
+
+body.dark-theme .resume-actions__btn {
+  color: #ff8a8f;
+}
+
+body.dark-theme .resume-actions__btn:hover {
+  color: #ffffff;
+}
+
+.resume-item {
+  scroll-margin-top: 96px;
+}
+
+@media print {
+  .resume-actions {
+    display: none;
+  }
+
+  /* "Imprimir este modelo": some tudo o que não é o modelo nem caminho até ele. */
+  body.imprimindo-curriculo *:not(:has(.is-printing)):not(.is-printing):not(.is-printing *) {
+    display: none !important;
+  }
+
+  /* O caminho até o modelo vira bloco: a lista de cards é grid e deixaria o modelo em meia largura. */
+  body.imprimindo-curriculo :has(.is-printing) {
+    display: block !important;
+  }
+
+  body.imprimindo-curriculo,
+  body.imprimindo-curriculo :has(.is-printing) {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    max-width: none !important;
+    width: auto !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  /* Uma página limpa: sem o ícone do accordion, sem o resumo repetido, sem dicas e fontes, em preto no branco mesmo no tema escuro. */
+  body.imprimindo-curriculo .is-printing .resume-item__icon,
+  body.imprimindo-curriculo .is-printing .resume-item__summary,
+  body.imprimindo-curriculo .is-printing .resume-orientacao,
+  body.imprimindo-curriculo .is-printing .resume-section--aviso {
+    display: none !important;
+  }
+
+  body.imprimindo-curriculo .is-printing,
+  body.imprimindo-curriculo .is-printing * {
+    color: #111111 !important;
+    background: #ffffff !important;
+    border-color: #cccccc !important;
+    box-shadow: none !important;
+  }
+
+  body.imprimindo-curriculo .is-printing {
+    border: 0 !important;
+  }
+
+  body.imprimindo-curriculo .is-printing .resume-item__trigger {
+    padding: 0 0 12px !important;
+  }
+
+  body.imprimindo-curriculo .is-printing .resume-item__name {
+    font-size: 22px !important;
+  }
+
+  body.imprimindo-curriculo .is-printing .resume-item__content {
+    display: block !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
+  /* Mais compacto no papel: menos espaço entre seções e etiquetas viram texto corrido. */
+  body.imprimindo-curriculo .is-printing .resume-item__body {
+    gap: 14px !important;
+  }
+
+  body.imprimindo-curriculo .is-printing .resume-tags {
+    gap: 4px 10px !important;
+  }
+
+  body.imprimindo-curriculo .is-printing .resume-tag {
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
+  body.imprimindo-curriculo .is-printing .resume-project {
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
+  body.imprimindo-curriculo .is-printing .resume-experience__item,
+  body.imprimindo-curriculo .is-printing .resume-project,
+  body.imprimindo-curriculo .is-printing .resume-education__item {
+    break-inside: avoid;
+  }
+
+  @page {
+    margin: 15mm;
+  }
+}

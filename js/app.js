@@ -8,8 +8,16 @@ import { launchBanner, montarDestaques } from "./banner-data.js";
 import { normalizar, urlSegura } from "./utils.js";
 import { iniciarBanner } from "./banner.js";
 import { inicializarTema } from "./theme.js";
-import { renderCurriculos, iniciarAccordionCurriculos } from "./curriculos-render.js";
-import { lerFiltroDaUrl, escreverFiltroNaUrl, categoriaDe, categoriasDe, casarCategoria, SECOES_COM_CATEGORIA } from "./filtro-url.js";
+import { renderCurriculos, iniciarAccordionCurriculos, abrirModelo } from "./curriculos-render.js";
+import {
+  lerFiltroDaUrl,
+  lerModeloDaUrl,
+  escreverFiltroNaUrl,
+  categoriaDe,
+  categoriasDe,
+  casarCategoria,
+  SECOES_COM_CATEGORIA,
+} from "./filtro-url.js";
 
 const CHAVE_SECAO = "career:secao";
 
@@ -96,7 +104,10 @@ export const App = {
     /* Um link com ?secao=&categoria= tem prioridade sobre a seção salva no navegador. */
     const daUrl = lerFiltroDaUrl(globalThis.location?.search);
 
-    this.state.secaoAtual = daUrl.secao || this.lerSecaoSalva();
+    /* ?modelo=<slug> abre um modelo de currículo direto (career#29); sem seção na URL, ele leva aos currículos. */
+    this.state.modeloPedido = lerModeloDaUrl(globalThis.location?.search);
+
+    this.state.secaoAtual = daUrl.secao || (this.state.modeloPedido ? "curriculos" : this.lerSecaoSalva());
 
     this.definirAno();
 
@@ -141,6 +152,9 @@ export const App = {
     const dados = this.state.filtrados;
     const secao = this.secoes[this.state.secaoAtual];
 
+    /* Modelo de currículo aberto antes de redesenhar (o catálogo da API pode chegar depois): continua aberto. */
+    const abertoAntes = this.el.container.querySelector(".resume-item.is-open")?.dataset.slug;
+
     this.el.container.innerHTML = "";
 
     if (!dados || dados.length === 0) {
@@ -159,12 +173,21 @@ export const App = {
      * diferente dos cards tradicionais.
      */
     if (this.state.secaoAtual === "curriculos") {
+      /* O modelo do link direto entra na parte visível da lista, mesmo que esteja depois do primeiro lote. */
+      const pedido = this.state.modeloPedido ? dados.findIndex((c) => c.slug === this.state.modeloPedido) : -1;
+
+      if (pedido >= this.state.visiveis) this.state.visiveis = pedido + 1;
+
       renderCurriculos({
         container: this.el.container,
         template: this.el.curriculoTemplate,
         dados,
         visiveis: this.state.visiveis,
       });
+
+      /* Abre uma vez só; se o modelo ainda não chegou (só na API), tenta de novo quando o catálogo remoto carregar. */
+      if (pedido >= 0 && abrirModelo(this.el.container, this.state.modeloPedido)) this.state.modeloPedido = "";
+      else if (abertoAntes) abrirModelo(this.el.container, abertoAntes, { rolar: false });
 
       const exibidos = Math.min(this.state.visiveis, dados.length);
 

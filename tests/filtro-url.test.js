@@ -1,7 +1,30 @@
 /* filtro-url.test.js — leitura e escrita da seção e da categoria na URL do catálogo. Rode com: npm test */
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { lerFiltroDaUrl, escreverFiltroNaUrl, categoriasDe, casarCategoria } from "../js/filtro-url.js";
+import { lerFiltroDaUrl, lerModeloDaUrl, linkDoModelo, escreverFiltroNaUrl, categoriasDe, casarCategoria } from "../js/filtro-url.js";
+import { curriculos } from "../js/curriculos.js";
+
+test("lerModeloDaUrl lê o slug do modelo e recusa valor inválido (career#29)", () => {
+  assert.equal(lerModeloDaUrl("?secao=curriculos&modelo=analista-qa-junior"), "analista-qa-junior");
+  assert.equal(lerModeloDaUrl("?modelo=Analista-QA-Junior"), "analista-qa-junior");
+  assert.equal(lerModeloDaUrl("?modelo=<script>"), "");
+  assert.equal(lerModeloDaUrl("?modelo=a--b"), "");
+  assert.equal(lerModeloDaUrl(""), "");
+  assert.equal(lerModeloDaUrl(undefined), "");
+});
+
+test("link direto de cada modelo volta ao mesmo modelo e à seção de currículos", () => {
+  for (const c of curriculos) {
+    const link = linkDoModelo(c.slug);
+    assert.equal(lerModeloDaUrl(link), c.slug);
+    assert.equal(lerFiltroDaUrl(link).secao, "curriculos");
+  }
+});
+
+test("escreverFiltroNaUrl mantém o modelo só em currículos", () => {
+  assert.equal(escreverFiltroNaUrl("?secao=curriculos&modelo=x-y", { secao: "curriculos", categoria: "" }), "?secao=curriculos&modelo=x-y");
+  assert.equal(escreverFiltroNaUrl("?secao=curriculos&modelo=x-y", { secao: "companies", categoria: "" }), "?secao=empresas");
+});
 
 test("lerFiltroDaUrl lê seção e categoria", () => {
   assert.deepEqual(lerFiltroDaUrl("?secao=empresas&categoria=Health%20Tech"), { secao: "companies", categoria: "Health Tech" });

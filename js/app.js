@@ -234,14 +234,14 @@ export const App = {
         link.appendChild(aviso);
       }
 
-      img.src = item.thumb || "./assets/logo/logo-career.png";
+      img.src = item.thumb || "./assets/logo/logo-career-320.webp";
 
       img.alt = ""; /* decorativa: o título do card já diz o nome */
 
       img.addEventListener(
         "error",
         () => {
-          img.src = "./assets/logo/logo-career.png";
+          img.src = "./assets/logo/logo-career-320.webp";
         },
         { once: true },
       );

@@ -55,6 +55,38 @@ test("carregarCatalogo monta empresas, vagas, perfis e currículos", async () =>
   assert.equal(c.curriculos[0].slug, "m");
 });
 
+test("destaques com falha não derrubam o catálogo: só o banner usa a cópia local (#39)", async () => {
+  responder({
+    "empresas.json": [{ title: "A", thumb: "" }],
+    "vagas.json": [{ title: "V", thumb: "" }],
+    "perfis.json": [{ title: "P", thumb: "" }],
+    "modelos-curriculo.json": [{ slug: "m" }],
+  });
+  const c = await carregarCatalogo();
+  assert.notEqual(c, null);
+  assert.equal(c.companies[0].title, "A");
+  assert.equal(c.jobs[0].title, "V");
+  assert.equal(c.profiles[0].title, "P");
+  assert.equal(c.destaques, null);
+  assert.equal(c.curriculos[0].slug, "m");
+});
+
+test("destaques fora do formato viram null e o catálogo segue da API", async () => {
+  responder({ "empresas.json": [], "vagas.json": [], "perfis.json": [], "destaques.json": ["lista"] });
+  const c = await carregarCatalogo();
+  assert.notEqual(c, null);
+  assert.equal(c.destaques, null);
+  assert.equal(c.curriculos, null);
+});
+
+test("falha num recurso principal ainda leva o catálogo inteiro para a cópia local", async () => {
+  responder({ "empresas.json": [], "perfis.json": [], "destaques.json": {} });
+  const aviso = console.warn;
+  console.warn = () => {};
+  assert.equal(await carregarCatalogo(), null);
+  console.warn = aviso;
+});
+
 test("carregarItem acha pelo slug e devolve null quando não existe", async () => {
   responder({ "empresas.json": [{ title: "A", slug: "a", thumb: "" }] });
   assert.equal((await carregarItem("empresas", "a")).title, "A");

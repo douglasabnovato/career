@@ -30,9 +30,24 @@ export function escreverFiltroNaUrl(busca, { secao, categoria }) {
   if (categoria && SECOES_COM_CATEGORIA.includes(secao)) params.set("categoria", categoria);
   else params.delete("categoria");
 
+  /* O modelo aberto só faz sentido na seção de currículos. */
+  if (secao !== "curriculos") params.delete("modelo");
+
   const query = params.toString();
 
   return query ? `?${query}` : "";
+}
+
+/* Modelo de currículo pedido na URL (?modelo=<slug>), para abrir um modelo direto (career#29). "" se não houver ou se o slug for inválido. */
+export function lerModeloDaUrl(busca) {
+  const modelo = (new URLSearchParams(busca || "").get("modelo") || "").trim().toLowerCase();
+
+  return /^[a-z0-9]+(-[a-z0-9]+)*$/.test(modelo) ? modelo : "";
+}
+
+/* Link direto para um modelo de currículo, relativo à página do catálogo. */
+export function linkDoModelo(slug) {
+  return `?secao=curriculos&modelo=${encodeURIComponent(slug)}`;
 }
 
 /* Categoria de um item; sem categoria, o card mostra "Geral". */

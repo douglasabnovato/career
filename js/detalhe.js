@@ -6,7 +6,7 @@ import { inicializarTema } from "./theme.js";
 import { urlSegura } from "./utils.js";
 
 const CHAVE_SECAO = "career:secao";
-const LOGO_PADRAO = "./assets/logo/logo-career.png";
+const LOGO_PADRAO = "./assets/logo/logo-career-320.webp";
 const TITULO_SITE = "Career | learnTECH";
 const URL_DETALHE = "https://douglasabnovato.github.io/career/detalhe.html"; /* endereço publicado; o mesmo formato do sitemap.xml */
 

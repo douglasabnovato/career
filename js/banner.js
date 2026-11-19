@@ -18,7 +18,7 @@ export function iniciarBanner({ bannerTrack, bannerDots, destaques }) {
       (item, i) => `
     <article class="banner-slide ${i === 0 ? "active" : ""}" data-index="${i}">
       <div class="banner-slide-image">
-        <img src="${escapar(item.thumb || "./assets/logo/logo-career.png")}" alt="" loading="lazy" />
+        <img src="${escapar(item.thumb || "./assets/logo/logo-career-320.webp")}" alt="" loading="lazy" />
       </div>
       <div class="banner-slide-content">
         <span class="banner-slide-badge">${escapar(item.badgeLabel)}</span>

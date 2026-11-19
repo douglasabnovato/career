@@ -1,4 +1,16 @@
 import { escapar } from "./utils.js";
+import { linkDoModelo } from "./filtro-url.js";
+
+/* Ações de um modelo (career#29): imprimir só este modelo e link direto para ele. Ficam fora da impressão. */
+function criarAcoes(curriculo) {
+  if (!curriculo.slug) return "";
+  return `
+    <div class="resume-actions">
+      <button type="button" class="resume-actions__btn" data-acao="imprimir">Imprimir este modelo</button>
+      <a class="resume-actions__btn" href="${escapar(linkDoModelo(curriculo.slug))}">Link direto deste modelo</a>
+    </div>
+  `;
+}
 
 function criarLista(items = []) {
   return items.map((item) => `<li>${escapar(item)}</li>`).join("");
@@ -107,8 +119,8 @@ function criarOrientacao(curriculo) {
     .map((f) => `<li><a href="${escapar(f.url)}" target="_blank" rel="noopener noreferrer">${escapar(f.label || f.url)}</a></li>`)
     .join("");
   return `
-    ${dicas ? `<section class="resume-section"><h3 class="resume-section__title">Dicas para montar o seu</h3><ul class="resume-section__list">${dicas}</ul></section>` : ""}
-    ${fontes ? `<section class="resume-section"><h3 class="resume-section__title">Fontes</h3><ul class="resume-section__list">${fontes}</ul></section>` : ""}
+    ${dicas ? `<section class="resume-section resume-orientacao"><h3 class="resume-section__title">Dicas para montar o seu</h3><ul class="resume-section__list">${dicas}</ul></section>` : ""}
+    ${fontes ? `<section class="resume-section resume-orientacao"><h3 class="resume-section__title">Fontes</h3><ul class="resume-section__list">${fontes}</ul></section>` : ""}
   `;
 }
 
@@ -454,6 +466,13 @@ export function renderCurriculos({ container, template, dados, visiveis }) {
   dados.slice(0, visiveis).forEach((curriculo) => {
     const clone = template.content.cloneNode(true);
 
+    const artigo = clone.querySelector(".resume-item");
+
+    if (artigo && curriculo.slug) {
+      artigo.id = `modelo-${curriculo.slug}`;
+      artigo.dataset.slug = curriculo.slug;
+    }
+
     const nome = clone.querySelector(".resume-item__name");
 
     const titulo = clone.querySelector(".resume-item__title");
@@ -472,7 +491,7 @@ export function renderCurriculos({ container, template, dados, visiveis }) {
 
     summary.textContent = curriculo.resumo || "";
 
-    body.innerHTML = criarCorpoCurriculo(curriculo) + criarOrientacao(curriculo);
+    body.innerHTML = criarAcoes(curriculo) + criarCorpoCurriculo(curriculo) + criarOrientacao(curriculo);
 
     lista.appendChild(clone);
   });
@@ -480,8 +499,53 @@ export function renderCurriculos({ container, template, dados, visiveis }) {
   container.appendChild(lista);
 }
 
+/* Abre um item do accordion e fecha os outros. */
+function abrirItem(container, item) {
+  container.querySelectorAll(".resume-item.is-open").forEach((outro) => {
+    if (outro === item) return;
+    outro.classList.remove("is-open");
+    outro.querySelector(".resume-item__trigger")?.setAttribute("aria-expanded", "false");
+  });
+  item.classList.add("is-open");
+  item.querySelector(".resume-item__trigger")?.setAttribute("aria-expanded", "true");
+}
+
+/* Abre o modelo do link direto (?modelo=<slug>) e leva a tela até ele. Devolve false se o modelo não estiver na lista. */
+export function abrirModelo(container, slug, { rolar = true } = {}) {
+  const item = slug ? container.querySelector(`.resume-item[data-slug="${CSS.escape(slug)}"]`) : null;
+  if (!item) return false;
+  abrirItem(container, item);
+  if (!rolar) return true;
+  item.scrollIntoView({ block: "start" });
+  /* Banner e imagens acima ainda carregando empurram o modelo para baixo; rola de novo quando a página termina. */
+  if (document.readyState !== "complete") window.addEventListener("load", () => item.scrollIntoView({ block: "start" }), { once: true });
+  item.querySelector(".resume-item__trigger")?.focus({ preventScroll: true });
+  return true;
+}
+
+/* Imprime só o modelo pedido: a classe no body liga o CSS de impressão (curriculos.css). */
+function imprimirModelo(container, item) {
+  abrirItem(container, item);
+  item.classList.add("is-printing");
+  document.body.classList.add("imprimindo-curriculo");
+  const limpar = () => {
+    item.classList.remove("is-printing");
+    document.body.classList.remove("imprimindo-curriculo");
+  };
+  window.addEventListener("afterprint", limpar, { once: true });
+  window.print();
+}
+
 export function iniciarAccordionCurriculos(container) {
   container.addEventListener("click", (event) => {
+    const imprimir = event.target.closest('[data-acao="imprimir"]');
+
+    if (imprimir) {
+      const alvo = imprimir.closest(".resume-item");
+      if (alvo) imprimirModelo(container, alvo);
+      return;
+    }
+
     const trigger = event.target.closest(".resume-item__trigger");
 
     if (!trigger) {

@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' https://learntech-content.douglasabnovato.workers.dev https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com https://unpkg.com; img-src 'self' data: https://learntech-content.douglasabnovato.workers.dev https://www.google.com https://*.gstatic.com; connect-src 'self' https://learntech-content.douglasabnovato.workers.dev; frame-src https://www.youtube-nocookie.com https://challenges.cloudflare.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+    />
     <title>Career | learnTECH</title>
 
     <meta
@@ -32,11 +36,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Poppins:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" media="print" data-assincrono />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" media="print" data-assincrono />
+    <noscript><link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" /></noscript>
 
     <link rel="stylesheet" href="./css/layout.css" />
     <link rel="stylesheet" href="./css/style.css" />
@@ -46,17 +49,17 @@
     <link rel="stylesheet" href="./css/banner.css" />
     <link rel="stylesheet" href="./css/curriculos.css" />
 
-    <script>
-      (function () {
-        try {
-          var salvo = localStorage.getItem("career:theme");
-          var claro = window.matchMedia("(prefers-color-scheme: light)").matches;
-          document.documentElement.setAttribute("data-theme", salvo || (claro ? "light" : "dark"));
-        } catch (e) {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      })();
-    </script>
+    <script src="./js/tema-inicial.js"></script>
+    <!-- SDK de identificação direto no HTML (o modal costuma ser o LCP): roda logo depois do parse, sem esperar o main.js e os módulos de dados.
+         O id faz o carregarIdentificacao() do api.js não injetar de novo. -->
+    <script
+      id="learntech-sdk"
+      src="https://learntech-content.douglasabnovato.workers.dev/sdk/identificacao.js"
+      data-projeto="career"
+      data-privacidade="https://learn-tech-pied.vercel.app/privacy"
+      defer
+    ></script>
+    <script src="./js/estilos-assincronos.js" defer></script>
   </head>
 
   <body>
@@ -66,7 +69,7 @@
       <div class="header-container">
         <div class="header-top">
           <a href="./" class="logo" aria-label="LearnTECH Career, página inicial">
-            <img src="./assets/logo/logo-career.png" alt="" width="40" height="40" />
+            <img src="./assets/logo/logo-career-320.webp" alt="" width="40" height="40" />
             <span class="brand-text">
               Learn<span class="highlight">TECH</span>
               <small>Career</small>
@@ -226,7 +229,7 @@
         <div class="footer-top">
           <div class="footer-brand">
             <div class="logo">
-              <img src="./assets/logo/logo-career.png" alt="" loading="lazy" width="40" height="40" />
+              <img src="./assets/logo/logo-career-320.webp" alt="" loading="lazy" width="40" height="40" />
               <span class="brand-text">Learn<span class="highlight">TECH</span></span>
             </div>
             <p>Curadoria estratégica de carreira e oportunidades para o ecossistema dev.</p>

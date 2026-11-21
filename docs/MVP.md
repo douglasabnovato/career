@@ -1,8 +1,8 @@
 # MVP: career
 
 **Nível:** N3 (produto). Proposta do Claude em 10/11/2026; o autor confirma.
-**Resumo:** 5 de 12 aplicáveis atendidos
-**Finalizado:** não. Falta do código: fluxo na CI, falhas com teste, desempenho no celular, axe e segurança confirmados na produção. Falta do autor: hipótese (#23) e medição de uso (#24), alertas do Dependabot e levar as integrações para a `main`.
+**Resumo:** 9 de 12 aplicáveis atendidos (20/11/2026)
+**Finalizado:** não. Falta do código: a CSP ([#32](https://github.com/douglasabnovato/career/issues/32)). Falta do autor: decidir a hipótese (#23, proposta escrita) e a ferramenta de medição (#24, recomendação escrita), e ligar os alertas do Dependabot.
 
 Régua: `engenharia/arquitetura/padroes.md`. "Atende" só com comando, data e resultado.
 
@@ -14,13 +14,13 @@ Empresas, vagas, perfis profissionais e modelos de currículo para quem procura 
 | # | Critério | Situação | Evidência |
 |---|---|---|---|
 | 1 | Problema e público claros | Atende | Empresas, vagas, perfis profissionais e modelos de currículo para quem procura a primeira vaga em tecnologia ou a próxima (README e `/conheca`). |
-| 2 | Hipótese a validar | Não atende | Nenhuma hipótese escrita. A aposta é do autor: [learntech-content#23](https://github.com/douglasabnovato/learntech-content/issues/23). |
-| 3 | Fluxo principal completo | Parcial | `npm run e2e` no learntech-content, contra a produção, em 10/11/2026: 2 de 2 fluxos (busca filtra o catálogo, detalhe da empresa). Fora da CI ([learntech-content#10](https://github.com/douglasabnovato/learntech-content/issues/10)). |
+| 2 | Hipótese a validar | Não atende | Proposta escrita em 20/11/2026 ([hipoteses.md](https://github.com/douglasabnovato/learntech-content/blob/main/docs/estrategia/hipoteses.md)), no formato da [learntech-content#23](https://github.com/douglasabnovato/learntech-content/issues/23). A aposta é do autor: o critério só atende depois da decisão dele. |
+| 3 | Fluxo principal completo | Atende | `npm run e2e` no learntech-content contra a produção em 20/11/2026: fluxos, acessibilidade, capturas, estabilidade e estados passaram. O workflow `e2e` roda na CI do learntech-content a cada push na `main` (sucesso em 19/11/2026) e toda segunda-feira ([learntech-content#10](https://github.com/douglasabnovato/learntech-content/issues/10)). Fluxos deste site: busca filtra o catálogo, detalhe da empresa. |
 | 4 | Escopo enxuto | Atende | Seção "Fora do MVP" abaixo, com as decisões do autor. |
-| 5 | Medição de uso | Não atende | Sem painel de visitas. A API registra só as identificações (D1). Ferramenta gratuita a escolher: [learntech-content#24](https://github.com/douglasabnovato/learntech-content/issues/24). |
-| 6 | Falhas tratadas | Parcial | `tests/api.test.js` cobre a falha da API com a cópia de reserva; estado vazio com "Limpar filtros" (#28). Carregamento sem teste próprio. |
-| 7 | Desempenho aceitável | Não atende | `npm run ux:lighthouse` (móvel) contra a produção em 10/11/2026, 3 execuções. Home: 6,0 / 5,7 / 6,5 s, mediana 6,0 s, TBT 11 ms, CLS 0,64; empresa: 5,1 / 3,5 / 4,4 s, mediana 4,4 s, TBT 0 ms, CLS 0,45. Na home, o elemento do LCP é o texto da janela de identificação. CLS resolvido em 11/11/2026 ([#36](https://github.com/douglasabnovato/career/issues/36)): Lighthouse na produção com 0,005 na home e 0 no detalhe, e `e2e/estabilidade.spec.mjs` com 2 de 2. Meta: 2,5 s. |
-| 8 | Acessibilidade básica | Parcial | Produção, axe em 10/11/2026: `color-contrast` 23, `label-content-name-mismatch` 9 e `target-size` 3 na home. Na `developer-mvp-2026-2`, axe local sem violações nos temas claro e escuro ([#33](https://github.com/douglasabnovato/career/issues/33)). Falta confirmar na produção. |
+| 5 | Medição de uso | Não atende | Sem painel de visitas. A API registra só as identificações (D1). Recomendação pontuada das ferramentas gratuitas em 20/11/2026 ([medicao.md](https://github.com/douglasabnovato/learntech-content/blob/main/docs/estrategia/medicao.md)): Cloudflare Web Analytics. A escolha e a conta são do autor ([learntech-content#24](https://github.com/douglasabnovato/learntech-content/issues/24)). |
+| 6 | Falhas tratadas | Atende | `e2e/estados.spec.mjs` no learntech-content contra a produção em 20/11/2026, 2 rodadas sem falha: home com a API lenta e fora do ar (cópia de reserva), detalhe com "Carregando..." com a API lenta e "Não foi possível carregar" com "Tentar novamente" com a API fora, busca sem resultado com o estado vazio; falha da API coberta por `tests/api.test.js`. |
+| 7 | Desempenho aceitável | Atende | `npm run ux:lighthouse` (móvel) contra a produção em 19/11/2026, depois da `main`: home 98 e empresa 99 de performance, LCP 1,9 e 1,6 s, CLS 0,005 e 0, TBT 0 ms. CLS no celular com rede lenta (`e2e/estabilidade.spec.mjs`, 20/11/2026): 0 e 0,005. |
+| 8 | Acessibilidade básica | Atende | Produção, axe em 20/11/2026 (`npm run e2e`, projeto acessibilidade): 0 violações em home e empresa. Lighthouse de acessibilidade de 99 a 100 na produção em 19/11/2026. |
 | 9 | Segurança e conformidade | Parcial | `npm audit --omit=dev` em 10/11/2026: 0 vulnerabilidades. Alertas do Dependabot desligados (`gh api .../dependabot/alerts` responde 403 em 10/11/2026; ligar é do autor). Sem segredo no código. Falta a CSP ([#32](https://github.com/douglasabnovato/career/issues/32)). |
 | 10 | Entrega confiável | Atende | `gh api repos/douglasabnovato/career/rulesets` em 10/11/2026: ruleset "main protegida" ativo (check `verificar` obrigatório, sem force push, sem apagar a `main`). CI em todo push e PR. |
 | 11 | Testes dos fluxos críticos | Atende | CI da branch `feature/tasks-10-11-2026-c` em 10/11/2026 (run 42852053168): 21 testes, 21 passando, 0 pulados. |

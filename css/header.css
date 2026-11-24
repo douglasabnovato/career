@@ -94,10 +94,11 @@
   color: var(--text-muted);
 }
 
+/* Sem outline: none: vale o contorno de 3 px do :focus-visible do site, como no seletor. Com a --border-campo,
+   só a troca de cor da borda dava 1,17:1 entre sem foco e com foco (R19 do Esp UX/UI do #49). */
 #search-input:focus {
   border-color: var(--brand-primary);
   background: var(--brand-softer);
-  outline: none;
 }
 
 .header-menu {

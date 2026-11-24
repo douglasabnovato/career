@@ -5,7 +5,7 @@ import { jobs } from "./jobs.js";
 import { profiles } from "./perfis-dev.js";
 import { curriculos } from "./curriculos.js";
 import { launchBanner, montarDestaques } from "./banner-data.js";
-import { normalizar, urlSegura, textoContador } from "./utils.js";
+import { normalizar, urlSegura, textoContador, ROTULOS_SECOES } from "./utils.js";
 import { iniciarBanner } from "./banner.js";
 import { inicializarTema } from "./theme.js";
 import { renderCurriculos, iniciarAccordionCurriculos, abrirModelo } from "./curriculos-render.js";
@@ -70,32 +70,28 @@ export const App = {
     companies: {
       titulo: 'Empresas <span class="highlight">Legais</span>',
       subtitulo: "Me contaram que essas empresas eram legais para trabalhar, tinham cultura sólida e oportunidades desafiadoras",
-      rotulo: "empresas",
-      singular: "empresa",
+      ...ROTULOS_SECOES.companies,
       acao: "Ver Empresa",
     },
 
     jobs: {
       titulo: 'Plataformas <span class="highlight">Jobs</span>',
       subtitulo: "Os melhores lugares para buscar sua próxima vaga tech.",
-      rotulo: "plataformas",
-      singular: "plataforma",
+      ...ROTULOS_SECOES.jobs,
       acao: "Ver Oportunidade",
     },
 
     profiles: {
       titulo: 'Dev <span class="highlight">Profiles</span>',
       subtitulo: "Referências e mentores que inspiram a comunidade.",
-      rotulo: "devs",
-      singular: "dev",
+      ...ROTULOS_SECOES.profiles,
       acao: "Ver Perfil",
     },
 
     curriculos: {
       titulo: 'Modelos de <span class="highlight">Currículos</span>',
       subtitulo: "Explore diferentes modelos de currículos e referências para apresentar sua experiência profissional.",
-      rotulo: "currículos",
-      singular: "currículo",
+      ...ROTULOS_SECOES.curriculos,
       acao: "Ver Currículo",
     },
   },
@@ -440,7 +436,7 @@ export const App = {
 
     const texto = document.createElement("p");
 
-    texto.textContent = `Nenhuma ${secao.singular} encontrada com estes filtros.`;
+    texto.textContent = `${secao.nenhum} ${secao.encontrado} com estes filtros.`;
 
     const botao = document.createElement("button");
 

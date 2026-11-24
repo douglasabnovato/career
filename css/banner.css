@@ -100,11 +100,14 @@
      padding: 0.9rem 2rem;
  }
 
+ /* A fila de bolinhas nasce vazia e o JS a preenche com botões de 44 px: a altura fica reservada desde a 1ª
+    pintura, para o conteúdo abaixo não descer quando os destaques chegam (CLS 0,296 a 1440 px na produção). */
  .banner-dots {
      display: flex;
      justify-content: center;
      gap: 0;
      margin-top: 1.5rem;
+     min-height: 44px;
  }
 
  /* O botão tem 44x44 px (regra da casa; a WCAG 2.2 AA pede 24); a bolinha visível de 10 px é o ::before. */

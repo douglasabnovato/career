@@ -8,6 +8,12 @@
   margin: 2rem 0;
 }
 
+/* Antes de os cards chegarem, a grade vazia reserva a tela: sem isso, a paginação aparecia e era empurrada para
+   fora (CLS 0,065 a 1440 px). */
+.box-projects:empty {
+  min-height: 100vh;
+}
+
 .card {
   display: flex;
   flex-direction: column;

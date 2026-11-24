@@ -134,6 +134,8 @@ body {
 #section-subtitle {
   color: var(--text-muted);
   max-width: 600px;
+  /* "Aguarde um momento..." tem 1 linha, e o subtítulo da seção tem 2: a 2ª linha fica reservada (CLS a 1440 px). */
+  min-height: 3.2em;
 }
 
 /* Filtro por categoria da seção (empresas, vagas e perfis). */

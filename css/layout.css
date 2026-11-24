@@ -146,7 +146,7 @@ body {
 }
 
 .category-filter select {
-  min-height: 36px;
+  min-height: 44px;
   max-width: 240px;
   padding: 0.4rem 0.75rem;
   border-radius: 8px;

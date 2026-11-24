@@ -29,6 +29,7 @@
 .logo {
   display: flex;
   align-items: center;
+  min-height: 44px; /* Alvo de toque de 44 px no celular (regra da casa; E8 das referências do Esp UX/UI). */
   gap: 10px;
   flex-shrink: 0;
   text-decoration: none;
@@ -153,6 +154,8 @@
   color: var(--text-primary);
   cursor: pointer;
   padding: 5px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 @media (max-width: 768px) {

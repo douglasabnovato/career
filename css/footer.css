@@ -49,10 +49,17 @@
 }
 .footer-socials {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.5rem;
   font-size: 1.5rem;
 }
+/* Alvo de toque de 44 px no celular (regra da casa; E8 das referências do Esp UX/UI). */
 .footer-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  text-decoration: none;
   color: var(--text-muted);
   transition: color 0.3s;
 }

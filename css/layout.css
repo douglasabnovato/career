@@ -170,7 +170,17 @@ body {
   padding: 0.75rem 1.75rem;
 }
 
+/* A contagem fica sempre na linha de baixo do cabeçalho da seção. Com "Mostrando 8 de 43 empresas" (career#48), ela
+   não cabia ao lado do título e do filtro a 1440 px, e passava para a linha de baixo só quando a fonte da web chegava
+   (CLS 0,13). A quebra fixa deixa a mesma disposição desde a 1ª pintura, em todas as larguras. */
+.section-header::after {
+  content: "";
+  flex-basis: 100%;
+  order: 1;
+}
+
 .stats-bar {
+  order: 2;
   background: var(--bg-surface);
   padding: 0.5rem 1rem;
   border-radius: 8px;

@@ -29,3 +29,10 @@ export function urlSegura(valor, base = globalThis.location?.href) {
 }
 
 /* Fim de utils.js */
+
+/* Texto do contador, que é a região viva da lista (career#47 e R19 do #48): com resultados, "Mostrando 8 de 43 empresas";
+   com 0, diz também a saída, porque o botão "Limpar filtros" fica na grade, que não é anunciada. */
+export function textoContador(exibidos, total, secao) {
+  if (total === 0) return `Nenhuma ${secao.singular} com estes filtros. Use Limpar filtros`;
+  return `Mostrando ${exibidos} de ${total} ${total === 1 ? secao.singular : secao.rotulo}`;
+}

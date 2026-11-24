@@ -5,7 +5,7 @@ import { jobs } from "./jobs.js";
 import { profiles } from "./perfis-dev.js";
 import { curriculos } from "./curriculos.js";
 import { launchBanner, montarDestaques } from "./banner-data.js";
-import { normalizar, urlSegura } from "./utils.js";
+import { normalizar, urlSegura, textoContador } from "./utils.js";
 import { iniciarBanner } from "./banner.js";
 import { inicializarTema } from "./theme.js";
 import { renderCurriculos, iniciarAccordionCurriculos, abrirModelo } from "./curriculos-render.js";
@@ -270,11 +270,7 @@ export const App = {
   },
 
   atualizarContador(exibidos, total) {
-    const secao = this.secoes[this.state.secaoAtual];
-
-    const rotulo = total === 1 ? secao.singular : secao.rotulo;
-
-    this.el.contador.textContent = total === 0 ? `0 ${secao.rotulo}` : `${exibidos} ${rotulo} de ${total}`;
+    this.el.contador.textContent = textoContador(exibidos, total, this.secoes[this.state.secaoAtual]);
   },
 
   trocarSecao(nome, inicial = false, categoria = "") {

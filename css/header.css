@@ -79,7 +79,7 @@
 #search-input {
   width: 100%;
   background: var(--bg-subtle);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-campo);
   color: var(--text-primary);
   font-family: inherit;
   padding: 0.7rem 1rem 0.7rem 2.8rem;
@@ -90,7 +90,8 @@
 }
 
 #search-input::placeholder {
-  color: var(--text-faint);
+  /* --text-muted: o --text-faint dava 4,40:1 no claro e 3,55:1 no escuro (WCAG 1.4.3). */
+  color: var(--text-muted);
 }
 
 #search-input:focus {

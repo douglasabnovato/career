@@ -29,7 +29,12 @@
 .footer-brand .footer-conheca {
   margin-top: 0.5rem;
 }
+/* Link sozinho no parágrafo (não é inline numa frase, então a isenção da WCAG 2.5.8 não vale): alvo de 44 px
+   (regra da casa; R19 do Esp QA do learntech-content#68). */
 .footer-conheca a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--text-muted);
   text-decoration: underline;
   text-underline-offset: 3px;

@@ -120,6 +120,25 @@ body {
   white-space: nowrap;
 }
 
+/* Link que abre em nova aba: um ↗ visível depois do texto, para quem enxerga (learntech-content#70, como no tools#73).
+   O leitor de tela ouve o aviso do .sr-only ou do aria-label, e o ícone não tem texto (content vazio). A cor é a do
+   texto do link (currentColor). Ficam de fora o card e os botões que já mostram o próprio ícone de saída
+   (bx-right-top-arrow-circle, bx-link-external). */
+a[target="_blank"]:not(.card):not(:has(.bx-right-top-arrow-circle, .bx-link-external))::after {
+  content: "";
+  display: inline-block;
+  flex: none;
+  width: 0.8em;
+  height: 0.8em;
+  margin-inline-start: 0.3em;
+  vertical-align: -0.05em;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 11 11 5M6 5h5v5'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 11 11 5M6 5h5v5'/%3E%3C/svg%3E") center / contain no-repeat;
+  /* No alto contraste, o fundo seria trocado pela cor da página e o ícone sumiria. */
+  forced-color-adjust: none;
+}
+
 .section-header {
   margin: 3rem 0 1rem;
   display: flex;

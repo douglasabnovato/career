@@ -116,7 +116,10 @@ function criarOrientacao(curriculo) {
     .join("");
   const fontes = (curriculo.fontes || [])
     .filter((f) => /^https:\/\//.test(String(f.url)))
-    .map((f) => `<li><a href="${escapar(f.url)}" target="_blank" rel="noopener noreferrer">${escapar(f.label || f.url)}</a></li>`)
+    .map(
+      (f) =>
+        `<li><a href="${escapar(f.url)}" target="_blank" rel="noopener noreferrer">${escapar(f.label || f.url)}<span class="sr-only"> (abre em nova aba)</span></a></li>`,
+    )
     .join("");
   return `
     ${dicas ? `<section class="resume-section resume-orientacao"><h3 class="resume-section__title">Dicas para montar o seu</h3><ul class="resume-section__list">${dicas}</ul></section>` : ""}

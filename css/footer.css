@@ -68,6 +68,15 @@
   color: var(--text-muted);
   transition: color 0.3s;
 }
+/* Nos ícones das redes (1,5rem), o ↗ fica menor e no alto, como um expoente, para não competir com o logo. */
+.footer-socials a::after {
+  width: 0.45em;
+  height: 0.45em;
+  margin-inline-start: 0.1em;
+  align-self: flex-start;
+  margin-top: 0.35em;
+}
+
 .footer-socials a:hover {
   color: var(--primary);
 }

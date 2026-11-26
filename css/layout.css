@@ -123,8 +123,9 @@ body {
 /* Link que abre em nova aba: um ↗ visível depois do texto, para quem enxerga (learntech-content#70, como no tools#73).
    O leitor de tela ouve o aviso do .sr-only ou do aria-label, e o ícone não tem texto (content vazio). A cor é a do
    texto do link (currentColor). Ficam de fora o card e os botões que já mostram o próprio ícone de saída
-   (bx-right-top-arrow-circle, bx-link-external). */
-a[target="_blank"]:not(.card):not(:has(.bx-right-top-arrow-circle, .bx-link-external))::after {
+   (bx-right-top-arrow-circle, bx-link-external). O :where() deixa a regra com especificidade baixa (0,1,2), para que
+   ajustes por lugar, como o das redes em footer.css, valham (R19 do career#50). */
+a[target="_blank"]:where(:not(.card):not(:has(.bx-right-top-arrow-circle, .bx-link-external)))::after {
   content: "";
   display: inline-block;
   flex: none;
